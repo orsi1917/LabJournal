@@ -2,54 +2,56 @@ package nl.youngcapital.LabJournal;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Project {
+	private String comment;
+	@OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	List <Experiment> experiment;
 	@Id
 	@GeneratedValue
 	private Long id;
 	private String name;
-	private String comment;
-	@ManyToOne
-	List <Experiment> experiment;
-	@ManyToOne
+	@OneToMany//(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	List <Sample> samples;
-	public List<Sample> getSamples() {
-		return samples;
-	}
-	public void setSamples(List<Sample> samples) {
-		this.samples = samples;
-	}
 	public Project() {
 		super();
-	}
-	public long getId() {
-		return id;
-	}
-	public List<Experiment> getExperiment() {
-		return experiment;
-	}
-	public void setExperiment(List<Experiment> experiment) {
-		this.experiment = experiment;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
 	}
 	public String getComment() {
 		return comment;
 	}
+	public List<Experiment> getExperiment() {
+		return experiment;
+	}
+	public long getId() {
+		return id;
+	}
+	public String getName() {
+		return name;
+	}
+	public List<Sample> getSamples() {
+		return samples;
+	}
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+	public void setExperiment(List<Experiment> experiment) {
+		this.experiment = experiment;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public void setSamples(List<Sample> samples) {
+		this.samples = samples;
 	}
 
 }

@@ -4,58 +4,77 @@ package nl.youngcapital.LabJournal;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 
 
 @Entity
 
 public class SubSample {
+	@OneToOne
+private	Amount amount;
+	private String danger;
+	private String description;
 	@Id
 	@GeneratedValue
 	private Long id;
 	private String name;
-	private String description;
-	@OneToMany(mappedBy = "SubSample", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private	Amount amount;
+
 	@ManyToMany
 	private List <Operation> operations;
-	private String danger;
+		@ManyToOne
+		@JoinColumn(name = "Sample_id")
+		private Sample sample;
+	public Amount getAmount() {
+		return amount;
+	}
+
+		public String getDanger() {
+			return danger;
+		}
+	public String getDescription() {
+		return description;
+	}
 	public long getId() {
 		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
 	}
 	public String getName() {
 		return name;
 	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public Amount getAmount() {
-		return amount;
+	
+	public List<Operation> getOperations() {
+			return operations;
+		}
+	public Sample getSample() {
+		return sample;
 	}
 	public void setAmount(Amount amount) {
 		this.amount = amount;
 	}
-	public String getDanger() {
-		return danger;
-	}
 	public void setDanger(String danger) {
 		this.danger = danger;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setOperations(List<Operation> operations) {
+		this.operations = operations;
+	}
+	public void setSample(Sample sample) {
+		this.sample = sample;
 	}
 
 }
