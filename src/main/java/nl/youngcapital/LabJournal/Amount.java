@@ -11,8 +11,7 @@ public class Amount {
 	@Id
 	@GeneratedValue
 	private Long id;
-	@OneToOne
-	private SubSample subSample;
+
 	private String unit;
 	public Amount() {
 		super();
@@ -20,12 +19,10 @@ public class Amount {
 	public long getAmount() {
 		return amount;
 	}
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
-	public SubSample getSubSample() {
-		return subSample;
-	}
+
 	public String getUnit() {
 		return unit;
 	}
@@ -35,9 +32,7 @@ public class Amount {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public void setSubSample(SubSample subSample) {
-		this.subSample = subSample;
-	}
+
 	public void setUnit(String unit) {
 		this.unit = unit;
 	}

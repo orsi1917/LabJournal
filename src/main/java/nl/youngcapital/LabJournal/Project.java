@@ -11,15 +11,22 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Project {
-	private String comment;
-	@OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	List <Experiment> experiment;
 	@Id
 	@GeneratedValue
 	private Long id;
+	
+	
+	private String comment;
+	@OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	List <Experiment> experiment;
+
 	private String name;
 	@OneToMany//(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	List <Sample> samples;
+	public Project(String name) {
+		super();
+		this.name = name;
+	}
 	public Project() {
 		super();
 	}

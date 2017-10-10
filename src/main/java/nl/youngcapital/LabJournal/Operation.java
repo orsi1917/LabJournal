@@ -18,7 +18,7 @@ public class Operation {
 	@Id
 	@GeneratedValue
 	private Long id;
-	private String insrument;
+	private String instrument;
 	private String location;
 	private String person;
 	private String settings;
@@ -37,8 +37,8 @@ public class Operation {
 	public long getId() {
 		return id;
 	}
-	public String getInsrument() {
-		return insrument;
+	public String getInstrument() {
+		return instrument;
 	}
 	public String getLocation() {
 		return location;
@@ -65,8 +65,8 @@ public class Operation {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public void setInsrument(String insrument) {
-		this.insrument = insrument;
+	public void setInstrument(String insrument) {
+		this.instrument = insrument;
 	}
 	public void setLocation(String location) {
 		this.location = location;
