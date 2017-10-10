@@ -32,7 +32,7 @@ public class Experiment {
 	public String getDescription() {
 		return description;
 	}
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 

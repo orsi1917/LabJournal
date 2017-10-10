@@ -34,7 +34,7 @@ public class Operation {
 	public Experiment getExperiment() {
 		return experiment;
 	}
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	public String getInstrument() {

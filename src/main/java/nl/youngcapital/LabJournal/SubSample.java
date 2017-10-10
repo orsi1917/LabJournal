@@ -18,7 +18,7 @@ import javax.persistence.OneToOne;
 
 public class SubSample {
 	@OneToOne
-private	Amount amount;
+	private	Amount amount;
 	private String danger;
 	private String description;
 	@Id
@@ -28,9 +28,9 @@ private	Amount amount;
 
 	@ManyToMany
 	private List <Operation> operations;
-		@ManyToOne
-		@JoinColumn(name = "Sample_id")
-		private Sample sample;
+	@ManyToOne
+	@JoinColumn(name = "Sample_id")
+	private Sample sample;
 	public Amount getAmount() {
 		return amount;
 	}
@@ -41,7 +41,7 @@ private	Amount amount;
 	public String getDescription() {
 		return description;
 	}
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	public String getName() {

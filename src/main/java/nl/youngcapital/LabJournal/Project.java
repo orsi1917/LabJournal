@@ -36,7 +36,7 @@ public class Project {
 	public List<Experiment> getExperiment() {
 		return experiment;
 	}
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	public String getName() {

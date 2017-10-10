@@ -11,6 +11,14 @@ public class Amount {
 	@Id
 	@GeneratedValue
 	private Long id;
+	@OneToOne
+	private SubSample subSample;
+	public SubSample getSubsample() {
+		return subSample;
+	}
+	public void setSubsample(SubSample subSample) {
+		this.subSample = subSample;
+	}
 
 	private String unit;
 	public Amount() {
