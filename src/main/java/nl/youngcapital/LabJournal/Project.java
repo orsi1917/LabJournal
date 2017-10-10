@@ -36,6 +36,11 @@ public class Project {
 	public List<Experiment> getExperiment() {
 		return experiment;
 	}
+	public Project(String name, String comment) {
+		super();
+		this.comment = comment;
+		this.name = name;
+	}
 	public Long getId() {
 		return id;
 	}
