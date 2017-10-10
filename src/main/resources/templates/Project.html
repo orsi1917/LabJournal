@@ -2,29 +2,45 @@
 	<head>
 		<script>
 			function test(){
-				var bankinput = document.getElementById("banknaam").value;
-				document.getElementById("resultaat").value = bankinput;
-				document.getElementById("buttoninput").innerHTML = bankinput;
-				alert(bankinput);
+				var projectinput = document.getElementById("projectname").value;
+				document.getElementById("buttoninput").innerHTML = projectname;
+				alert(projectinput);
           			var xhttp = new XMLHttpRequest();
   				xhttp.onreadystatechange = function() {
     					if (this.readyState == 4 && this.status == 200) {
       						document.getElementById("outputserver").innerHTML = this.responseText;
     					}
   				};
-          			xhttp.open("GET", "http://localhost:8082/bank2");
+          			xhttp.open("GET", "http://localhost:8082/project");
 				xhttp.setRequestHeader("Content-type", "application/json");
 				xhttp.send();
+			}
+			function verstuur(){
+          			var ent= document.getElementById("projectname").value;
+				var ent2= document.getElementById("projectcomment").value;
+				var project = '{"name":"'+ent+'", "comment" : "'+ent2+'"}'; 
+          			var xhttp = new XMLHttpRequest();
+  				xhttp.onreadystatechange = function() {
+    					if (this.readyState == 4 && this.status == 202) {
+      						document.getElementById("outputserver").innerHTML = this.responseText;
+    					}
+  				};
+          			xhttp.open("POST", "http://localhost:8082/projectpost", true);
+				xhttp.setRequestHeader("Content-type", "application/json");
+				xhttp.send(project);
 			}
 		</script>
 	</head>
 	<body>
-		Ik werk
-		First name: 
-		<input type="text" id="banknaam" name="FirstName" value="Mickey">
+		Met deze knop Haal ik een project op:
+		<button type="button" id="buttoninput" onclick="test()">Ophalen van een project via Get</button>
+		<hr>		
+		Name:
+		<input type="text" id="projectname" name="Name" value="Darth Vader">
+		<br>Comment:
+		<input type="text" id="projectcomment" name="Comment" value="Pikatchu">
 		<br>
-		<button type="button" id="buttoninput" onclick="test()">Click Me!</button>
-		<input type="text" id="resultaat" name="FirstName" value="resultaat">
+		<button type="button" id="buttoninput" onclick="verstuur()">Posten van een project via Post</button>
 		<div id="outputserver"></div>
 	</body>
 </html>
