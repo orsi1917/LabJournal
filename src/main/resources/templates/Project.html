@@ -6,13 +6,23 @@
           			var xhttp = new XMLHttpRequest();
   				xhttp.onreadystatechange = function() {
     					if (this.readyState == 4 && this.status == 200) {
-      						document.getElementById("outputserver").innerHTML = this.responseText;
+      						//document.getElementById("outputserver").innerHTML;
+				var projects = JSON.parse(this.responseText);
+				uittekenen(projects);
+
     					}
   				};
           			xhttp.open("GET", "http://localhost:8082/list");
 				xhttp.setRequestHeader("Content-type", "application/json");
 				xhttp.send();
 			}
+			function uittekenen(projects){
+
+					for (i=0; i<projects.length; i++){
+						document.getElementById("list").innerHTML = document.getElementById("list").innerHTML +"<tr><td>"+ projects[i].name + " </td><td>" + projects[i].comment+ "</td></tr>";
+					}
+
+				}	
 			function test(){
 				var projectinput = document.getElementById("projectname").value;
 				document.getElementById("buttoninput").innerHTML = projectname;
@@ -55,5 +65,6 @@
 		<button type="button" id="buttoninput" onclick="verstuur()">Create new Project</button>
 		<div id="outputserver"></div>
 		<button type="button" id="try" onclick="list()">try</button>
+		<table id="list" border=1></table>
 	</body>
 </html>
