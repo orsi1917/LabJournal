@@ -1,70 +1,126 @@
+
 <html>
-	<head>
-		<script>
-				function list(){
-				
-          			var xhttp = new XMLHttpRequest();
-  				xhttp.onreadystatechange = function() {
-    					if (this.readyState == 4 && this.status == 200) {
-      						//document.getElementById("outputserver").innerHTML;
+<head>
+<script>
+	function doethijhet() {
+		alert("hij doet het!");
+	}
+	function list() {
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				//document.getElementById("outputserver").innerHTML;
+				//alert("hier word de list leeg");
+				document.getElementById("list").innerHTML = "";
 				var projects = JSON.parse(this.responseText);
 				uittekenen(projects);
-
-    					}
-  				};
-          			xhttp.open("GET", "http://localhost:8082/list");
-				xhttp.setRequestHeader("Content-type", "application/json");
-				xhttp.send();
 			}
-			function uittekenen(projects){
-
-					for (i=0; i<projects.length; i++){
-						document.getElementById("list").innerHTML = document.getElementById("list").innerHTML +"<tr><td>"+ projects[i].name + " </td><td>" + projects[i].comment+ "</td></tr>";
-					}
-
-				}	
-			function test(){
-				var projectinput = document.getElementById("projectname").value;
-				document.getElementById("buttoninput").innerHTML = projectname;
-				alert(projectinput);
-          			var xhttp = new XMLHttpRequest();
-  				xhttp.onreadystatechange = function() {
-    					if (this.readyState == 4 && this.status == 200) {
-      						document.getElementById("outputserver").innerHTML = this.responseText;
-    					}
-  				};
-          			xhttp.open("GET", "http://localhost:8082/project");
-				xhttp.setRequestHeader("Content-type", "application/json");
-				xhttp.send();
+		};
+		xhttp.open("GET", "http://localhost:8082/list");
+		xhttp.setRequestHeader("Content-type", "application/json");
+		xhttp.send();
+	}
+	function uittekenen(projects) {
+		for (i = 0; i < projects.length; i++) {
+			document.getElementById("list").innerHTML = document.getElementById("list").innerHTML
+					+ "<tr><td>"
+					+ projects[i].name
+					+ "</td><td>"
+					+ projects[i].comment
+					+ "</td></tr>"
+		}
+	}
+	function verstuur() {
+		var ent = document.getElementById("projectname").value;
+		var ent2 = document.getElementById("projectcomment").value;
+		var project = '{"name":"' + ent + '", "comment" : "' + ent2 + '"}';
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 202) {
+				document.getElementById("outputserver").innerHTML = this.responseText;
 			}
-			function verstuur(){
-          			var ent= document.getElementById("projectname").value;
-				var ent2= document.getElementById("projectcomment").value;
-				var project = '{"name":"'+ent+'", "comment" : "'+ent2+'"}'; 
-          			var xhttp = new XMLHttpRequest();
-  				xhttp.onreadystatechange = function() {
-    					if (this.readyState == 4 && this.status == 202) {
-      						document.getElementById("outputserver").innerHTML = this.responseText;
-    					}
-  				};
-          			xhttp.open("POST", "http://localhost:8082/projectpost", true);
-				xhttp.setRequestHeader("Content-type", "application/json");
-				xhttp.send(project);
-			}
-		</script>
-	</head>
-	<body>
-		Met deze knop Haal ik een project op:
-		<button type="button" id="buttoninput" onclick="test()">Ophalen van een project via Get</button>
-		<hr>		
-		Name:
-		<input type="text" id="projectname" name="Name" value="Darth Vader">
-		<br>Comment:
-		<input type="text" id="projectcomment" name="Comment" value="Pikatchu">
-		<br>
-		<button type="button" id="buttoninput" onclick="verstuur()">Create new Project</button>
-		<div id="outputserver"></div>
-		<button type="button" id="try" onclick="list()">try</button>
-		<table id="list" border=1></table>
-	</body>
+		};
+		xhttp.open("POST", "http://localhost:8082/projectpost", true);
+		xhttp.setRequestHeader("Content-type", "application/json");
+		xhttp.send(project);
+	}
+</script>
+
+<style>
+div.container {
+	width: 100%;
+	border: 1px solid gray;
+}
+header, footer {
+	padding: 1em;
+	color: white;
+	background-color: black;
+	clear: left;
+	text-align: center;
+}
+nav {
+	float: left;
+	max-width: 160px;
+	margin: 0;
+	padding: 1em;
+}
+nav ul {
+	list-style-type: none;
+	padding: 0;
+}
+nav ul a {
+	text-decoration: none;
+}
+article {
+	margin-left: 170px;
+	border-left: 1px solid gray;
+	padding: 1em;
+	overflow: hidden;
+}
+</style>
+
+</head>
+<body>
+
+	<div class="container">
+
+		<header>
+			<h1>Lab Journal</h1>
+		</header>
+
+		<nav>
+			<ul>
+				<li><a href="#">Example</a></li>
+				<li><a href="#">Demo</a></li>
+				<li><a href="#">Test</a></li>
+			</ul>
+		</nav>
+
+		<article>
+			<h1>My First Buttons</h1>
+
+			<table>
+				<tr>
+					<td>Name:</td>
+					<td><input type="text" id="projectname" name="Name"
+						value="projectname"></td>
+				<tr>
+					<td>Comment:</td>
+					<td><input type="text" id="projectcomment" name="Comment"
+						value="comments" size="100"></td>
+			</table>
+			<br>
+			<button type="button" id="buttoninput" onclick="verstuur()">Create
+				new Project</button>
+			<button type="button" id="try" onclick="list()">show list</button>
+			<table id="list" border=1></table>
+
+		</article>
+
+		<footer>Program by Orsi & Steven</footer>
+
+	</div>
+
+
+</body>
 </html>
