@@ -60,14 +60,16 @@
 	}
 	function getOneProject() {
 		var xhttp = new XMLHttpRequest();
+		var id = document.getElementById("ProjectID").value;
+		alert (id);
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
-				console.log(this.responseText);
+		console.log(this.responseText);
 			var project = JSON.parse(this.responseText);
 			alert (project.name)
 			}
 		};
-		xhttp.open("GET", "http://localhost:8082/findProject");
+		xhttp.open("GET", "http://localhost:8082/findProject/" + id);
 		xhttp.setRequestHeader("Content-type", "application/json");
 		xhttp.send();
 	}
@@ -76,8 +78,6 @@
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
-				//document.getElementById("outputserver").innerHTML;
-				//alert("hier word de list leeg");
 				document.getElementById("list").innerHTML = "";
 				console.log(this.responseText);
 				var projects = JSON.parse(this.responseText);
@@ -108,6 +108,7 @@
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 202) {
 				document.getElementById("outputserver").innerHTML = this.responseText;
+				
 			}
 		};
 		xhttp.open("POST", "http://localhost:8082/projectpost", true);
@@ -184,16 +185,13 @@ article {
 			<table>
 				<tr>
 					<td>Name:</td>
-					<td><input type="text" id="projectname" name="Name"
-						value="projectname"></td>
+					<td><input type="text" id="projectname" name="Name" 	value="projectname"></td>
 				<tr>
 					<td>Comment:</td>
-					<td><input type="text" id="projectcomment" name="Comment"
-						value="comments" size="100"></td>
+					<td><input type="text" id="projectcomment" name="Comment" value="comments" size="100"></td>
 			</table>
 			<br>
-			<button type="button" id="buttoninput" onclick="verstuur()">Create
-				new Project</button>
+			<button type="button" id="buttoninput" onclick="verstuur()">Create new Project</button>
 			<button type="button" id="try" onclick="list()">show list</button>
 			<input type="text" id="deletefield" name="DeleteById"
 				value="enter ID">
@@ -206,19 +204,16 @@ article {
 						value="samplename"></td>
 				<tr>
 					<td>Comment:</td>
-					<td><input type="text" id="sampledescription" name="Description"
-						value="description" size="100"></td>
+					<td><input type="text" id="sampledescription" name="Description" value="description" size="100"></td>
 				<tr>		<td>Project:</td>
-					<td><input type="text" id="projectid" name="ProjectID"
-						value="1" size="100"></td>
+					<td><input type="text" id="ProjectID" name="ProjectID" 	value="2" size="100"></td>
 			</table>
 			<br>
-			<button type="button" id="buttoninput" onclick="newsample()">Create
-				new sample</button>
+			<button type="button" id="buttoninput" onclick="newsample()">Create new sample</button>
 				
 			<button type="button" id="try" onclick="listsample()">show list</button>
 			<button type="button" id="getProject" onclick="getOneProject()">get one project</button>
-			<button type="button" id="getProject" onclick="newsampleForProject() ">make sample with 1st project</button>
+			<button type="button" id="newsampleforproject" onclick="newsampleForProject() ">make sample with 1st project</button>
 			<table id="samplelist" border=1></table>
 
 		</article>

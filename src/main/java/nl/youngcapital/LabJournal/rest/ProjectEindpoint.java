@@ -42,9 +42,15 @@ public class ProjectEindpoint {
 	    return (List<Project>)projectRepository.findAll();
 	 }
 	 
-	 @RequestMapping(value = "/findProject", method = RequestMethod.GET)
-	 public Project findOne() {
+	 @RequestMapping(value = "/findProject1", method = RequestMethod.GET)
+	 public Project findFirst() {
 	    return (Project)projectRepository.findOne((long) 1);
+	 }
+	 
+	 @RequestMapping(value = "/findProject/{id}", method = RequestMethod.GET)
+	 public Project findOne(@PathVariable long id) {
+		
+		 return (Project)projectRepository.findOne(id);
 	 }
 	 
 	 
