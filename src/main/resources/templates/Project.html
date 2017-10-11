@@ -8,7 +8,7 @@
 	function newsampleForProject() {
 		var ent = document.getElementById("samplename").value;
 		var ent2 = document.getElementById("sampledescription").value;
-		var sample = '{"name":"' + ent + '", "description" : "' + ent2 + '", }';
+		var sample = '{"name":"' + ent + '", "description" : "' + ent2 + '" }';
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 202) {
@@ -23,8 +23,8 @@
 	function newsample() {
 		var ent = document.getElementById("samplename").value;
 		var ent2 = document.getElementById("sampledescription").value;
-		var ent3 = document.getElementById("projectid").value;
-		var sample = '{"name":"' + ent + '", "description" : "' + ent2 + '", "project_id" : "' + ent3 + '" }';
+		
+		var sample = '{"name":"' + ent + '", "description" : "' + ent2 + '" }';
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 202) {
@@ -82,7 +82,7 @@
 				uittekenen(projects);
 			}
 		};
-		xhttp.open("GET", "http://localhost:8082/list");
+		xhttp.open("GET", "http://localhost:8082/projectlist");
 		xhttp.setRequestHeader("Content-type", "application/json");
 		xhttp.send();
 	}

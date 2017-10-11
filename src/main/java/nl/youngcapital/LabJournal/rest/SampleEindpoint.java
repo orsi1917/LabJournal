@@ -48,43 +48,10 @@ public class SampleEindpoint {
 		sampleService.saveSample(sample);
 		return sample;
 	}
-	@ResponseBody
-	@RequestMapping(value = "/jojoNOP", method = RequestMethod.POST)
-	public Sample postSampleWithProject(@RequestBody Sample sample, @RequestBody Project project) {
-		sampleService.saveSample(sample);
-		sample.setProject(project);
-		sampleService.saveSample(sample);
-		return sample;
-	}
+
+
+
 	
-	@RequestMapping(value = "/jojoABC", method = RequestMethod.GET)
-	public Sample addSampleToProject() {
-		Sample sample = new Sample();
-		Project project = new Project();
-		projectService.saveProject(project);
-		sample.setProject(project);
-		System.out.println(sample);
-		sampleService.saveSample(sample);
-		return sample;
-	}
-	@RequestMapping(value = "/jojoXYZ", method = RequestMethod.GET)
-	public Sample addMoreSampleToProject() {
-		Sample sample1 = new Sample();
-		Sample sample2 = new Sample();
-		Project project = new Project();
-		projectService.saveProject(project);
-		//	sample1.setProject(project);
-		//sample2.setProject(project);
-
-		sampleService.saveSample(sample1);
-		sampleService.saveSample(sample2);
-
-		project.addSample(sample1);
-		project.addSample(sample2);
-
-		projectService.saveProject(project);
-		return sample1;
-	}
 	@ResponseBody
 	@RequestMapping(value = "/samplepost", method = RequestMethod.POST)
 	public void postEntity(@RequestBody Sample sample) {

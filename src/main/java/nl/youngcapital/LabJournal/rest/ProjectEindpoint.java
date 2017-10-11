@@ -28,22 +28,22 @@ public class ProjectEindpoint {
 	@Autowired
 	SampleService sampleService;
 
-	@ResponseBody
-	@RequestMapping(value = "/project", method = RequestMethod.GET)
-	public Project getProject2() {
-		Project project = new Project();
-		System.out.println(project);
-		projectService.saveProject(project);
-		return project;
-	}
+//	@ResponseBody
+//	@RequestMapping(value = "/project", method = RequestMethod.GET)
+//	public Project getProject2() {
+//		Project project = new Project();
+//		System.out.println(project);
+//		projectService.saveProject(project);
+//		return project;
+//	}
 	@ResponseBody
 	@RequestMapping(value = "/projectpost", method = RequestMethod.POST)
 	public void postEntity(@RequestBody Project project) {
-		System.out.println("Jojo");
+		
 		System.out.println(project.getName());
 		projectService.saveProject(project);
 	}
-	 @RequestMapping(value = "/list", method = RequestMethod.GET)
+	 @RequestMapping(value = "/projectlist", method = RequestMethod.GET)
 	 public List<Project> findAll() {
 	    return (List<Project>)projectRepository.findAll();
 	 }
@@ -51,22 +51,15 @@ public class ProjectEindpoint {
 	 public Project findOne() {
 	    return (Project)projectRepository.findOne((long) 1);
 	 }
-	 @RequestMapping(value = "/addSampleToProject", method = RequestMethod.GET)
+	 @RequestMapping(value = "/addSampleToProject", method = RequestMethod.POST)
 	 public void addSampleToProject(@RequestBody Sample sample) {
 		 sampleService.saveSample(sample);
 		 Project project=projectRepository.findOne((long) 1);
+		 projectService.saveProject(project);
 		 project.addSample(sample);
 		 projectService.saveProject(project);
 	 }
-	 @RequestMapping(value = "/addSampleToProject2", method = RequestMethod.GET)
-	 public void addSampleToProject() {
-		 Project project=projectRepository.findOne((long) 1);
-		 Sample sample = new Sample();
-		 sampleService.saveSample(sample);
-		 sample.setName("example");
-		 project.addSample(sample);
-		 projectService.saveProject(project);
-	 }
+
 	  @ResponseStatus(value = HttpStatus.OK)
 	  @RequestMapping(value = "/project/{id}", method = RequestMethod.DELETE)
 	  public void updateProject(@PathVariable  long id) {

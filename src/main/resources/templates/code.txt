@@ -1,0 +1,49 @@
+<!doctype html>
+<html ng-app='todo'>
+<head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+<script src='./js/todo.js'></script>
+
+</head>
+<body>
+	<div ng-controller="TodoCtrl">
+		<table>
+		<tr><td><form:label path="task">Task</form:label></td>
+		<td><form>	 <input type="text" ng-model="todo.task" placeholder="task" /></form></td>
+		</tr>
+		
+		<tr><td><form:label path="comment">Comment</form:label></td>
+		<td><form> <input type="text" ng-model="todo.comment" placeholder="comment" /></form></td>
+		</tr>
+		<tr><td><form:label path="priority">Priority</form:label></td>
+		<td>
+		<form>	<input id="priority1" name="priority" path="priority" ng-model="todo.priority"  type="radio" value="urgent" /><label for="priority1">Urgent</label></form>
+		<form>	<input id="priority2" name="priority" path="priority" ng-model="todo.priority" type="radio" value="important"/><label for="priority2">important</label></form>
+		<form>	<input id="priority3" name="priority" path="priority" ng-model="todo.priority" type="radio" value="can wait"/><label for="priority3">can wait</label></form>
+		</td></tr>
+		<tr><td><form:label path="donebBy">Should be done by:</form:label></td>
+		<td>
+		<form> <input id="doneBy1" name="doneBy" path="doneBy" ng-model="todo.doneBy"  type="radio" value="Uzumaki Naruto" /><label for="doneBy1">Uzumaki Naruto</label></form>
+		<form>	<input id="doneBy2" name="doneBy" path="doneBy" ng-model="todo.doneBy" type="radio" value="Darth Vader"/><label for="doneBy2">Darth Vader</label></form>
+		<form>	<input id="doneBy3" name="doneBy" path="doneBy" ng-model="todo.doneBy" type="radio" value="Dio"/><label for="doneBy3">Dio</label></form>
+ 		<form>	<input id="doneBy4" name="doneBy" path="doneBy" ng-model="todo.doneBy"  type="radio" value="Severus Snape" /><label for="doneBy4">Severus Snape</label></form>
+		<form>	<input id="doneBy5" name="doneBy" path="doneBy" ng-model="todo.doneBy" type="radio" value="Lord Helmet"/><label for="doneBy5">Lord Helmet</label></form>
+		<form>	<input id="doneBy6" name="doneBy" path="doneBy" ng-model="todo.doneBy" type="radio" value="Bilbo Baggins"/><label for="doneBy6">Bilbo Baggins</label></form>
+  		</td></tr> </table>
+   <form><button type="submit" ng-click="save()">Save</button></form>
+
+			<table>
+			<tr ng-repeat="todo in todos">
+		
+				<td>{{todo.task}}</td><td>{{todo.comment}}</td><td>{{todo.priority}}</td><td>{{todo.doneBy}}</td>
+				<td><button ng-click="delete(todo.id)">delete</button></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
+
