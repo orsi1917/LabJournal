@@ -14,7 +14,7 @@ public class ProjectService {
 	@Autowired
 	ProjectRepository projectRepository;
 	
-	public Project test(Project project) {
+	public Project saveProject(Project project) {
 		projectRepository.save(project);
 		return project;
 	}

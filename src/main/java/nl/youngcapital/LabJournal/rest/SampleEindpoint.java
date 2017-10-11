@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import nl.youngcapital.LabJournal.Project;
 import nl.youngcapital.LabJournal.Sample;
+import nl.youngcapital.LabJournal.Controller.ProjectService;
 import nl.youngcapital.LabJournal.Controller.SampleRepository;
 import nl.youngcapital.LabJournal.Controller.SampleService;
 
@@ -23,25 +25,71 @@ public class SampleEindpoint {
 	SampleService sampleService;
 	@Autowired
 	SampleRepository sampleRepository;
-	@ResponseBody
-	@RequestMapping(value = "/sample2", method = RequestMethod.GET)
-	public String getsample() {
-		return "Hallo";
-	}
+	@Autowired
+	ProjectService projectService;
+	
+	
 	@ResponseBody
 	@RequestMapping(value = "/sample", method = RequestMethod.GET)
 	public Sample getsample2() {
 		Sample sample = new Sample();
 		System.out.println(sample);
-		sampleService.test(sample);
+		sampleService.saveSample(sample);
 		return sample;
+	}
+	@ResponseBody
+	@RequestMapping(value = "/jojoKLM", method = RequestMethod.POST)
+	public Sample postSample(@RequestBody Sample sample) {
+		sampleService.saveSample(sample);
+		Project project = new Project();
+		projectService.saveProject(project);
+		sample.setProject(project);
+		System.out.println(sample);
+		sampleService.saveSample(sample);
+		return sample;
+	}
+	@ResponseBody
+	@RequestMapping(value = "/jojoNOP", method = RequestMethod.POST)
+	public Sample postSampleWithProject(@RequestBody Sample sample, @RequestBody Project project) {
+		sampleService.saveSample(sample);
+		sample.setProject(project);
+		sampleService.saveSample(sample);
+		return sample;
+	}
+	
+	@RequestMapping(value = "/jojoABC", method = RequestMethod.GET)
+	public Sample addSampleToProject() {
+		Sample sample = new Sample();
+		Project project = new Project();
+		projectService.saveProject(project);
+		sample.setProject(project);
+		System.out.println(sample);
+		sampleService.saveSample(sample);
+		return sample;
+	}
+	@RequestMapping(value = "/jojoXYZ", method = RequestMethod.GET)
+	public Sample addMoreSampleToProject() {
+		Sample sample1 = new Sample();
+		Sample sample2 = new Sample();
+		Project project = new Project();
+		projectService.saveProject(project);
+		//	sample1.setProject(project);
+		//sample2.setProject(project);
+
+		sampleService.saveSample(sample1);
+		sampleService.saveSample(sample2);
+
+		project.addSample(sample1);
+		project.addSample(sample2);
+
+		projectService.saveProject(project);
+		return sample1;
 	}
 	@ResponseBody
 	@RequestMapping(value = "/samplepost", method = RequestMethod.POST)
 	public void postEntity(@RequestBody Sample sample) {
-		System.out.println("Jojo");
 		System.out.println(sample.getName());
-		sampleService.test(sample);
+		sampleService.saveSample(sample);
 	}
 	 @RequestMapping(value = "/samplelist", method = RequestMethod.GET)
 	 public List<Sample> findAll() {

@@ -1,5 +1,6 @@
 package nl.youngcapital.LabJournal;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -22,7 +23,7 @@ public class Project {
 
 	private String name;
 	@OneToMany//(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	List <Sample> samples;
+	List <Sample> samples = new ArrayList();
 	public Project(String name) {
 		super();
 		this.name = name;
@@ -64,6 +65,9 @@ public class Project {
 	}
 	public void setSamples(List<Sample> samples) {
 		this.samples = samples;
+	}
+	public void addSample (Sample sample) {
+		samples.add(sample);
 	}
 
 }

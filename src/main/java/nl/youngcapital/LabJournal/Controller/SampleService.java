@@ -13,7 +13,7 @@ public class SampleService {
 	@Autowired
 	SampleRepository sampleRepository;
 	
-	public Sample test(Sample sample) {
+	public Sample saveSample(Sample sample) {
 		sampleRepository.save(sample);
 		return sample;
 	}
