@@ -28,14 +28,7 @@ public class ProjectEindpoint {
 	@Autowired
 	SampleService sampleService;
 
-//	@ResponseBody
-//	@RequestMapping(value = "/project", method = RequestMethod.GET)
-//	public Project getProject2() {
-//		Project project = new Project();
-//		System.out.println(project);
-//		projectService.saveProject(project);
-//		return project;
-//	}
+
 	@ResponseBody
 	@RequestMapping(value = "/projectpost", method = RequestMethod.POST)
 	public void postEntity(@RequestBody Project project) {
@@ -43,21 +36,26 @@ public class ProjectEindpoint {
 		System.out.println(project.getName());
 		projectService.saveProject(project);
 	}
+	
 	 @RequestMapping(value = "/projectlist", method = RequestMethod.GET)
 	 public List<Project> findAll() {
 	    return (List<Project>)projectRepository.findAll();
 	 }
+	 
 	 @RequestMapping(value = "/findProject", method = RequestMethod.GET)
 	 public Project findOne() {
 	    return (Project)projectRepository.findOne((long) 1);
 	 }
+	 
+	 
 	 @RequestMapping(value = "/addSampleToProject", method = RequestMethod.POST)
 	 public void addSampleToProject(@RequestBody Sample sample) {
 		 sampleService.saveSample(sample);
 		 Project project=projectRepository.findOne((long) 1);
 		 projectService.saveProject(project);
-		 project.addSample(sample);
-		 projectService.saveProject(project);
+		 sample.setProject(project);
+		 sampleService.saveSample(sample);
+		 System.out.println(project.getId());
 	 }
 
 	  @ResponseStatus(value = HttpStatus.OK)

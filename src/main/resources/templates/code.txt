@@ -1,3 +1,5 @@
+
+https://github.com/orsi1917/LabJournal/invitations
 <!doctype html>
 <html ng-app='todo'>
 <head>

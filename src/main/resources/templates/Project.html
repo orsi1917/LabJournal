@@ -9,6 +9,7 @@
 		var ent = document.getElementById("samplename").value;
 		var ent2 = document.getElementById("sampledescription").value;
 		var sample = '{"name":"' + ent + '", "description" : "' + ent2 + '" }';
+		console.log(sample);
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 202) {
@@ -40,6 +41,7 @@
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
 			document.getElementById("samplelist").innerHTML = "";
+			console.log(this.responseText);
 				var samples = JSON.parse(this.responseText);
 				listtotable(samples);
 			}
@@ -62,6 +64,7 @@
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
+				console.log(this.responseText);
 			var project = JSON.parse(this.responseText);
 			alert (project.name)
 			}
@@ -78,6 +81,7 @@
 				//document.getElementById("outputserver").innerHTML;
 				//alert("hier word de list leeg");
 				document.getElementById("list").innerHTML = "";
+				console.log(this.responseText);
 				var projects = JSON.parse(this.responseText);
 				uittekenen(projects);
 			}
@@ -95,7 +99,7 @@
 					+ projects[i].name
 					+ "</td><td>"
 					+ projects[i].comment
-					+ "</td></tr>"
+					+ "</td></tr>";
 		}
 	}
 	function verstuur() {

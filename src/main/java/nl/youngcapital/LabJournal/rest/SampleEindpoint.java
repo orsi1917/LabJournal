@@ -43,6 +43,9 @@ public class SampleEindpoint {
 		sampleService.saveSample(sample);
 		Project project = new Project();
 		projectService.saveProject(project);
+		project.setName("Auto-generated");
+		project.setComment("comment");
+		projectService.saveProject(project);
 		sample.setProject(project);
 		System.out.println(sample);
 		sampleService.saveSample(sample);

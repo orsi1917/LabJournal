@@ -18,11 +18,11 @@ public class Project {
 	
 	
 	private String comment;
-	@OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany//(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	List <Experiment> experiment;
 
 	private String name;
-	@OneToMany//(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "project") //, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	List <Sample> samples = new ArrayList();
 	public Project(String name) {
 		super();
@@ -34,9 +34,7 @@ public class Project {
 	public String getComment() {
 		return comment;
 	}
-	public List<Experiment> getExperiment() {
-		return experiment;
-	}
+	
 	public Project(String name, String comment) {
 		super();
 		this.comment = comment;
@@ -48,9 +46,7 @@ public class Project {
 	public String getName() {
 		return name;
 	}
-	public List<Sample> getSamples() {
-		return samples;
-	}
+	
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
