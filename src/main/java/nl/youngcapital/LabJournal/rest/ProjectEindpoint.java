@@ -58,10 +58,11 @@ public class ProjectEindpoint {
 		 System.out.println(project.getId());
 	 }
 
-	  @ResponseStatus(value = HttpStatus.OK)
-	  @RequestMapping(value = "/project/{id}", method = RequestMethod.DELETE)
-	  public void updateProject(@PathVariable  long id) {
+	 @ResponseBody
+	 //@ResponseStatus(value = HttpStatus.OK)
+	 @RequestMapping(value = "/project/{id}", method = RequestMethod.DELETE)
+	 public void updateProject(@PathVariable long id) {
+		System.out.println("delete request");
 	    projectRepository.delete(id);
-	    
 	  } 
 }

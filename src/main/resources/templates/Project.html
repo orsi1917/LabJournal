@@ -2,9 +2,7 @@
 <html>
 <head>
 <script>
-	function doethijhet() {
-		alert("hij doet het!");
-	}
+	
 	function newsampleForProject() {
 		var ent = document.getElementById("samplename").value;
 		var ent2 = document.getElementById("sampledescription").value;
@@ -116,6 +114,18 @@
 		xhttp.setRequestHeader("Content-type", "application/json");
 		xhttp.send(project);
 	}
+	function deleter() {
+		var xhttp = new XMLHttpRequest();
+		var id = document.getElementById("deletefield").value;
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("deletebutton").innerHTML = this.responseText;
+			}
+		};
+		xhttp.open("DELETE", "http://localhost:8082/project/" + id, true);
+		alert("deleting " + id);
+		xhttp.send();
+	}
 </script>
 
 <style>
@@ -185,6 +195,9 @@ article {
 			<button type="button" id="buttoninput" onclick="verstuur()">Create
 				new Project</button>
 			<button type="button" id="try" onclick="list()">show list</button>
+			<input type="text" id="deletefield" name="DeleteById"
+				value="enter ID">
+			<button type="button" id="deletebutton" onclick="deleter()">delete</button>
 			<table id="list" border=1></table>
 			<table>
 				<tr>
