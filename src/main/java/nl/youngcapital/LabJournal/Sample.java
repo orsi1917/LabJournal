@@ -17,6 +17,12 @@ public class Sample {
 	private String description;
 	@ManyToMany
 	List <Experiment> experiments;
+	public Sample(String name, String description) {
+		super();
+		this.description = description;
+		this.name = name;
+	}
+	
 	@Id
 	@GeneratedValue
 	private Long id;
