@@ -4,6 +4,7 @@
 <script>
 	
 	function newsampleForProject() {
+		
 		var ent = document.getElementById("samplename").value;
 		var ent2 = document.getElementById("sampledescription").value;
 		var id = document.getElementById("ProjectID").value;
@@ -13,11 +14,14 @@
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 202) {
 				document.getElementById("outputserver").innerHTML = this.responseText;
-			}
+							}
 		};
 		xhttp.open("POST", "http://localhost:8082/addSampleToProject/"+id, true);
 		xhttp.setRequestHeader("Content-type", "application/json");
 		xhttp.send(sample);
+		while (!this.readyState == 4){};
+		listsample();
+		
 	}
 	
 
@@ -36,6 +40,8 @@
 		xhttp.send();
 	}
 	function listtotable (samples) {
+		document.getElementById("samplelist").innerHTML = document.getElementById("samplelist").innerHTML
+		+ "<Table><tr><th>ID</th><th>Name</th><th>Description</th><th>Project ID</th></tr>";
 		for (i = 0; i < samples.length; i++) {
 			document.getElementById("samplelist").innerHTML = document.getElementById("samplelist").innerHTML
 					+ "<tr><td>"
@@ -48,6 +54,8 @@
 					+ samples[i].project.id;
 					+ "</td></tr>"
 		}
+		document.getElementById("samplelist").innerHTML = document.getElementById("samplelist").innerHTML
+		+ "</table>";
 	}
 	function getOneProject() {
 		var xhttp = new XMLHttpRequest();
@@ -80,6 +88,8 @@
 		xhttp.send();
 	}
 	function uittekenen(projects) {
+		document.getElementById("list").innerHTML = document.getElementById("list").innerHTML
+		+ "<Table><tr><th>ID</th><th>Name</th><th>Comment</th></tr>";
 		for (i = 0; i < projects.length; i++) {
 			document.getElementById("list").innerHTML = document.getElementById("list").innerHTML
 					+ "<tr><td>"
@@ -90,6 +100,8 @@
 					+ projects[i].comment
 					+ "</td></tr>";
 		}
+		document.getElementById("list").innerHTML = document.getElementById("list").innerHTML
+		+ "</table>";
 	}
 	function verstuur() {
 		var ent = document.getElementById("projectname").value;
@@ -105,6 +117,8 @@
 		xhttp.open("POST", "http://localhost:8082/projectpost", true);
 		xhttp.setRequestHeader("Content-type", "application/json");
 		xhttp.send(project);
+		while (!this.readyState == 4){};
+		list();
 	}
 	function deleter() {
 		var xhttp = new XMLHttpRequest();
@@ -151,6 +165,14 @@ article {
 	padding: 1em;
 	overflow: hidden;
 }
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
 </style>
 
 </head>
@@ -188,6 +210,7 @@ article {
 				value="enter ID">
 			<button type="button" id="deletebutton" onclick="deleter()">delete</button>
 			<table id="list" border=1></table>
+			<br><hr><br>
 			<table>
 				<tr>
 					<td>Name:</td>
