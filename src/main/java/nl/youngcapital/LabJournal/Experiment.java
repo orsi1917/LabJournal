@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 //Lets go
 @Entity
-public class Experiment { //abc
+public class Experiment { //xyz
 	private String description;
 	@Id
 	@GeneratedValue
