@@ -39,7 +39,7 @@ public class SampleEindpoint {
 	}
 	@ResponseBody
 	@RequestMapping(value = "/jojoKLM", method = RequestMethod.POST)
-	public Sample postSample(@RequestBody Sample sample) {
+	public Sample postSample( Sample sample) {
 		sampleService.saveSample(sample);
 		Project project = new Project();
 		projectService.saveProject(project);
@@ -51,6 +51,23 @@ public class SampleEindpoint {
 		sampleService.saveSample(sample);
 		return sample;
 	}
+
+		@ResponseBody
+		@RequestMapping(value = "/jojoKLM2", method = RequestMethod.POST)
+		public Sample postSample2( @RequestBody Sample sample, String name) {
+			sampleService.saveSample(sample);
+			System.out.println(name);
+			Project project = new Project();
+			projectService.saveProject(project);
+			project.setName("Auto-generated");
+			project.setComment("comment");
+			projectService.saveProject(project);
+			sample.setProject(project);
+			System.out.println(sample);
+			sampleService.saveSample(sample);
+		
+			return sample;
+		}
 
 
 
