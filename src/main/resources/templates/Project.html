@@ -131,8 +131,8 @@
 		xhttp.setRequestHeader("Content-type", "application/json");
 
 		xhttp.send(project);
-		while (!this.readyState == 4){};
-		list();
+		};
+		
 
 	}
 	
@@ -145,10 +145,10 @@
 			}
 		};
 		xhttp.open("DELETE", "http://localhost:8082/project/" + id, true);
-		alert("deleting " + id);
+		//alert("deleting " + id);
 		xhttp.send();
-		while (!this.readyState == 4){};
-		list();
+		//while (!this.readyState == 4){};
+		//list();
 	}
 
 </script>
