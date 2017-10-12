@@ -131,6 +131,8 @@
 		xhttp.open("DELETE", "http://localhost:8082/project/" + id, true);
 		alert("deleting " + id);
 		xhttp.send();
+		while (!this.readyState == 4){};
+		list();
 	}
 </script>
 
@@ -165,13 +167,7 @@ article {
 	padding: 1em;
 	overflow: hidden;
 }
-table {
-    border-collapse: collapse;
-}
 
-table, th, td {
-    border: 1px solid black;
-}
 
 </style>
 
