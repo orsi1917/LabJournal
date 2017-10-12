@@ -8,36 +8,27 @@
 	}
 	
 	function newsampleForProject() {
+		
 		var ent = document.getElementById("samplename").value;
 		var ent2 = document.getElementById("sampledescription").value;
+		var id = document.getElementById("ProjectID").value;
 		var sample = '{"name":"' + ent + '", "description" : "' + ent2 + '" }';
 		console.log(sample);
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 202) {
 				document.getElementById("outputserver").innerHTML = this.responseText;
-			}
+							}
 		};
-		xhttp.open("POST", "http://localhost:8082/addSampleToProject", true);
+		xhttp.open("POST", "http://localhost:8082/addSampleToProject/"+id, true);
 		xhttp.setRequestHeader("Content-type", "application/json");
 		xhttp.send(sample);
+		while (!this.readyState == 4){};
+		listsample();
+		
 	}
 	
-	function newsample() {
-		var ent = document.getElementById("samplename").value;
-		var ent2 = document.getElementById("sampledescription").value;
-		
-		var sample = '{"name":"' + ent + '", "description" : "' + ent2 + '" }';
-		var xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 202) {
-				document.getElementById("outputserver").innerHTML = this.responseText;
-			}
-		};
-		xhttp.open("POST", "http://localhost:8082//jojoKLM", true);
-		xhttp.setRequestHeader("Content-type", "application/json");
-		xhttp.send(sample);
-	}
+
 	function listsample() {
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
@@ -53,14 +44,22 @@
 		xhttp.send();
 	}
 	function listtotable (samples) {
+		document.getElementById("samplelist").innerHTML = document.getElementById("samplelist").innerHTML
+		+ "<Table><tr><th>ID</th><th>Name</th><th>Description</th><th>Project ID</th></tr>";
 		for (i = 0; i < samples.length; i++) {
 			document.getElementById("samplelist").innerHTML = document.getElementById("samplelist").innerHTML
 					+ "<tr><td>"
+					+ samples[i].id
+					+ "</td><td>"
 					+ samples[i].name
 					+ "</td><td>"
 					+ samples[i].description
+					+ "</td><td>"
+					+ samples[i].project.id;
 					+ "</td></tr>"
 		}
+		document.getElementById("samplelist").innerHTML = document.getElementById("samplelist").innerHTML
+		+ "</table>";
 	}
 	
 
@@ -79,7 +78,7 @@
 		xhttp.setRequestHeader("Content-type", "application/json");
 		xhttp.send();
 	}
-
+	
 	function list() {
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
@@ -95,6 +94,8 @@
 		xhttp.send();
 	}
 	function uittekenen(projects) {
+		document.getElementById("list").innerHTML = document.getElementById("list").innerHTML
+		+ "<Table><tr><th>ID</th><th>Name</th><th>Comment</th></tr>";
 		for (i = 0; i < projects.length; i++) {
 			document.getElementById("list").innerHTML = document.getElementById("list").innerHTML
 					+ "<tr><td>"
@@ -107,6 +108,8 @@
 					+ "<input id='"+projects[i].id+"' type='radio' name='selector' onclick=\"handleClick(this.id);\">"
 					+ "</td></tr>";
 		}
+		document.getElementById("list").innerHTML = document.getElementById("list").innerHTML
+		+ "</table>";
 	}
 	
 	function handleClick(idpass) {
@@ -126,7 +129,11 @@
 		};
 		xhttp.open("POST", "http://localhost:8082/projectpost", true);
 		xhttp.setRequestHeader("Content-type", "application/json");
-		xhttp.send(project);	
+
+		xhttp.send(project);
+		while (!this.readyState == 4){};
+		list();
+
 	}
 	
 	function deleter() {
@@ -134,12 +141,14 @@
 		var id = document.getElementById("deletefield").value;
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
-				document.getElementById("deletebutton").innerHTML = this.responseText;
+			//	document.getElementById("deletebutton").innerHTML = this.responseText;
 			}
 		};
 		xhttp.open("DELETE", "http://localhost:8082/project/" + id, true);
 		alert("deleting " + id);
 		xhttp.send();
+		while (!this.readyState == 4){};
+		list();
 	}
 
 </script>
@@ -175,6 +184,8 @@ article {
 	padding: 1em;
 	overflow: hidden;
 }
+
+
 </style>
 
 </head>
@@ -212,6 +223,7 @@ article {
 				value="enter ID">
 			<button type="button" id="deletebutton" onclick="deleter()">delete</button>
 			<table id="list" border=1></table>
+			<br><hr><br>
 			<table>
 				<tr>
 					<td>Name:</td>
@@ -224,11 +236,10 @@ article {
 					<td><input type="text" id="ProjectID" name="ProjectID" 	value="2" size="100"></td>
 			</table>
 			<br>
-			<button type="button" id="buttoninput" onclick="newsample()">Create new sample</button>
-				
+						
 			<button type="button" id="try" onclick="listsample()">show list</button>
-			<button type="button" id="getProject" onclick="getOneProject()">get one project</button>
-			<button type="button" id="newsampleforproject" onclick="newsampleForProject() ">make sample with 1st project</button>
+			<button type="button" id="getProject" onclick="getOneProject()">Retrieve selected project</button>
+			<button type="button" id="newsampleforproject" onclick="newsampleForProject() ">Add sample to selected Project</button>
 			<table id="samplelist" border=1></table>
 
 		</article>

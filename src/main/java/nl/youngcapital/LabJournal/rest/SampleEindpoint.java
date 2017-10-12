@@ -37,24 +37,8 @@ public class SampleEindpoint {
 		sampleService.saveSample(sample);
 		return sample;
 	}
-	@ResponseBody
-	@RequestMapping(value = "/jojoKLM", method = RequestMethod.POST)
-	public Sample postSample(@RequestBody Sample sample) {
-		sampleService.saveSample(sample);
-		Project project = new Project();
-		projectService.saveProject(project);
-		project.setName("Auto-generated");
-		project.setComment("comment");
-		projectService.saveProject(project);
-		sample.setProject(project);
-		System.out.println(sample);
-		sampleService.saveSample(sample);
-		return sample;
-	}
 
-
-
-	
+		
 	@ResponseBody
 	@RequestMapping(value = "/samplepost", method = RequestMethod.POST)
 	public void postEntity(@RequestBody Sample sample) {
