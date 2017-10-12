@@ -20,38 +20,7 @@
 		xhttp.send(sample);
 	}
 	
-	function newsample() {
-		var ent = document.getElementById("samplename").value;
-		var ent2 = document.getElementById("sampledescription").value;
-		
-		var sample = '{"name":"' + ent + '", "description" : "' + ent2 + '" }';
-		
-		var xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 202) {
-				document.getElementById("outputserver").innerHTML = this.responseText;
-			}
-		};
-		xhttp.open("POST", "http://localhost:8082//jojoKLM", true);
-		xhttp.setRequestHeader("Content-type", "application/json");
-		xhttp.send(sample);
-	}
-	function newsample2() {
-		var ent = document.getElementById("samplename").value;
-		var ent2 = document.getElementById("sampledescription").value;
-		
-		var sample = '{"name":"' + ent + '", "description" : "' + ent2 + '" }';
-		var name = "Name";
-		var xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 202) {
-				document.getElementById("outputserver").innerHTML = this.responseText;
-			}
-		};
-		xhttp.open("POST", "http://localhost:8082//jojoKLM2", true);
-		xhttp.setRequestHeader("Content-type", "application/json");
-		xhttp.send(sample);
-	}
+
 	function listsample() {
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
@@ -70,9 +39,13 @@
 		for (i = 0; i < samples.length; i++) {
 			document.getElementById("samplelist").innerHTML = document.getElementById("samplelist").innerHTML
 					+ "<tr><td>"
+					+ samples[i].id
+					+ "</td><td>"
 					+ samples[i].name
 					+ "</td><td>"
 					+ samples[i].description
+					+ "</td><td>"
+					+ samples[i].project.id;
 					+ "</td></tr>"
 		}
 	}
@@ -91,29 +64,7 @@
 		xhttp.setRequestHeader("Content-type", "application/json");
 		xhttp.send();
 	}
-	function getOneProject2() {
-		var xhttp = new XMLHttpRequest();		
-		//var name = document.getElementById("samplename").value;
-		var ent = document.getElementById("samplename").value;
-		var ent2 = document.getElementById("sampledescription").value;
-		console.log(name);
-		var sample = '{"name":"' + ent + '", "description" : "' + ent2 + '" }';
-		var id = document.getElementById("ProjectID").value;
-		//var name = "Success";
-		//var name = '{"name":"String"}';
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-		
-		console.log(this.responseText);
-			var project = JSON.parse(this.responseText);
-			alert (project.name)
-			}
-		};
-		xhttp.open("GET", "http://localhost:8082/findProject2/" + id, true);
-		xhttp.setRequestHeader("Content-type", "application/json");
-		xhttp.send(sample);
-	}
-
+	
 	function list() {
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
@@ -249,11 +200,10 @@ article {
 					<td><input type="text" id="ProjectID" name="ProjectID" 	value="2" size="100"></td>
 			</table>
 			<br>
-			<button type="button" id="buttoninput" onclick="newsample2()">Create new sample</button>
-				
+						
 			<button type="button" id="try" onclick="listsample()">show list</button>
-			<button type="button" id="getProject" onclick="getOneProject2()">get one project</button>
-			<button type="button" id="newsampleforproject" onclick="newsampleForProject() ">make sample with 1st project</button>
+			<button type="button" id="getProject" onclick="getOneProject()">Retrieve selected project</button>
+			<button type="button" id="newsampleforproject" onclick="newsampleForProject() ">Add sample to selected Project</button>
 			<table id="samplelist" border=1></table>
 
 		</article>

@@ -43,38 +43,12 @@ public class ProjectEindpoint {
 	    return (List<Project>)projectRepository.findAll();
 	 }
 	 
-	 @RequestMapping(value = "/findProject1", method = RequestMethod.GET)
-	 public Project findFirst() {
-	    return (Project)projectRepository.findOne((long) 1);
-	 }
-	 
 	 @RequestMapping(value = "/findProject/{id}", method = RequestMethod.GET)
 	 public Project findOne(@PathVariable long id) {
 		
 		 return (Project)projectRepository.findOne(id);
 	 }
-	 @RequestMapping(value = "/findProject2/{id}", method = RequestMethod.GET)
-	 public Project findOne2  (Sample sample, @PathVariable long id)
-	 //(@PathVariable("id") long id, @RequestParam(name="sample", required=false) Sample sample)
-	// (@PathVariable long id, @RequestBody Sample sample)
-	 //(@RequestParam(value = "name", required = false) String name, @PathVariable("id") long id)
-	 // (@RequestParam("name") String name, @PathVariable("id") long id)
-	 //(Sample sample, @PathVariable("id") long id)
-	 //(Sample sample, @PathVariable long id)
-	 //(@RequestParam(name="name", required=false) String name, @PathVariable long id)
-	 {
-		 Project project=projectRepository.findOne(id);
-		 System.out.println(sample.getName());
-		// System.out.println(name);
-		 Sample aample = new Sample();
-		 sampleService.saveSample(aample);
-		 aample.setName("Try");
-	//	 System.out.println(sample.getName());
-		 aample.setProject(project);
-		 sampleService.saveSample(aample);
-		 return (Project)projectRepository.findOne(id);
-	 }
-	 
+
 	 
 	 @RequestMapping(value = "/addSampleToProject/{id}", method = RequestMethod.POST)
 	 public void addSampleToProject(@RequestBody Sample sample, @PathVariable long id) {
