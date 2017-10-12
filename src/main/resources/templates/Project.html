@@ -62,6 +62,8 @@
 					+ "</td></tr>"
 		}
 	}
+	
+
 	function getOneProject() {
 		var xhttp = new XMLHttpRequest();
 		var id = document.getElementById("ProjectID").value;
@@ -101,9 +103,16 @@
 					+ projects[i].name
 					+ "</td><td>"
 					+ projects[i].comment
+					+ "</td><td>"
+					+ "<input id='"+projects[i].id+"' type='radio' name='selector' onclick=\"handleClick(this.id);\">"
 					+ "</td></tr>";
 		}
 	}
+	
+	function handleClick(idpass) {
+		document.getElementById("deletefield").value = idpass;
+	}
+		
 	function verstuur() {
 		var ent = document.getElementById("projectname").value;
 		var ent2 = document.getElementById("projectcomment").value;
@@ -117,8 +126,9 @@
 		};
 		xhttp.open("POST", "http://localhost:8082/projectpost", true);
 		xhttp.setRequestHeader("Content-type", "application/json");
-		xhttp.send(project);
+		xhttp.send(project);	
 	}
+	
 	function deleter() {
 		var xhttp = new XMLHttpRequest();
 		var id = document.getElementById("deletefield").value;
@@ -131,6 +141,7 @@
 		alert("deleting " + id);
 		xhttp.send();
 	}
+
 </script>
 
 <style>
