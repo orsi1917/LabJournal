@@ -3,9 +3,7 @@
 <head>
 <script>
 	
-	function doethijhet()
-		alert("hij doet het");
-	
+
 	function newsampleForProject() {
 		
 		var ent = document.getElementById("samplename").value;
@@ -15,19 +13,51 @@
 		console.log(sample);
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 202) {
-				document.getElementById("outputserver").innerHTML = this.responseText;
-							}
+			if (this.readyState == 4 && this.status == 200) {
+			listsample();
+			}
 		};
 		xhttp.open("POST", "http://localhost:8082/addSampleToProject/"+id, true);
 		xhttp.setRequestHeader("Content-type", "application/json");
-		xhttp.send(sample);
-		while (!this.readyState == 4){};
-		listsample();
+		xhttp.send(sample);		
+		
 		
 	}
-	
-
+	function filterlistsample() {
+		var xhttp = new XMLHttpRequest();
+		
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+			document.getElementById("filtersamplelisttable").innerHTML = "";
+			console.log(this.responseText);
+				var samples = JSON.parse(this.responseText);									
+				filterlisttotable(samples);
+			}
+		};
+		xhttp.open("GET", "http://localhost:8082/filtersamplelist/" );
+		xhttp.setRequestHeader("Content-type", "application/json");
+		xhttp.send();
+	}
+	function filterlisttotable (samples) {
+		var id = document.getElementById("ProjectID").value;
+		document.getElementById("filtersamplelisttable").innerHTML = document.getElementById("filtersamplelisttable").innerHTML
+		+ "<Table><tr><th>ID</th><th>Name</th><th>Description</th><th>Project ID</th></tr>";
+		for (i = 0; i < samples.length; i++) {
+			if (samples[i].project.id==id){
+			document.getElementById("filtersamplelisttable").innerHTML = document.getElementById("filtersamplelisttable").innerHTML
+					+ "<tr><td>"
+					+ samples[i].id
+					+ "</td><td>"
+					+ samples[i].name
+					+ "</td><td>"
+					+ samples[i].description
+					+ "</td><td>"
+					+ samples[i].project.id;
+					+ "</td></tr>"
+		}}
+		document.getElementById("filtersamplelisttable").innerHTML = document.getElementById("filtersamplelisttable").innerHTML
+		+ "</table>";
+	}
 	function listsample() {
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
@@ -121,8 +151,8 @@
 		var project = '{"name":"' + ent + '", "comment" : "' + ent2 + '"}';
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 202) {
-				document.getElementById("outputserver").innerHTML = this.responseText;
+			if (this.readyState == 4 && this.status == 200) {
+				list();
 				
 			}
 		};
@@ -130,9 +160,7 @@
 		xhttp.setRequestHeader("Content-type", "application/json");
 
 		xhttp.send(project);
-		//while (!this.readyState == 4){};
-		//list();
-
+	
 	}
 	
 	function deleter() {
@@ -149,7 +177,8 @@
 		//while (!this.readyState == 4){};
 		//list();
 	}
-
+	list();
+	listsample();
 </script>
 
 <style>
@@ -239,7 +268,9 @@ article {
 			<button type="button" id="try" onclick="listsample()">show list</button>
 			<button type="button" id="getProject" onclick="getOneProject()">Retrieve selected project</button>
 			<button type="button" id="newsampleforproject" onclick="newsampleForProject() ">Add sample to selected Project</button>
+			<button type="button" id="filtersamplelist" onclick="filterlistsample()">List samples for one project</button>
 			<table id="samplelist" border=1></table>
+			<table id="filtersamplelisttable" border=1></table>
 
 		</article>
 
