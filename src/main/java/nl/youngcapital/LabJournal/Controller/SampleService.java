@@ -1,5 +1,7 @@
 package nl.youngcapital.LabJournal.Controller;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,4 +19,9 @@ public class SampleService {
 		sampleRepository.save(sample);
 		return sample;
 	}
+
+	public List<Sample> filterSample(String name) {
+		return sampleRepository.filtersample(name);
+	}
+
 }

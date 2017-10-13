@@ -40,7 +40,7 @@ public class ProjectEindpoint {
 	
 	 @RequestMapping(value = "/projectlist", method = RequestMethod.GET)
 	 public List<Project> findAll() {
-	    return (List<Project>)projectRepository.findAll();
+		  return (List<Project>)projectRepository.findAll();
 	 }
 	 
 	 @RequestMapping(value = "/findProject/{id}", method = RequestMethod.GET)
