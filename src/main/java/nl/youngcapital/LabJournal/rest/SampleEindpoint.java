@@ -51,11 +51,10 @@ public class SampleEindpoint {
 	    return (List<Sample>)sampleRepository.findAll();
 	  }
 	 @RequestMapping(value = "/filtersamplelist", method = RequestMethod.GET)
-	 public List<Sample> filterfindAll() {
-	    ArrayList <Sample> list = new ArrayList();
-	    list =(ArrayList<Sample>)sampleRepository.findAll();
-	    		 return list;
+	 public List<Sample> filterSamples() {
+	   		 return sampleService.filtersamples("samplename");
 	  }
+	
 	  @ResponseStatus(value = HttpStatus.OK)
 	  @RequestMapping(value = "/sample/{id}", method = RequestMethod.DELETE)
 	  public void updatesample(@PathVariable  long id) {
