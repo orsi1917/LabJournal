@@ -50,9 +50,9 @@ public class SampleEindpoint {
 	 public List<Sample> findAll() {
 	    return (List<Sample>)sampleRepository.findAll();
 	  }
-	 @RequestMapping(value = "/filtersamplelist", method = RequestMethod.GET)
-	 public List<Sample> filterfindAll() {
-		 return sampleService.filterSample("samplename");
+	 @RequestMapping(value = "/filtersamplelist", method = RequestMethod.POST)
+	 public List<Sample> filterfindAll(@RequestBody String name) {
+		 return sampleService.filterSample(name);
 	    		
 	  }
 	  @ResponseStatus(value = HttpStatus.OK)

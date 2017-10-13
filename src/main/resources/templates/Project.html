@@ -25,7 +25,7 @@
 	}
 	function filterlistsample() {
 		var xhttp = new XMLHttpRequest();
-		
+		var name = document.getElementById("samplename").value;
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
 			document.getElementById("filtersamplelisttable").innerHTML = "";
@@ -34,9 +34,9 @@
 				filterlisttotable(samples);
 			}
 		};
-		xhttp.open("GET", "http://localhost:8082/filtersamplelist/" );
+		xhttp.open("POST", "http://localhost:8082/filtersamplelist/" );
 		xhttp.setRequestHeader("Content-type", "application/json");
-		xhttp.send();
+		xhttp.send(name);
 	}
 	function filterlisttotable (samples) {
 		var id = document.getElementById("ProjectID").value;
