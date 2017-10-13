@@ -1,5 +1,6 @@
 package nl.youngcapital.LabJournal.rest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +49,12 @@ public class SampleEindpoint {
 	 @RequestMapping(value = "/samplelist", method = RequestMethod.GET)
 	 public List<Sample> findAll() {
 	    return (List<Sample>)sampleRepository.findAll();
+	  }
+	 @RequestMapping(value = "/filtersamplelist", method = RequestMethod.GET)
+	 public List<Sample> filterfindAll() {
+	    ArrayList <Sample> list = new ArrayList();
+	    list =(ArrayList<Sample>)sampleRepository.findAll();
+	    		 return list;
 	  }
 	  @ResponseStatus(value = HttpStatus.OK)
 	  @RequestMapping(value = "/sample/{id}", method = RequestMethod.DELETE)
