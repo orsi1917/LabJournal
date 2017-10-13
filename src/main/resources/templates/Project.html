@@ -26,11 +26,9 @@
 	}
 	function filterlistsample() {
 		var xhttp = new XMLHttpRequest();
-<<<<<<< HEAD
+
 		var name = document.getElementById("samplename").value;
-=======
-		var ent = document.getElementById("samplename").value;
->>>>>>> master
+
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
 			document.getElementById("filtersamplelisttable").innerHTML = "";
@@ -41,41 +39,25 @@
 		};
 		xhttp.open("POST", "http://localhost:8082/filtersamplelist/" );
 		xhttp.setRequestHeader("Content-type", "application/json");
-<<<<<<< HEAD
+
 		xhttp.send(name);
-=======
-		xhttp.send(ent);
->>>>>>> master
+
 	}
 	function filterlisttotable (samples) {
 		var id = document.getElementById("ProjectID").value;
 		document.getElementById("filtersamplelisttable").innerHTML = document.getElementById("filtersamplelisttable").innerHTML
-		+ "<Table><tr><th>ID</th><th>Name</th>"
-		//<th>Description</th><th>Project ID</th>
-		+"</tr>";
-		for (i = 0; i < samples.length; i++) {
-<<<<<<< HEAD
-			
+		+ "<Table><tr><th>ID</th><th>Name</th><th>Description</th><th>Project ID</th></tr>";
+		for (i = 0; i < samples.length; i++) {			
 			document.getElementById("filtersamplelisttable").innerHTML = document.getElementById("filtersamplelisttable").innerHTML
-=======
-					document.getElementById("filtersamplelisttable").innerHTML = document.getElementById("filtersamplelisttable").innerHTML
->>>>>>> master
+
 					+ "<tr><td>"
 					+ samples[i][0]
 					+ "</td><td>"
-<<<<<<< HEAD
 					+  samples[i][1]
 					+ "</td><td>"
 					+  samples[i][2]
 					+ "</td><td>"
 					+  samples[i][3].id;
-=======
-					+ samples[i].name
-// 					+ "</td><td>"
-// 					+ samples[i].description
-// 					+ "</td><td>"
-// 					+ samples[i].project.id;
->>>>>>> master
 					+ "</td></tr>"
 		}
 		document.getElementById("filtersamplelisttable").innerHTML = document.getElementById("filtersamplelisttable").innerHTML
@@ -190,7 +172,6 @@
 		var id = document.getElementById("deletefield").value;
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
-			//	document.getElementById("deletebutton").innerHTML = this.responseText;
 			list();
 			}
 		};
