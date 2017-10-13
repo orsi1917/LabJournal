@@ -50,17 +50,11 @@ public class SampleEindpoint {
 	 public List<Sample> findAll() {
 	    return (List<Sample>)sampleRepository.findAll();
 	  }
-	 @RequestMapping(value = "/filtersamplelist/{id}", method = RequestMethod.GET)
-	 public List<Sample> filterfindAll(@PathVariable long id) {
+	 @RequestMapping(value = "/filtersamplelist", method = RequestMethod.GET)
+	 public List<Sample> filterfindAll() {
 	    ArrayList <Sample> list = new ArrayList();
 	    list =(ArrayList<Sample>)sampleRepository.findAll();
-	    for (Sample sample : list) {
-	    	if (!(sample.getProject().getId()==id)) {
-	    		list.remove(sample);
-	    	}
-	    }
-		 
-		 return list;
+	    		 return list;
 	  }
 	  @ResponseStatus(value = HttpStatus.OK)
 	  @RequestMapping(value = "/sample/{id}", method = RequestMethod.DELETE)
