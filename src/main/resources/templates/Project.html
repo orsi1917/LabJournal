@@ -14,7 +14,8 @@
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
-			listsample();
+				//document.getElementById("outputserver").innerHTML = this.responseText;
+				listsample();
 			}
 		};
 		xhttp.open("POST", "http://localhost:8082/addSampleToProject/"+id, true);
@@ -99,7 +100,7 @@
 		alert (id);
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
-		console.log(this.responseText);
+			//console.log(this.responseText);
 			var project = JSON.parse(this.responseText);
 			alert (project.name)
 			}
@@ -124,11 +125,9 @@
 		xhttp.send();
 	}
 	function uittekenen(projects) {
-		document.getElementById("list").innerHTML = document.getElementById("list").innerHTML
-		+ "<Table><tr><th>ID</th><th>Name</th><th>Comment</th></tr>";
+		document.getElementById("list").innerHTML += "<Table><tr><th>ID</th><th>Name</th><th>Comment</th></tr>";
 		for (i = 0; i < projects.length; i++) {
-			document.getElementById("list").innerHTML = document.getElementById("list").innerHTML
-					+ "<tr><td>"
+			document.getElementById("list").innerHTML += "<tr><td>"
 					+ projects[i].id
 					+ "</td><td>"
 					+ projects[i].name
@@ -138,12 +137,13 @@
 					+ "<input id='"+projects[i].id+"' type='radio' name='selector' onclick=\"handleClick(this.id);\">"
 					+ "</td></tr>";
 		}
-		document.getElementById("list").innerHTML = document.getElementById("list").innerHTML
-		+ "</table>";
+		document.getElementById("list").innerHTML += "</table>";
 	}
 	
 	function handleClick(idpass) {
 		document.getElementById("deletefield").value = idpass;
+		document.getElementById("ProjectID").value = idpass;
+		
 	}
 		
 	function verstuur() {
@@ -170,14 +170,14 @@
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
 			//	document.getElementById("deletebutton").innerHTML = this.responseText;
+			list();
 			}
 		};
 		xhttp.open("DELETE", "http://localhost:8082/project/" + id, true);
-		//alert("deleting " + id);
 		xhttp.send();
-		//while (!this.readyState == 4){};
-		//list();
 	}
+	
+	
 	list();
 	listsample();
 </script>
@@ -222,16 +222,19 @@ article {
 
 	<div class="container">
 
-		<header>
+		<header id="TOP">
 			<h1>Lab Journal</h1>
 		</header>
 
 		<nav>
-			<ul>
+			<ul >
 				<li><a href="#">Example</a></li>
 				<li><a href="#">Demo</a></li>
 				<li><a href="#">Test</a></li>
 			</ul>
+			
+			<table id="navigationlist" border=1></table>
+			
 		</nav>
 
 		<article>
@@ -248,8 +251,7 @@ article {
 			<br>
 			<button type="button" id="buttoninput" onclick="verstuur()">Create new Project</button>
 			<button type="button" id="try" onclick="list()">show list</button>
-			<input type="text" id="deletefield" name="DeleteById"
-				value="enter ID">
+			<input type="text" id="deletefield" name="DeleteById" value="select project" disabled size="15">
 			<button type="button" id="deletebutton" onclick="deleter()">delete</button>
 			<table id="list" border=1></table>
 			<br><hr><br>
@@ -262,7 +264,7 @@ article {
 					<td>Comment:</td>
 					<td><input type="text" id="sampledescription" name="Description" value="description" size="100"></td>
 				<tr>		<td>Project:</td>
-					<td><input type="text" id="ProjectID" name="ProjectID" 	value="2" size="100"></td>
+					<td><input type="text" id="ProjectID" name="ProjectID" value="select project" size="15" disabled></td>
 			</table>
 			<br>
 						
