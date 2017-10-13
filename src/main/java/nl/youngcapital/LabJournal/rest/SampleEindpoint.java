@@ -52,9 +52,8 @@ public class SampleEindpoint {
 	  }
 	 @RequestMapping(value = "/filtersamplelist", method = RequestMethod.GET)
 	 public List<Sample> filterfindAll() {
-	    ArrayList <Sample> list = new ArrayList();
-	    list =(ArrayList<Sample>)sampleRepository.findAll();
-	    		 return list;
+		 return sampleService.filterSample("samplename");
+	    		
 	  }
 	  @ResponseStatus(value = HttpStatus.OK)
 	  @RequestMapping(value = "/sample/{id}", method = RequestMethod.DELETE)
