@@ -380,6 +380,11 @@ function newSubSampleForSample() {
 	
 		
 	}
+	function handleSubsampleClick(idpass) {
+		document.getElementById("deleteSubSamplefield").value = idpass;
+	
+		
+	}
 	function handleExperimentClick(idpass) {
 		document.getElementById("deleteExamplefield").value = idpass;
 	
@@ -426,6 +431,18 @@ function newSubSampleForSample() {
 		xhttp.open("DELETE", "http://localhost:8082/sample/" + id, true);
 		xhttp.send();
 	}
+	function subSampledeleter() {
+		var xhttp = new XMLHttpRequest();
+		var id = document.getElementById("deleteSubSamplefield").value;
+		console.log(id);
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				listsubsamples();
+			}
+		};
+		xhttp.open("DELETE", "http://localhost:8082/subsample/" + id, true);
+		xhttp.send();
+	}
 	function Experimentdeleter() {
 		var xhttp = new XMLHttpRequest();
 		var id = document.getElementById("deleteExamplefield").value;
@@ -441,6 +458,7 @@ function newSubSampleForSample() {
 	list();
 	listsample();
 	listexperiment();
+	listsubsamples();
 </script>
 
 <style>
@@ -569,9 +587,12 @@ article {
 					<td><input type="text" id="SubSampleDescription" name="SubSampleDescription" value="subsample description" size="15"></td></tr>
 				<tr><td>Danger:</td>
 					<td><input type="text" id="danger" name="danger" value="none" size="15"></td></tr>
+				<tr><td>Select SubSample:</td>
+					<td><input type="text" id="deleteSubSamplefield" name="DeleteById" value="select experiment" disabled size="15"></td></tr>
 				</table>
 				<br>
 			<button type="button" id="newSubSample" onclick="newSubSampleForSample()">Add new Subsample to selcted sample</button>
+			<button type="button" id="subsampledeletebutton" onclick="subSampledeleter()">delete subsample</button>
 			<table id="subSamplelist" border=1></table>
 		</td></tr></table>
 		</article>

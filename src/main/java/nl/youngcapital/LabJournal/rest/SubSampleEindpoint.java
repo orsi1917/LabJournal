@@ -59,7 +59,7 @@ public class SubSampleEindpoint {
 	 @ResponseBody
 	  @RequestMapping(value = "/subsample/{id}", method = RequestMethod.DELETE)
 	  public void updatesample(@PathVariable  long id) {
-	    sampleRepository.delete(id);
+	    subSampleRepository.delete(id);
 	  } 
 
 }
