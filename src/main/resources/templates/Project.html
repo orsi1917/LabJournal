@@ -461,6 +461,7 @@ article {
 			<button type="button" id="deletebutton" onclick="deleter()">delete</button>
 			<table id="list" border=1></table>
 			<br><hr><br>
+		<table width: 100%>	<tr><td>
 			<table>
 				<tr>
 					<td>Name:</td>
@@ -468,7 +469,7 @@ article {
 						value="samplename"></td></tr>
 				<tr>
 					<td>Comment:</td>
-					<td><input type="text" id="sampledescription" name="Description" value="description" size="100"></td></tr>
+					<td><input type="text" id="sampledescription" name="Description" value="description" size="15"></td></tr>
 				<tr>		<td>Project:</td>
 					<td><input type="text" id="ProjectID" name="ProjectID" value="select project" size="15" disabled></td></tr>
 					<tr><td>Select Sample:</td>
@@ -484,15 +485,15 @@ article {
 			<button type="button" id="deletebutton" onclick="Sampledeleter()">delete sample</button>
 			<table id="samplelist" border=1></table>
 			<table id="filtersamplelisttable" border=1></table>
-			<table id="projectfiltersamplelisttable" border=1></table>
+			<table id="projectfiltersamplelisttable" border=1></table></td>
 	<br><hr><br>
-	<table>
+	<td><table>
 				<tr>
 					<td>Name:</td>
 					<td><input type="text" id="experimentname" name="Name"
 						value="experimentname"></td></tr>
 				<tr>	<td>Description:</td>
-					<td><input type="text" id="experimentdescription" name="Description" value="description" size="100"></td></tr>
+					<td><input type="text" id="experimentdescription" name="Description" value="description" size="15"></td></tr>
 				
 				<tr>
 					<td>Project:</td>
@@ -508,7 +509,7 @@ article {
 			<button type="button" id="experimentdeletebutton" onclick="Experimentdeleter()">delete experiment</button>
 		<table id="experimentlist" border=1></table>
 		<table id="projectfilterexperimentlisttable" border=1></table>
-		<table id="filterexperimentlisttable" border=1></table>
+		<table id="filterexperimentlisttable" border=1></table></td></tr></table>
 		</article>
 
 		<footer>Program by Orsi & Steven</footer>

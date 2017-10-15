@@ -13,7 +13,7 @@ public class AmountService {
 	@Autowired
 	AmountRepository amountRepository;
 	
-	public Amount test(Amount amount) {
+	public Amount save(Amount amount) {
 		amountRepository.save(amount);
 		return amount;
 	}

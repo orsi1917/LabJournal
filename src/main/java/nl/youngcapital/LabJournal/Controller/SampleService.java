@@ -9,12 +9,15 @@ import org.springframework.stereotype.Service;
 
 import nl.youngcapital.LabJournal.Experiment;
 import nl.youngcapital.LabJournal.Sample;
+import nl.youngcapital.LabJournal.SubSample;
 
 @Service
 @Transactional
 public class SampleService {
 	@Autowired
 	SampleRepository sampleRepository;
+	@Autowired
+	SubSampleRepository subSampleRepository;
 	@Autowired
 	ExperimentRepository experimentRepository;
 	
@@ -40,5 +43,16 @@ public class SampleService {
 	}
 	public List<Sample> projectfilterSample(long id) {
 		return sampleRepository.projectfiltersample(id);
+	}
+	public SubSample saveSubSample(SubSample subSample) {
+		subSampleRepository.save(subSample);
+		return subSample;
+	}
+
+	public List<SubSample> filterSubSample(String name) {
+		return subSampleRepository.filterSubSample(name);
+	}
+	public List<SubSample> projectFilterSubSample(long id) {
+		return subSampleRepository.projectFilterSubSample(id);
 	}
 }
