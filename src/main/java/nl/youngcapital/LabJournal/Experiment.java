@@ -1,5 +1,6 @@
 package nl.youngcapital.LabJournal;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -19,13 +20,13 @@ public class Experiment { //xyz
 	@GeneratedValue
 	private Long id;
 	private String name;
-	@OneToMany(mappedBy = "experiment", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	List <Operation> operations;
+	@OneToMany(mappedBy = "experiment")
+	List <Operation> operations=new ArrayList();
 	@ManyToOne
 	@JoinColumn(name = "project_id")
 	private Project project;
 	@ManyToMany
-	List <Sample> samples;
+	List <Sample> samples = new ArrayList();
 	public Experiment() {
 		super();
 	}
@@ -39,15 +40,11 @@ public class Experiment { //xyz
 	public String getName() {
 		return name;
 	}
-	public List<Operation> getOperations() {
-		return operations;
-	}
+
 	public Project getProject() {
 		return project;
 	}
-	public List<Sample> getSamples() {
-		return samples;
-	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}

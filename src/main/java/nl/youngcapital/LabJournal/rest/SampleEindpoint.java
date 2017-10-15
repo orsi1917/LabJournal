@@ -56,12 +56,16 @@ public class SampleEindpoint {
 		 return sampleService.filterSample(name);
 
 	  }
-	
-	  @ResponseStatus(value = HttpStatus.OK)
+	 @RequestMapping(value = "/projectfiltersamplelist", method = RequestMethod.POST)
+	 public List<Sample> filterfindAll(@RequestBody long id) {
+		 return sampleService.projectfilterSample(id);
+
+	  }
+	 
+	 @ResponseBody
 	  @RequestMapping(value = "/sample/{id}", method = RequestMethod.DELETE)
 	  public void updatesample(@PathVariable  long id) {
 	    sampleRepository.delete(id);
 	  } 
 }
-
 

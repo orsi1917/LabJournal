@@ -12,21 +12,9 @@ import nl.youngcapital.LabJournal.Controller.AmountService;
 public class AmountEindpoint {
 	@Autowired
 	AmountService amountService;
-	@GetMapping("/Amount")
-	public String getAmount() {
-		return "Hallo";
-	}
-	@GetMapping("/Amount2")
-	public Amount getAmount2() {
-		Amount amount = new Amount();
-		System.out.println(amount);
-		amountService.test(amount);
-		return amount;
-	}
+
 	@PostMapping("/amountpost")
 	public void postEntiteit(@RequestBody Amount amount) {
-		System.out.println("Jojo");
-		System.out.println(amount.getAmount());
-		amountService.test(amount);
+		amountService.save(amount);
 	}
 }

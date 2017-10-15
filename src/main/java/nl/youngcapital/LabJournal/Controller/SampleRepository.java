@@ -12,19 +12,23 @@ import nl.youngcapital.LabJournal.Sample;
 
 @Component
 public interface SampleRepository extends CrudRepository<Sample, Long>{
-	@Transactional
-  	@Modifying
+	
 //	@Query("UPDATE Game SET high_score = ? where ? > high_score and type_game = ?")
 //  	"SELECT id, title FROM todos t WHERE " +
 //    "LOWER(t.title) LIKE LOWER(CONCAT('%',:searchTerm, '%')) OR " +
 //    "LOWER(t.description) LIKE LOWER(CONCAT('%',:searchTerm, '%')) " +
 //    "ORDER BY t.title ASC"
-  	@Query("SELECT id, name, project FROM Sample s WHERE s.name=?")
-	public List<Sample> filtersamples(String name);
 
 	@Transactional
   	@Modifying
 	@Query("SELECT id, name, description, project FROM Sample s where s.name=? ")
 	public List<Sample> filtersample(String name);
 	
-	}
+	
+	@Transactional
+	@Modifying
+//@Query("SELECT id, name, description, project FROM Sample s where s.getProject().getId()=?")
+	@Query("SELECT id, name, description, project FROM Sample s where s.project.id=?")
+	public List<Sample> projectfiltersample(long id);
+	
+}
