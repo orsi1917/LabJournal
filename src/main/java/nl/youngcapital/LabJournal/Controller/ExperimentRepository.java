@@ -15,14 +15,14 @@ import nl.youngcapital.LabJournal.Sample;
 public interface ExperimentRepository extends CrudRepository<Experiment, Long>{
 	@Transactional
   	@Modifying
-	@Query("SELECT id, name, project FROM Experiment e where e.name=? ")
+	@Query("SELECT id, name, description, project FROM Experiment e where e.name=? ")
 	public List<Experiment> filtersample(String name);
 	
 	
 	@Transactional
 	@Modifying
 //@Query("SELECT id, name, description, project FROM Sample s where s.getProject().getId()=?")
-	@Query("SELECT id, name, project FROM Experiment e where e.project.id=?")
+	@Query("SELECT id, name, description, project FROM Experiment e where e.project.id=?")
 	public List<Experiment> projectfiltersample(long id);
 
 }
