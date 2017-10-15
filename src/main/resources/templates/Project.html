@@ -465,8 +465,7 @@ article {
 			<table>
 				<tr>
 					<td>Name:</td>
-					<td><input type="text" id="samplename" name="Name"
-						value="samplename"></td></tr>
+					<td><input type="text" id="samplename" name="Name"	value="samplename"></td></tr>
 				<tr>
 					<td>Comment:</td>
 					<td><input type="text" id="sampledescription" name="Description" value="description" size="15"></td></tr>
@@ -475,10 +474,7 @@ article {
 					<tr><td>Select Sample:</td>
 					<td><input type="text" id="deleteSamplefield" name="DeleteById" value="select project" disabled size="15"></td></tr>
 			</table>
-			<br>
-						
-		
-			
+			<br>	
 			<button type="button" id="newsampleforproject" onclick="newsampleForProject() ">Add sample to selected Project</button>
 			<button type="button" id="projectfiltersamplelist" onclick="projectfilterlistsample()">Find samples in Project</button>
 			<button type="button" id="filtersamplelist" onclick="filterlistsample()">Find samples with name</button>
@@ -486,12 +482,11 @@ article {
 			<table id="samplelist" border=1></table>
 			<table id="filtersamplelisttable" border=1></table>
 			<table id="projectfiltersamplelisttable" border=1></table></td>
-	<br><hr><br>
+	
 	<td><table>
 				<tr>
 					<td>Name:</td>
-					<td><input type="text" id="experimentname" name="Name"
-						value="experimentname"></td></tr>
+					<td><input type="text" id="experimentname" name="Name"	value="experimentname"></td></tr>
 				<tr>	<td>Description:</td>
 					<td><input type="text" id="experimentdescription" name="Description" value="description" size="15"></td></tr>
 				
@@ -509,7 +504,20 @@ article {
 			<button type="button" id="experimentdeletebutton" onclick="Experimentdeleter()">delete experiment</button>
 		<table id="experimentlist" border=1></table>
 		<table id="projectfilterexperimentlisttable" border=1></table>
-		<table id="filterexperimentlisttable" border=1></table></td></tr></table>
+		<table id="filterexperimentlisttable" border=1></table></td></tr>
+		<tr><td><hr>
+		<table>
+				<tr>
+					<td>Name:</td>
+					<td><input type="text" id="SubSampleName" name="Name" 	value="subsample name"></td></tr>
+				<tr><td>Description:</td>
+					<td><input type="text" id="SubSampleDescription" name="SubSampleDescription" value="subsample description" size="15"></td></tr>
+				
+				<tr><td>Danger:</td>
+					<td><input type="text" id="danger" name="danger" value="none" size="15"></td></tr>
+				
+		
+		</td></tr></table>
 		</article>
 
 		<footer>Program by Orsi & Steven</footer>
