@@ -2,7 +2,26 @@
 <html>
 <head>
 <script>
+
+	function newsExperimentForProject() {
 	
+	var ent = document.getElementById("experimentname").value;
+	var id = document.getElementById("ProjectID").value;
+	var ent2 = document.getElementById("experimentdescription").value;
+	var experiment = '{"name":"' + ent + '", "description" : "' + ent2 + '" }';
+	console.log(experiment);
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			listsample();
+		}
+	};
+	xhttp.open("POST", "http://localhost:8082/addExperimentToProject/"+id, true);
+	xhttp.setRequestHeader("Content-type", "application/json");
+	xhttp.send(experiment);		
+	
+	
+}
 
 	function newsampleForProject() {
 		
@@ -188,6 +207,7 @@
 	function handleClick(idpass) {
 		document.getElementById("deletefield").value = idpass;
 		document.getElementById("ProjectID").value = idpass;
+		document.getElementById("ProjectID2").value = idpass;
 		
 	}
 	function handleSampleClick(idpass) {
@@ -339,7 +359,24 @@ article {
 			<table id="samplelist" border=1></table>
 			<table id="filtersamplelisttable" border=1></table>
 			<table id="projectfiltersamplelisttable" border=1></table>
-
+	<br><hr><br>
+	<table>
+				<tr>
+					<td>Name:</td>
+					<td><input type="text" id="experimentname" name="Name"
+						value="experimentname"></td></tr>
+				<tr>	<td>Description:</td>
+					<td><input type="text" id="experimentdescription" name="Description" value="description" size="100"></td></tr>
+				
+				<tr>
+					<td>Project:</td>
+					<td><input type="text" id="ProjectID2" name="ProjectID" value="select project" size="15" disabled></td></tr>
+					<tr><td>Select Experiment:</td>
+					<td><input type="text" id="deleteExamplefield" name="DeleteById" value="select project"  size="15"></td></tr>
+					
+			</table>
+			<br>
+			<button type="button" id="newsampleforproject" onclick="newsExperimentForProject()">Add experiment to selected Project</button>
 		</article>
 
 		<footer>Program by Orsi & Steven</footer>
