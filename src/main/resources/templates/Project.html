@@ -294,7 +294,17 @@
 		xhttp.open("DELETE", "http://localhost:8082/sample/" + id, true);
 		xhttp.send();
 	}
-	
+	function Experimentdeleter() {
+		var xhttp = new XMLHttpRequest();
+		var id = document.getElementById("deleteExamplefield").value;
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				listexperiment();
+			}
+		};
+		xhttp.open("DELETE", "http://localhost:8082/experiment/" + id, true);
+		xhttp.send();
+	}
 	
 	list();
 	listsample();
@@ -416,6 +426,7 @@ article {
 			</table>
 			<br>
 			<button type="button" id="newsampleforproject" onclick="newsExperimentForProject()">Add experiment to selected Project</button>
+			<button type="button" id="experimentdeletebutton" onclick="Experimentdeleter()">delete experiment</button>
 		<table id="experimentlist" border=1></table>
 		</article>
 
