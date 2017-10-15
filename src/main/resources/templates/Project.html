@@ -9,14 +9,14 @@ function newSubSampleForSample() {
 	var ent2 = document.getElementById("SubSampleDescription").value;
 	var ent3 = document.getElementById("danger").value;
 	var subSample = '{"name":"' + ent + '", "description" : "' + ent2 + '" , "danger" : "' + ent3 + '"}';
-	console.log(experiment);
+	console.log(subSample);
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			listexperiment();
 		}
 	};
-	xhttp.open("POST", "http://localhost:8082/addExperimentToProject/"+id, true);
+	xhttp.open("POST", "http://localhost:8082/addSubSampleToSample/"+id, true);
 	xhttp.setRequestHeader("Content-type", "application/json");
 	xhttp.send(subSample);		
 	}
