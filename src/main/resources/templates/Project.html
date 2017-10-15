@@ -14,7 +14,6 @@
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
-				//document.getElementById("outputserver").innerHTML = this.responseText;
 				listsample();
 			}
 		};
@@ -24,6 +23,45 @@
 		
 		
 	}
+	function projectfilterlistsample() {
+		var xhttp = new XMLHttpRequest();
+
+		var id = document.getElementById("deletefield").value;
+
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("projectfiltersamplelisttable").innerHTML = "";
+			console.log(this.responseText);
+				var samples = JSON.parse(this.responseText);									
+				projectfilterlisttotable(samples);
+			}
+		};
+		xhttp.open("POST", "http://localhost:8082/projectfiltersamplelist/" );
+		xhttp.setRequestHeader("Content-type", "application/json");
+
+		xhttp.send(id);
+
+	}
+	function projectfilterlisttotable (samples) {
+		var id = document.getElementById("ProjectID").value;
+		document.getElementById("projectfiltersamplelisttable").innerHTML = document.getElementById("projectfiltersamplelisttable").innerHTML
+		+ "<Table><tr><th>ID</th><th>Name</th><th>Description</th><th>Project ID</th></tr>";
+		for (i = 0; i < samples.length; i++) {			
+			document.getElementById("projectfiltersamplelisttable").innerHTML = document.getElementById("projectfiltersamplelisttable").innerHTML
+
+					+ "<tr><td>"
+					+ samples[i][0]
+					+ "</td><td>"
+					+  samples[i][1]
+					+ "</td><td>"
+					+  samples[i][2]
+					+ "</td><td>"
+					+  samples[i][3].id;
+					+ "</td></tr>"
+		}
+		document.getElementById("projectfiltersamplelisttable").innerHTML = document.getElementById("projectfiltersamplelisttable").innerHTML
+		+ "</table>";
+	}
 	function filterlistsample() {
 		var xhttp = new XMLHttpRequest();
 
@@ -31,10 +69,11 @@
 
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
-			document.getElementById("filtersamplelisttable").innerHTML = "";
 			console.log(this.responseText);
-				var samples = JSON.parse(this.responseText);									
+				var samples = JSON.parse(this.responseText);	
+				document.getElementById("filtersamplelisttable").innerHTML = "";
 				filterlisttotable(samples);
+	
 			}
 		};
 		xhttp.open("POST", "http://localhost:8082/filtersamplelist/" );
@@ -79,7 +118,7 @@
 	}
 	function listtotable (samples) {
 		document.getElementById("samplelist").innerHTML = document.getElementById("samplelist").innerHTML
-		+ "<Table><tr><th>ID</th><th>Name</th><th>Description</th><th>Project ID</th></tr>";
+		+ "<Table><tr><th>ID</th><th>Name</th><th>Description</th><th>Project ID</th><th></th></tr>";
 		for (i = 0; i < samples.length; i++) {
 			document.getElementById("samplelist").innerHTML = document.getElementById("samplelist").innerHTML
 					+ "<tr><td>"
@@ -89,7 +128,10 @@
 					+ "</td><td>"
 					+ samples[i].description
 					+ "</td><td>"
-					+ samples[i].project.id;
+					+ samples[i].project.id
+					+ "</td><td>"
+				
+					+ "<input id='"+samples[i].id+"' type='radio' name='samplelistselector' onclick=\"handleSampleClick(this.id);\">"
 					+ "</td></tr>"
 		}
 		document.getElementById("samplelist").innerHTML = document.getElementById("samplelist").innerHTML
@@ -148,6 +190,11 @@
 		document.getElementById("ProjectID").value = idpass;
 		
 	}
+	function handleSampleClick(idpass) {
+		document.getElementById("deleteSamplefield").value = idpass;
+	
+		
+	}
 		
 	function verstuur() {
 		var ent = document.getElementById("projectname").value;
@@ -176,6 +223,17 @@
 			}
 		};
 		xhttp.open("DELETE", "http://localhost:8082/project/" + id, true);
+		xhttp.send();
+	}
+	function Sampledeleter() {
+		var xhttp = new XMLHttpRequest();
+		var id = document.getElementById("deleteSamplefield").value;
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+			listsample();
+			}
+		};
+		xhttp.open("DELETE", "http://localhost:8082/sample/" + id, true);
 		xhttp.send();
 	}
 	
@@ -261,21 +319,26 @@ article {
 				<tr>
 					<td>Name:</td>
 					<td><input type="text" id="samplename" name="Name"
-						value="samplename"></td>
+						value="samplename"></td></tr>
 				<tr>
 					<td>Comment:</td>
-					<td><input type="text" id="sampledescription" name="Description" value="description" size="100"></td>
+					<td><input type="text" id="sampledescription" name="Description" value="description" size="100"></td></tr>
 				<tr>		<td>Project:</td>
-					<td><input type="text" id="ProjectID" name="ProjectID" value="select project" size="15" disabled></td>
+					<td><input type="text" id="ProjectID" name="ProjectID" value="select project" size="15" disabled></td></tr>
+					<tr><td>Select Sample:</td>
+					<td><input type="text" id="deleteSamplefield" name="DeleteById" value="select project" disabled size="15"></td></tr>
 			</table>
 			<br>
 						
-			<button type="button" id="try" onclick="listsample()">show list</button>
-			<button type="button" id="getProject" onclick="getOneProject()">Retrieve selected project</button>
+		
+			
 			<button type="button" id="newsampleforproject" onclick="newsampleForProject() ">Add sample to selected Project</button>
-			<button type="button" id="filtersamplelist" onclick="filterlistsample()">List samples for one project</button>
+						<button type="button" id="projectfiltersamplelist" onclick="projectfilterlistsample()">Find samples in Project</button>
+			<button type="button" id="filtersamplelist" onclick="filterlistsample()">Find samples with name</button>
+			<button type="button" id="deletebutton" onclick="Sampledeleter()">delete sample</button>
 			<table id="samplelist" border=1></table>
 			<table id="filtersamplelisttable" border=1></table>
+			<table id="projectfiltersamplelisttable" border=1></table>
 
 		</article>
 

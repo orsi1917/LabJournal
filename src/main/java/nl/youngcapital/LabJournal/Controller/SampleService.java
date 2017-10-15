@@ -23,5 +23,7 @@ public class SampleService {
 	public List<Sample> filterSample(String name) {
 		return sampleRepository.filtersample(name);
 	}
-
+	public List<Sample> projectfilterSample(long id) {
+		return sampleRepository.projectfiltersample(id);
+	}
 }
