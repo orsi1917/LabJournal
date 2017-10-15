@@ -75,6 +75,46 @@
 		
 		
 	}
+
+	function filterlistexperiment() {
+		var xhttp = new XMLHttpRequest();
+		var name = document.getElementById("experimentname").value;
+
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+			console.log(this.responseText);
+				var experiments = JSON.parse(this.responseText);	
+				document.getElementById("filterexperimentlisttable").innerHTML = "";
+				filterexperimenttotable(experiments);
+	
+			}
+		};
+		xhttp.open("POST", "http://localhost:8082/filterExperimentList/" );
+		xhttp.setRequestHeader("Content-type", "application/json");
+
+		xhttp.send(name);
+
+	}
+	function filterexperimenttotable (experiments) {
+		var id = document.getElementById("ProjectID").value;
+		document.getElementById("filterexperimentlisttable").innerHTML = document.getElementById("filterexperimentlisttable").innerHTML
+		+ "<Table><tr><th>ID</th><th>Name</th><th>Description</th><th>Project ID</th></tr>";
+		for (i = 0; i < experiments.length; i++) {			
+			document.getElementById("filterexperimentlisttable").innerHTML = document.getElementById("filterexperimentlisttable").innerHTML
+
+					+ "<tr><td>"
+					+ experiments[i][0]
+					+ "</td><td>"
+					+  experiments[i][1]
+					+ "</td><td>"
+					+  experiments[i][2]
+					+ "</td><td>"
+					+  experiments[i][3].id;
+					+ "</td></tr>"
+		}
+		document.getElementById("filterexperimentlisttable").innerHTML = document.getElementById("filterexperimentlisttable").innerHTML
+		+ "</table>";
+	}
 	function ProjectFilterExperiment() {
 		var xhttp = new XMLHttpRequest();
 		var id = document.getElementById("deletefield").value;
@@ -464,9 +504,11 @@ article {
 			<br>
 			<button type="button" id="newsampleforproject" onclick="newsExperimentForProject()">Add experiment to selected Project</button>
 			<button type="button" id="projectfilterexperimentlist" onclick="ProjectFilterExperiment()">Find samples in Project</button>
+			<button type="button" id="filterexperimentlist" onclick="filterlistexperiment()">Find examples with name</button>
 			<button type="button" id="experimentdeletebutton" onclick="Experimentdeleter()">delete experiment</button>
 		<table id="experimentlist" border=1></table>
 		<table id="projectfilterexperimentlisttable" border=1></table>
+		<table id="filterexperimentlisttable" border=1></table>
 		</article>
 
 		<footer>Program by Orsi & Steven</footer>
