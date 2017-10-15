@@ -13,7 +13,7 @@ function newSubSampleForSample() {
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			listexperiment();
+			listsubsamples();
 		}
 	};
 	xhttp.open("POST", "http://localhost:8082/addSubSampleToSample/"+id, true);
@@ -37,6 +37,43 @@ function newSubSampleForSample() {
 	xhttp.open("POST", "http://localhost:8082/addExperimentToProject/"+id, true);
 	xhttp.setRequestHeader("Content-type", "application/json");
 	xhttp.send(experiment);		
+	}
+	function listsubsamples() {
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+			document.getElementById("subSamplelist").innerHTML = "";
+			console.log(this.responseText);
+				var subsamples = JSON.parse(this.responseText);
+				subsamplestotable(subsamples);
+			}
+		};
+		xhttp.open("GET", "http://localhost:8082/subsamplelist");
+		xhttp.setRequestHeader("Content-type", "application/json");
+		xhttp.send();
+	}
+	function subsamplestotable (subsamples) {
+		document.getElementById("subSamplelist").innerHTML = document.getElementById("subSamplelist").innerHTML
+		+ "<Table><tr><th>ID</th><th>Name</th><th>Description</th><th>Danger</th><th>Sample ID</th><th></th></tr>";
+		for (i = 0; i < subsamples.length; i++) {
+			document.getElementById("subSamplelist").innerHTML = document.getElementById("subSamplelist").innerHTML
+					+ "<tr><td>"
+					+ subsamples[i].id
+					+ "</td><td>"
+					+ subsamples[i].name
+					+ "</td><td>"
+					+ subsamples[i].description
+					+ "</td><td>"
+					+ subsamples[i].danger
+					+ "</td><td>"
+					+ subsamples[i].sample.id
+					+ "</td><td>"
+				
+					+ "<input id='"+subsamples[i].id+"' type='radio' name='subsamplelistselector' onclick=\"handleSubsampleClick(this.id);\">"
+					+ "</td></tr>"
+		}
+		document.getElementById("subSamplelist").innerHTML = document.getElementById("subSamplelist").innerHTML
+		+ "</table>";
 	}
 	function listexperiment() {
 		var xhttp = new XMLHttpRequest();
@@ -67,7 +104,7 @@ function newSubSampleForSample() {
 					+ experiments[i].project.id
 					+ "</td><td>"
 				
-					+ "<input id='"+experiments[i].id+"' type='radio' name='sexperimentlistselector' onclick=\"handleExperimentClick(this.id);\">"
+					+ "<input id='"+experiments[i].id+"' type='radio' name='experimentlistselector' onclick=\"handleExperimentClick(this.id);\">"
 					+ "</td></tr>"
 		}
 		document.getElementById("experimentlist").innerHTML = document.getElementById("experimentlist").innerHTML
@@ -535,7 +572,7 @@ article {
 				</table>
 				<br>
 			<button type="button" id="newSubSample" onclick="newSubSampleForSample()">Add new Subsample to selcted sample</button>
-		
+			<table id="subSamplelist" border=1></table>
 		</td></tr></table>
 		</article>
 
