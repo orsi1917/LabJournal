@@ -2,6 +2,24 @@
 <html>
 <head>
 <script>
+function newSubSampleForSample() {
+	
+	var ent = document.getElementById("SubSampleName").value;
+	var id = document.getElementById("deleteSamplefield").value;
+	var ent2 = document.getElementById("SubSampleDescription").value;
+	var ent3 = document.getElementById("danger").value;
+	var subSample = '{"name":"' + ent + '", "description" : "' + ent2 + '" , "danger" : "' + ent3 + '"}';
+	console.log(experiment);
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			listexperiment();
+		}
+	};
+	xhttp.open("POST", "http://localhost:8082/addExperimentToProject/"+id, true);
+	xhttp.setRequestHeader("Content-type", "application/json");
+	xhttp.send(subSample);		
+	}
 
 	function newsExperimentForProject() {
 	
@@ -512,10 +530,11 @@ article {
 					<td><input type="text" id="SubSampleName" name="Name" 	value="subsample name"></td></tr>
 				<tr><td>Description:</td>
 					<td><input type="text" id="SubSampleDescription" name="SubSampleDescription" value="subsample description" size="15"></td></tr>
-				
 				<tr><td>Danger:</td>
 					<td><input type="text" id="danger" name="danger" value="none" size="15"></td></tr>
-				
+				</table>
+				<br>
+			<button type="button" id="newSubSample" onclick="newSubSampleForSample()">Add new Subsample to selcted sample</button>
 		
 		</td></tr></table>
 		</article>

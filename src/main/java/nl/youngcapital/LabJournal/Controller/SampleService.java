@@ -52,7 +52,7 @@ public class SampleService {
 	public List<SubSample> filterSubSample(String name) {
 		return subSampleRepository.filterSubSample(name);
 	}
-	public List<SubSample> projectFilterSubSample(long id) {
-		return subSampleRepository.projectFilterSubSample(id);
+	public List<SubSample> sampleFilterSubSample(long id) {
+		return subSampleRepository.sampleFilterSubSample(id);
 	}
 }
