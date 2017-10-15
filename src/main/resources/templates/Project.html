@@ -13,15 +13,48 @@
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-			listsample();
+			listexperiment();
 		}
 	};
 	xhttp.open("POST", "http://localhost:8082/addExperimentToProject/"+id, true);
 	xhttp.setRequestHeader("Content-type", "application/json");
 	xhttp.send(experiment);		
-	
-	
-}
+	}
+	function listexperiment() {
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+			document.getElementById("experimentlist").innerHTML = "";
+			console.log(this.responseText);
+				var experiments = JSON.parse(this.responseText);
+				experimentstotable(experiments);
+			}
+		};
+		xhttp.open("GET", "http://localhost:8082/experimentlist");
+		xhttp.setRequestHeader("Content-type", "application/json");
+		xhttp.send();
+	}
+	function experimentstotable (experiments) {
+		document.getElementById("experimentlist").innerHTML = document.getElementById("experimentlist").innerHTML
+		+ "<Table><tr><th>ID</th><th>Name</th><th>Description</th><th>Project ID</th><th></th></tr>";
+		for (i = 0; i < experiments.length; i++) {
+			document.getElementById("experimentlist").innerHTML = document.getElementById("experimentlist").innerHTML
+					+ "<tr><td>"
+					+ experiments[i].id
+					+ "</td><td>"
+					+ experiments[i].name
+					+ "</td><td>"
+					+ experiments[i].description
+					+ "</td><td>"
+					+ experiments[i].project.id
+					+ "</td><td>"
+				
+					+ "<input id='"+experiments[i].id+"' type='radio' name='sexperimentlistselector' onclick=\"handleExperimentClick(this.id);\">"
+					+ "</td></tr>"
+		}
+		document.getElementById("experimentlist").innerHTML = document.getElementById("experimentlist").innerHTML
+		+ "</table>";
+	}
 
 	function newsampleForProject() {
 		
@@ -215,6 +248,11 @@
 	
 		
 	}
+	function handleExperimentClick(idpass) {
+		document.getElementById("deleteExamplefield").value = idpass;
+	
+		
+	}
 		
 	function verstuur() {
 		var ent = document.getElementById("projectname").value;
@@ -260,6 +298,7 @@
 	
 	list();
 	listsample();
+	listexperiment();
 </script>
 
 <style>
@@ -372,11 +411,12 @@ article {
 					<td>Project:</td>
 					<td><input type="text" id="ProjectID2" name="ProjectID" value="select project" size="15" disabled></td></tr>
 					<tr><td>Select Experiment:</td>
-					<td><input type="text" id="deleteExamplefield" name="DeleteById" value="select project"  size="15"></td></tr>
+					<td><input type="text" id="deleteExamplefield" name="DeleteById" value="select experiment" disabled size="15"></td></tr>
 					
 			</table>
 			<br>
 			<button type="button" id="newsampleforproject" onclick="newsExperimentForProject()">Add experiment to selected Project</button>
+		<table id="experimentlist" border=1></table>
 		</article>
 
 		<footer>Program by Orsi & Steven</footer>
