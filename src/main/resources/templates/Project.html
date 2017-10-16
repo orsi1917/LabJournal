@@ -2,8 +2,78 @@
 <html>
 <head>
 <script>
-	function navlist(){
+	function navlist(){}
 		
+function newSubSampleForSample() {
+	
+	var ent = document.getElementById("SubSampleName").value;
+	var id = document.getElementById("deleteSamplefield").value;
+	var ent2 = document.getElementById("SubSampleDescription").value;
+	var ent3 = document.getElementById("danger").value;
+	var subSample = '{"name":"' + ent + '", "description" : "' + ent2 + '" , "danger" : "' + ent3 + '"}';
+	console.log(experiment);
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			listexperiment();
+		}
+	};
+	xhttp.open("POST", "http://localhost:8082/addExperimentToProject/"+id, true);
+	xhttp.setRequestHeader("Content-type", "application/json");
+	xhttp.send(subSample);		
+	}
+
+	function newsExperimentForProject() {
+	
+	var ent = document.getElementById("experimentname").value;
+	var id = document.getElementById("ProjectID").value;
+	var ent2 = document.getElementById("experimentdescription").value;
+	var experiment = '{"name":"' + ent + '", "description" : "' + ent2 + '" }';
+	console.log(experiment);
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			listexperiment();
+		}
+	};
+	xhttp.open("POST", "http://localhost:8082/addExperimentToProject/"+id, true);
+	xhttp.setRequestHeader("Content-type", "application/json");
+	xhttp.send(experiment);		
+	}
+	function listexperiment() {
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+			document.getElementById("experimentlist").innerHTML = "";
+			console.log(this.responseText);
+				var experiments = JSON.parse(this.responseText);
+				experimentstotable(experiments);
+			}
+		};
+		xhttp.open("GET", "http://localhost:8082/experimentlist");
+		xhttp.setRequestHeader("Content-type", "application/json");
+		xhttp.send();
+	}
+	function experimentstotable (experiments) {
+		document.getElementById("experimentlist").innerHTML = document.getElementById("experimentlist").innerHTML
+		+ "<Table><tr><th>ID</th><th>Name</th><th>Description</th><th>Project ID</th><th></th></tr>";
+		for (i = 0; i < experiments.length; i++) {
+			document.getElementById("experimentlist").innerHTML = document.getElementById("experimentlist").innerHTML
+					+ "<tr><td>"
+					+ experiments[i].id
+					+ "</td><td>"
+					+ experiments[i].name
+					+ "</td><td>"
+					+ experiments[i].description
+					+ "</td><td>"
+					+ experiments[i].project.id
+					+ "</td><td>"
+				
+					+ "<input id='"+experiments[i].id+"' type='radio' name='sexperimentlistselector' onclick=\"handleExperimentClick(this.id);\">"
+					+ "</td></tr>"
+		}
+		document.getElementById("experimentlist").innerHTML = document.getElementById("experimentlist").innerHTML
+		+ "</table>";
 	}
 
 	function newsampleForProject() {
@@ -16,7 +86,6 @@
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
-				//document.getElementById("outputserver").innerHTML = this.responseText;
 				listsample();
 			}
 		};
@@ -26,38 +95,159 @@
 		
 		
 	}
-	function filterlistsample() {
+
+	function filterlistexperiment() {
 		var xhttp = new XMLHttpRequest();
-		
+		var name = document.getElementById("experimentname").value;
+
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
-			document.getElementById("filtersamplelisttable").innerHTML = "";
 			console.log(this.responseText);
-				var samples = JSON.parse(this.responseText);									
-				filterlisttotable(samples);
+				var experiments = JSON.parse(this.responseText);	
+				document.getElementById("filterexperimentlisttable").innerHTML = "";
+				filterexperimenttotable(experiments);
+	
 			}
 		};
-		xhttp.open("GET", "http://localhost:8082/filtersamplelist/" );
+		xhttp.open("POST", "http://localhost:8082/filterExperimentList/" );
 		xhttp.setRequestHeader("Content-type", "application/json");
-		xhttp.send();
+
+		xhttp.send(name);
+
+	}
+	function filterexperimenttotable (experiments) {
+		var id = document.getElementById("ProjectID").value;
+		document.getElementById("filterexperimentlisttable").innerHTML = document.getElementById("filterexperimentlisttable").innerHTML
+		+ "<Table><tr><th>ID</th><th>Name</th><th>Description</th><th>Project ID</th></tr>";
+		for (i = 0; i < experiments.length; i++) {			
+			document.getElementById("filterexperimentlisttable").innerHTML = document.getElementById("filterexperimentlisttable").innerHTML
+
+					+ "<tr><td>"
+					+ experiments[i][0]
+					+ "</td><td>"
+					+  experiments[i][1]
+					+ "</td><td>"
+					+  experiments[i][2]
+					+ "</td><td>"
+					+  experiments[i][3].id;
+					+ "</td></tr>"
+		}
+		document.getElementById("filterexperimentlisttable").innerHTML = document.getElementById("filterexperimentlisttable").innerHTML
+		+ "</table>";
+	}
+	function ProjectFilterExperiment() {
+		var xhttp = new XMLHttpRequest();
+		var id = document.getElementById("deletefield").value;
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("projectfilterexperimentlisttable").innerHTML = "";
+			console.log(this.responseText);
+				var experiments = JSON.parse(this.responseText);									
+				projectfilterExperimentlisttotable(experiments);
+			}
+		};
+		xhttp.open("POST", "http://localhost:8082/projectFilterExperimentList/" );
+		xhttp.setRequestHeader("Content-type", "application/json");
+
+		xhttp.send(id);
+
+	}
+	function projectfilterExperimentlisttotable (experiments) {
+		var id = document.getElementById("ProjectID").value;
+		document.getElementById("projectfilterexperimentlisttable").innerHTML = document.getElementById("projectfilterexperimentlisttable").innerHTML
+		+ "<Table><tr><th>ID</th><th>Name</th><th>Description</th><th>Project ID</th></tr>";
+		for (i = 0; i < experiments.length; i++) {			
+			document.getElementById("projectfilterexperimentlisttable").innerHTML = document.getElementById("projectfilterexperimentlisttable").innerHTML
+
+					+ "<tr><td>"
+					+ experiments[i][0]
+					+ "</td><td>"
+					+  experiments[i][1]
+					+ "</td><td>"
+					+  experiments[i][2]
+					+ "</td><td>"
+					+  experiments[i][3].id;
+					+ "</td></tr>"
+		}
+		document.getElementById("projectfilterexperimentlisttable").innerHTML = document.getElementById("projectfilterexperimentlisttable").innerHTML
+		+ "</table>";
+	}
+	function projectfilterlistsample() {
+		var xhttp = new XMLHttpRequest();
+
+		var id = document.getElementById("deletefield").value;
+
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById("projectfiltersamplelisttable").innerHTML = "";
+			console.log(this.responseText);
+				var samples = JSON.parse(this.responseText);									
+				projectfilterlisttotable(samples);
+			}
+		};
+		xhttp.open("POST", "http://localhost:8082/projectfiltersamplelist/" );
+		xhttp.setRequestHeader("Content-type", "application/json");
+
+		xhttp.send(id);
+
+	}
+	function projectfilterlisttotable (samples) {
+		var id = document.getElementById("ProjectID").value;
+		document.getElementById("projectfiltersamplelisttable").innerHTML = document.getElementById("projectfiltersamplelisttable").innerHTML
+		+ "<Table><tr><th>ID</th><th>Name</th><th>Description</th><th>Project ID</th></tr>";
+		for (i = 0; i < samples.length; i++) {			
+			document.getElementById("projectfiltersamplelisttable").innerHTML = document.getElementById("projectfiltersamplelisttable").innerHTML
+
+					+ "<tr><td>"
+					+ samples[i][0]
+					+ "</td><td>"
+					+  samples[i][1]
+					+ "</td><td>"
+					+  samples[i][2]
+					+ "</td><td>"
+					+  samples[i][3].id;
+					+ "</td></tr>"
+		}
+		document.getElementById("projectfiltersamplelisttable").innerHTML = document.getElementById("projectfiltersamplelisttable").innerHTML
+		+ "</table>";
+	}
+	function filterlistsample() {
+		var xhttp = new XMLHttpRequest();
+
+		var name = document.getElementById("samplename").value;
+
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+			console.log(this.responseText);
+				var samples = JSON.parse(this.responseText);	
+				document.getElementById("filtersamplelisttable").innerHTML = "";
+				filterlisttotable(samples);
+	
+			}
+		};
+		xhttp.open("POST", "http://localhost:8082/filtersamplelist/" );
+		xhttp.setRequestHeader("Content-type", "application/json");
+
+		xhttp.send(name);
+
 	}
 	function filterlisttotable (samples) {
 		var id = document.getElementById("ProjectID").value;
 		document.getElementById("filtersamplelisttable").innerHTML = document.getElementById("filtersamplelisttable").innerHTML
 		+ "<Table><tr><th>ID</th><th>Name</th><th>Description</th><th>Project ID</th></tr>";
-		for (i = 0; i < samples.length; i++) {
-			if (samples[i].project.id==id){
+		for (i = 0; i < samples.length; i++) {			
 			document.getElementById("filtersamplelisttable").innerHTML = document.getElementById("filtersamplelisttable").innerHTML
+
 					+ "<tr><td>"
-					+ samples[i].id
+					+ samples[i][0]
 					+ "</td><td>"
-					+ samples[i].name
+					+  samples[i][1]
 					+ "</td><td>"
-					+ samples[i].description
+					+  samples[i][2]
 					+ "</td><td>"
-					+ samples[i].project.id;
+					+  samples[i][3].id;
 					+ "</td></tr>"
-		}}
+		}
 		document.getElementById("filtersamplelisttable").innerHTML = document.getElementById("filtersamplelisttable").innerHTML
 		+ "</table>";
 	}
@@ -77,7 +267,7 @@
 	}
 	function listtotable (samples) {
 		document.getElementById("samplelist").innerHTML = document.getElementById("samplelist").innerHTML
-		+ "<Table><tr><th>ID</th><th>Name</th><th>Description</th><th>Project ID</th></tr>";
+		+ "<Table><tr><th>ID</th><th>Name</th><th>Description</th><th>Project ID</th><th></th></tr>";
 		for (i = 0; i < samples.length; i++) {
 			document.getElementById("samplelist").innerHTML = document.getElementById("samplelist").innerHTML
 					+ "<tr><td>"
@@ -87,7 +277,10 @@
 					+ "</td><td>"
 					+ samples[i].description
 					+ "</td><td>"
-					+ samples[i].project.id;
+					+ samples[i].project.id
+					+ "</td><td>"
+				
+					+ "<input id='"+samples[i].id+"' type='radio' name='samplelistselector' onclick=\"handleSampleClick(this.id);\">"
 					+ "</td></tr>"
 		}
 		document.getElementById("samplelist").innerHTML = document.getElementById("samplelist").innerHTML
@@ -144,6 +337,17 @@
 	function handleClick(idpass) {
 		document.getElementById("deletefield").value = idpass;
 		document.getElementById("ProjectID").value = idpass;
+		document.getElementById("ProjectID2").value = idpass;
+		
+	}
+	function handleSampleClick(idpass) {
+		document.getElementById("deleteSamplefield").value = idpass;
+	
+		
+	}
+	function handleExperimentClick(idpass) {
+		document.getElementById("deleteExamplefield").value = idpass;
+	
 		
 	}
 		
@@ -170,17 +374,38 @@
 		var id = document.getElementById("deletefield").value;
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
-			//	document.getElementById("deletebutton").innerHTML = this.responseText;
 			list();
 			}
 		};
 		xhttp.open("DELETE", "http://localhost:8082/project/" + id, true);
 		xhttp.send();
 	}
-	
+	function Sampledeleter() {
+		var xhttp = new XMLHttpRequest();
+		var id = document.getElementById("deleteSamplefield").value;
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+			listsample();
+			}
+		};
+		xhttp.open("DELETE", "http://localhost:8082/sample/" + id, true);
+		xhttp.send();
+	}
+	function Experimentdeleter() {
+		var xhttp = new XMLHttpRequest();
+		var id = document.getElementById("deleteExamplefield").value;
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				listexperiment();
+			}
+		};
+		xhttp.open("DELETE", "http://localhost:8082/experiment/" + id, true);
+		xhttp.send();
+	}
 	
 	list();
 	listsample();
+	listexperiment();
 </script>
 
 <style>
@@ -256,26 +481,64 @@ article {
 			<button type="button" id="deletebutton" onclick="deleter()">delete</button>
 			<table id="list" border=1></table>
 			<br><hr><br>
+		<table width: 100%>	<tr><td>
 			<table>
 				<tr>
 					<td>Name:</td>
-					<td><input type="text" id="samplename" name="Name"
-						value="samplename"></td>
+					<td><input type="text" id="samplename" name="Name"	value="samplename"></td></tr>
 				<tr>
 					<td>Comment:</td>
-					<td><input type="text" id="sampledescription" name="Description" value="description" size="100"></td>
+					<td><input type="text" id="sampledescription" name="Description" value="description" size="15"></td></tr>
 				<tr>		<td>Project:</td>
-					<td><input type="text" id="ProjectID" name="ProjectID" value="select project" size="15" disabled></td>
+					<td><input type="text" id="ProjectID" name="ProjectID" value="select project" size="15" disabled></td></tr>
+					<tr><td>Select Sample:</td>
+					<td><input type="text" id="deleteSamplefield" name="DeleteById" value="select project" disabled size="15"></td></tr>
 			</table>
-			<br>
-						
-			<button type="button" id="try" onclick="listsample()">show list</button>
-			<button type="button" id="getProject" onclick="getOneProject()">Retrieve selected project</button>
+			<br>	
 			<button type="button" id="newsampleforproject" onclick="newsampleForProject() ">Add sample to selected Project</button>
-			<button type="button" id="filtersamplelist" onclick="filterlistsample()">List samples for one project</button>
+			<button type="button" id="projectfiltersamplelist" onclick="projectfilterlistsample()">Find samples in Project</button>
+			<button type="button" id="filtersamplelist" onclick="filterlistsample()">Find samples with name</button>
+			<button type="button" id="deletebutton" onclick="Sampledeleter()">delete sample</button>
 			<table id="samplelist" border=1></table>
 			<table id="filtersamplelisttable" border=1></table>
-
+			<table id="projectfiltersamplelisttable" border=1></table></td>
+	
+	<td><table>
+				<tr>
+					<td>Name:</td>
+					<td><input type="text" id="experimentname" name="Name"	value="experimentname"></td></tr>
+				<tr>	<td>Description:</td>
+					<td><input type="text" id="experimentdescription" name="Description" value="description" size="15"></td></tr>
+				
+				<tr>
+					<td>Project:</td>
+					<td><input type="text" id="ProjectID2" name="ProjectID" value="select project" size="15" disabled></td></tr>
+					<tr><td>Select Experiment:</td>
+					<td><input type="text" id="deleteExamplefield" name="DeleteById" value="select experiment" disabled size="15"></td></tr>
+					
+			</table>
+			<br>
+			<button type="button" id="newsampleforproject" onclick="newsExperimentForProject()">Add experiment to selected Project</button>
+			<button type="button" id="projectfilterexperimentlist" onclick="ProjectFilterExperiment()">Find samples in Project</button>
+			<button type="button" id="filterexperimentlist" onclick="filterlistexperiment()">Find examples with name</button>
+			<button type="button" id="experimentdeletebutton" onclick="Experimentdeleter()">delete experiment</button>
+		<table id="experimentlist" border=1></table>
+		<table id="projectfilterexperimentlisttable" border=1></table>
+		<table id="filterexperimentlisttable" border=1></table></td></tr>
+		<tr><td><hr>
+		<table>
+				<tr>
+					<td>Name:</td>
+					<td><input type="text" id="SubSampleName" name="Name" 	value="subsample name"></td></tr>
+				<tr><td>Description:</td>
+					<td><input type="text" id="SubSampleDescription" name="SubSampleDescription" value="subsample description" size="15"></td></tr>
+				<tr><td>Danger:</td>
+					<td><input type="text" id="danger" name="danger" value="none" size="15"></td></tr>
+				</table>
+				<br>
+			<button type="button" id="newSubSample" onclick="newSubSampleForSample()">Add new Subsample to selcted sample</button>
+		
+		</td></tr></table>
 		</article>
 
 		<footer>Program by Orsi & Steven</footer>

@@ -50,17 +50,22 @@ public class SampleEindpoint {
 	 public List<Sample> findAll() {
 	    return (List<Sample>)sampleRepository.findAll();
 	  }
-	 @RequestMapping(value = "/filtersamplelist", method = RequestMethod.GET)
-	 public List<Sample> filterfindAll() {
-	    ArrayList <Sample> list = new ArrayList();
-	    list =(ArrayList<Sample>)sampleRepository.findAll();
-	    		 return list;
+
+	 @RequestMapping(value = "/filtersamplelist", method = RequestMethod.POST)
+	 public List<Sample> filterfindAll(@RequestBody String name) {
+		 return sampleService.filterSample(name);
+
 	  }
-	  @ResponseStatus(value = HttpStatus.OK)
+	 @RequestMapping(value = "/projectfiltersamplelist", method = RequestMethod.POST)
+	 public List<Sample> filterfindAll(@RequestBody long id) {
+		 return sampleService.projectfilterSample(id);
+
+	  }
+	 
+	 @ResponseBody
 	  @RequestMapping(value = "/sample/{id}", method = RequestMethod.DELETE)
 	  public void updatesample(@PathVariable  long id) {
 	    sampleRepository.delete(id);
 	  } 
 }
-
 

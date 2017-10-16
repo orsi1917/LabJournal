@@ -17,14 +17,15 @@ import javax.persistence.OneToOne;
 @Entity
 
 public class SubSample {
-	@OneToOne
-	private	Amount amount;
-	private String danger;
-	private String description;
 	@Id
 	@GeneratedValue
 	private Long id;
 	private String name;
+
+	private String description;
+	private String danger;
+	@OneToOne
+	private	Amount amount;
 
 	@ManyToMany
 	private List <Operation> operations;

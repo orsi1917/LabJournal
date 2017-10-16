@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import nl.youngcapital.LabJournal.Experiment;
 import nl.youngcapital.LabJournal.Project;
 import nl.youngcapital.LabJournal.Sample;
 import nl.youngcapital.LabJournal.Controller.ProjectRepository;
@@ -40,7 +42,7 @@ public class ProjectEindpoint {
 	
 	 @RequestMapping(value = "/projectlist", method = RequestMethod.GET)
 	 public List<Project> findAll() {
-	    return (List<Project>)projectRepository.findAll();
+		  return (List<Project>)projectRepository.findAll();
 	 }
 	 
 	 @RequestMapping(value = "/findProject/{id}", method = RequestMethod.GET)
@@ -57,6 +59,15 @@ public class ProjectEindpoint {
 		 projectService.saveProject(project);
 		 sample.setProject(project);
 		 sampleService.saveSample(sample);
+		 System.out.println(project.getId());
+	 }
+	 @RequestMapping(value = "/addExperimentToProject/{id}", method = RequestMethod.POST)
+	 public void addSampleToProject(@RequestBody Experiment experiment, @PathVariable long id) {
+		 sampleService.saveExperiment(experiment);
+		 Project project=projectRepository.findOne(id);
+		 projectService.saveProject(project);
+		 experiment.setProject(project);
+		 sampleService.saveExperiment(experiment);
 		 System.out.println(project.getId());
 	 }
 
