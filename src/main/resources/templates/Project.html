@@ -2,8 +2,35 @@
 <html>
 <head>
 <script>
+
 	/* ---------------------------------------- Project Handling -------------------------------------------------
 	 --------------------------------------------------------------------------------------------------------- */
+	
+function Tester(z){
+        var body = document.getElementsByTagName("html");
+        console.log(document);
+}
+
+function alertme(){
+	alert("x");
+}
+
+
+function NavList(items){		//show projects in navigation list
+	var element = document.getElementById("navlist");
+	
+	for(i = 0; i < items.length; i++){
+		var node = document.createTextNode(items[i].name);
+		var navi = document.createElement("li");
+		navi.appendChild(node);
+		element.appendChild(navi);
+		element.addEventListener("click", alertme);
+	}
+		
+	console.log(navlist);
+}
+	
+	
 	function AddNewProject() {
 		var ent = document.getElementById("projectname").value;
 		var ent2 = document.getElementById("projectcomment").value;
@@ -32,6 +59,7 @@
 				var projects = JSON.parse(this.responseText);
 				ProjectListToTable(projects);
 				hideButton();
+				NavList(projects);
 				
 			}
 		};
@@ -404,8 +432,7 @@
 				ListExperiment();
 			}
 		};
-		xhttp.open("POST",
-				"http://localhost:8082/addExperimentToProject/" + id, true);
+		xhttp.open("POST", 	"http://localhost:8082/addExperimentToProject/" + id, true);
 		xhttp.setRequestHeader("Content-type", "application/json");
 		xhttp.send(experiment);
 	}
@@ -630,14 +657,9 @@ article {
 		</header>
 
 		<nav>
-			<ul>
-				<li><a href="#">Example</a></li>
-				<li><a href="#">Demo</a></li>
-				<li><a href="#">Test</a></li>
+			<ul id="navlist">
 			</ul>
-
-			<table id="navigationlist" border=1></table>
-
+						
 		</nav>
 
 		<article>
