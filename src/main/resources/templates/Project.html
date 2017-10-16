@@ -56,7 +56,6 @@
 	function GetOneProject() {
 		var xhttp = new XMLHttpRequest();
 		var id = document.getElementById("ProjectID").value;
-		alert (id);
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
 		console.log(this.responseText);
@@ -68,6 +67,24 @@
 		xhttp.open("GET", "http://localhost:8082/findProject/" + id);
 		xhttp.setRequestHeader("Content-type", "application/json");
 		xhttp.send();
+	}
+	function UpdateProject() {
+		var ent = document.getElementById("projectnameChange").value;
+		var ent2 = document.getElementById("projectcommentChange").value;
+		var id = document.getElementById("ProjectID").value;
+		var project = '{"name":"' + ent + '", "comment" : "' + ent2 + '"}';
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				ListProjects();
+
+			}
+		};
+		xhttp.open("POST", "http://localhost:8082/updateProject/" + id, true);
+		xhttp.setRequestHeader("Content-type", "application/json");
+
+		xhttp.send(project);
+
 	}
 	
 	function ProjectDeleter() {
@@ -633,6 +650,7 @@ article {
 					<td>Comment:</td>
 					<td><input type="text" id="projectcommentChange" name="Comment" value="NewComments" size="15"></td>
 			</table>
+			<button type="button" id="UpdateProject" onclick="UpdateProject()">Update Project</button>
 			</td></tr></table>
 			<br>
 			<hr>

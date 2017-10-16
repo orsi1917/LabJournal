@@ -50,7 +50,12 @@ public class ProjectEindpoint {
 		
 		 return (Project)projectRepository.findOne(id);
 	 }
-
+	 @RequestMapping(value = "/updateProject/{id}", method = RequestMethod.POST)
+	 public void updateProject(@RequestBody Project project, @PathVariable long id) {
+		 System.out.println(project.getName());
+			 projectService.updateProject(project.getName(), project.getComment(), id);
+			 
+	 }
 	 
 	 @RequestMapping(value = "/addSampleToProject/{id}", method = RequestMethod.POST)
 	 public void addSampleToProject(@RequestBody Sample sample, @PathVariable long id) {
