@@ -35,17 +35,7 @@ public class SubSampleEindpoint {
 		System.out.println(subSample.getName());
 		sampleService.saveSubSample(subSample);
 	}
-	 @RequestMapping(value = "/addSubSampleToSample2/{id}", method = RequestMethod.POST)
-	 public void addSampleToProject2(@RequestBody Amount amount, @PathVariable long id) {
-		 amountRepository.save(amount);
-		 SubSample subSample = amount.getSubsample();
-		 sampleService.saveSubSample(subSample);
-		 Sample sample = sampleRepository.findOne(id);
-		 sampleService.saveSample(sample);
-		 subSample.setSample(sample);
-		 sampleService.saveSubSample(subSample);
-		 System.out.println(subSample.getId());
-	 }
+
 	 @RequestMapping(value = "/addSubSampleToSample/{id}", method = RequestMethod.POST)
 	 public void addSampleToProject(@RequestBody SubSample subSample, @PathVariable long id) {
 		 sampleService.saveSubSample(subSample);
