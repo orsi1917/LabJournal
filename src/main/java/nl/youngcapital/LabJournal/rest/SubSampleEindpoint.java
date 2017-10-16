@@ -10,10 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import nl.youngcapital.LabJournal.Amount;
 import nl.youngcapital.LabJournal.Sample;
 import nl.youngcapital.LabJournal.SubSample;
-import nl.youngcapital.LabJournal.Controller.AmountRepository;
 import nl.youngcapital.LabJournal.Controller.SampleRepository;
 import nl.youngcapital.LabJournal.Controller.SampleService;
 import nl.youngcapital.LabJournal.Controller.SubSampleRepository;
@@ -26,8 +24,7 @@ public class SubSampleEindpoint {
 	SubSampleRepository subSampleRepository;
 	@Autowired
 	SampleRepository sampleRepository;
-	@Autowired
-	AmountRepository amountRepository;
+
 	
 	@ResponseBody
 	@RequestMapping(value = "/subsamplepost", method = RequestMethod.POST)
