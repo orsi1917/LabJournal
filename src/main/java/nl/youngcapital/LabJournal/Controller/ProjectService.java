@@ -18,5 +18,8 @@ public class ProjectService {
 		projectRepository.save(project);
 		return project;
 	}
-
+	public void updateProject(String name, String comment, long id) {
+		projectRepository.updateProject(name, comment, id);
+		
+	}
 }
