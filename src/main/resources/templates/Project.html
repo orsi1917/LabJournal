@@ -12,6 +12,7 @@
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
 				ListProjects();
+				hideButton();
 
 			}
 		};
@@ -62,6 +63,7 @@
 			var project = JSON.parse(this.responseText);
 			document.getElementById("projectnameChange").value = project.name;
 			document.getElementById("projectcommentChange").value = project.comment;
+			showButton();
 			}
 		};
 		xhttp.open("GET", "http://localhost:8082/findProject/" + id);
@@ -77,6 +79,7 @@
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
 				ListProjects();
+				hideButton();
 
 			}
 		};
@@ -558,11 +561,18 @@
 	function handleExperimentSelector(idpass) {
 		document.getElementById("deleteExamplefield").value = idpass;
 	}
-
+	function showButton(){
+		  document.getElementById("UpdateProject").style.visibility = 'visible';
+		}
+	function hideButton(){
+		document.getElementById("UpdateProject").style.visibility = "hidden";
+		}
 	ListProjects();
 	ListSamples();
 	ListExperiment();
 	ListSubSamples();
+	
+	
 </script>
 
 <style>
@@ -642,7 +652,7 @@ article {
 			<table id="list" border=1></table> </td>
 			<td>
 			<button type="button" id="ModifyProject" onclick="GetOneProject()">Modify Project</button>
-			<table>
+			<div id="UpdateProject"><table >
 				<tr>
 					<td>Name:</td>
 					<td><input type="text" id="projectnameChange" name="Name"	value="NewProjectname"></td>
@@ -650,7 +660,7 @@ article {
 					<td>Comment:</td>
 					<td><input type="text" id="projectcommentChange" name="Comment" value="NewComments" size="15"></td>
 			</table>
-			<button type="button" id="UpdateProject" onclick="UpdateProject()">Update Project</button>
+			<button type="button" id="UpdateProjectButton" onclick="UpdateProject()" >Update Project</button></div>
 			</td></tr></table>
 			<br>
 			<hr>
