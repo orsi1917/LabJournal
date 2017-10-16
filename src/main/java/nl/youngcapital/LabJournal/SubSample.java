@@ -21,21 +21,31 @@ public class SubSample {
 	@GeneratedValue
 	private Long id;
 	private String name;
+	private int amount;
+	private String unit;
 
+	public int getAmount() {
+		return amount;
+	}
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+	public String getUnit() {
+		return unit;
+	}
+	public void setUnit(String unit) {
+		this.unit = unit;
+	}
 	private String description;
 	private String danger;
-	@OneToOne
-	private	Amount amount;
+
 
 	@ManyToMany
 	private List <Operation> operations;
 	@ManyToOne
 	@JoinColumn(name = "Sample_id")
 	private Sample sample;
-	public Amount getAmount() {
-		return amount;
-	}
-
+	
 		public String getDanger() {
 			return danger;
 		}
@@ -55,9 +65,7 @@ public class SubSample {
 	public Sample getSample() {
 		return sample;
 	}
-	public void setAmount(Amount amount) {
-		this.amount = amount;
-	}
+	
 	public void setDanger(String danger) {
 		this.danger = danger;
 	}
