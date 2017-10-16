@@ -53,6 +53,23 @@
 		}
 		document.getElementById("list").innerHTML += "</table>";
 	}
+	function GetOneProject() {
+		var xhttp = new XMLHttpRequest();
+		var id = document.getElementById("ProjectID").value;
+		alert (id);
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+		console.log(this.responseText);
+			var project = JSON.parse(this.responseText);
+			document.getElementById("projectnameChange").value = project.name;
+			document.getElementById("projectcommentChange").value = project.comment;
+			}
+		};
+		xhttp.open("GET", "http://localhost:8082/findProject/" + id);
+		xhttp.setRequestHeader("Content-type", "application/json");
+		xhttp.send();
+	}
+	
 	function ProjectDeleter() {
 		var xhttp = new XMLHttpRequest();
 		var id = document.getElementById("deletefield").value;
@@ -592,22 +609,31 @@ article {
 
 		<article>
 			<h1>My First Buttons</h1>
-
+	<table> <tr><td>
 			<table>
 				<tr>
 					<td>Name:</td>
-					<td><input type="text" id="projectname" name="Name"
-						value="projectname"></td>
+					<td><input type="text" id="projectname" name="Name"	value="projectname"></td>
 				<tr>
 					<td>Comment:</td>
-					<td><input type="text" id="projectcomment" name="Comment"
-						value="comments" size="100"></td>
+					<td><input type="text" id="projectcomment" name="Comment" value="comments" size="15"></td>
 			</table>
 			<br>
 			<button type="button" id="NewProjectCreator" onclick="AddNewProject()">Create new Project</button>
 			<input type="text" id="deletefield" name="DeleteById" value="select project" disabled size="15">
 			<button type="button" id="ProjectDeleteButton" onclick="ProjectDeleter()">delete</button>
-			<table id="list" border=1></table>
+			<table id="list" border=1></table> </td>
+			<td>
+			<button type="button" id="ModifyProject" onclick="GetOneProject()">Modify Project</button>
+			<table>
+				<tr>
+					<td>Name:</td>
+					<td><input type="text" id="projectnameChange" name="Name"	value="NewProjectname"></td>
+				<tr>
+					<td>Comment:</td>
+					<td><input type="text" id="projectcommentChange" name="Comment" value="NewComments" size="15"></td>
+			</table>
+			</td></tr></table>
 			<br>
 			<hr>
 			<br>

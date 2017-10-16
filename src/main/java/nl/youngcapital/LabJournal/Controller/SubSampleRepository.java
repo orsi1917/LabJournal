@@ -15,13 +15,13 @@ import nl.youngcapital.LabJournal.SubSample;
 public interface SubSampleRepository extends CrudRepository<SubSample, Long>{
 	@Transactional
   	@Modifying
-	@Query("SELECT id, name, description, danger, amount, unit, sample FROM SubSample s where s.name=? ")
+	@Query("SELECT id, name, description, danger, amount, sample, s.unit FROM SubSample s where s.name=? ")
 	public List<SubSample> filterSubSample(String name);
 	
 	
 	@Transactional
 	@Modifying
 //@Query("SELECT id, name, description, project FROM Sample s where s.getProject().getId()=?")
-	@Query("SELECT id, name, description, danger,  amount, unit, sample  FROM SubSample s where s.sample.id=?")
+	@Query("SELECT id, name, description,  amount, unit, danger, sample  FROM SubSample s where s.sample.id=?")
 	public List<SubSample> sampleFilterSubSample(long id);
 }
