@@ -6,6 +6,16 @@
 /* ---------------------------------------- Project Handling -------------------------------------------------
 --------------------------------------------------------------------------------------------------------- */
 
+function Tester(z){
+        var body = document.getElementsByTagName("html");
+        console.log(document);
+}
+
+function alertme(){
+	alert("x");
+}
+
+
 function NavList(items){		//show projects in navigation list
 	var element = document.getElementById("navlist");
 	
@@ -14,6 +24,7 @@ function NavList(items){		//show projects in navigation list
 		var navi = document.createElement("li");
 		navi.appendChild(node);
 		element.appendChild(navi);
+		element.addEventListener("click", alertme);
 	}
 		
 	console.log(navlist);
@@ -524,8 +535,6 @@ article {
 
 		<article>
 			<h1>My First Buttons</h1>
-
-				<button type="button" id="DomButton" onclick="NavList()">DOM LIST</button>
 
 			<table>
 				<tr>
