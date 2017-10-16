@@ -2,8 +2,35 @@
 <html>
 <head>
 <script>
+
 /* ---------------------------------------- Project Handling -------------------------------------------------
 --------------------------------------------------------------------------------------------------------- */
+
+function Tester(z){
+        var body = document.getElementsByTagName("html");
+        console.log(document);
+}
+
+function alertme(){
+	alert("x");
+}
+
+
+function NavList(items){		//show projects in navigation list
+	var element = document.getElementById("navlist");
+	
+	for(i = 0; i < items.length; i++){
+		var node = document.createTextNode(items[i].name);
+		var navi = document.createElement("li");
+		navi.appendChild(node);
+		element.appendChild(navi);
+		element.addEventListener("click", alertme);
+	}
+		
+	console.log(navlist);
+}
+
+
 function AddNewProject() {
 	var ent = document.getElementById("projectname").value;
 	var ent2 = document.getElementById("projectcomment").value;
@@ -27,9 +54,10 @@ function ListProjects() {
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			document.getElementById("list").innerHTML = "";
-			console.log(this.responseText);
+			//console.log(this.responseText);
 			var projects = JSON.parse(this.responseText);
 			ProjectListToTable(projects);
+			NavList(projects);
 		}
 	};
 	xhttp.open("GET", "http://localhost:8082/projectlist");
@@ -71,7 +99,7 @@ function AddNewSampleToProject() {
 	var ent2 = document.getElementById("sampledescription").value;
 	var id = document.getElementById("ProjectID").value;
 	var sample = '{"name":"' + ent + '", "description" : "' + ent2 + '" }';
-	console.log(sample);
+	//console.log(sample);
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
@@ -87,7 +115,7 @@ function ListSamples() {
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 		document.getElementById("SamplesListTable").innerHTML = "";
-		console.log(this.responseText);
+		//console.log(this.responseText);
 			var samples = JSON.parse(this.responseText);
 			SamplesListToTable(samples);
 		}
@@ -162,7 +190,7 @@ function FindSampleByName() {
 	var name = document.getElementById("samplename").value;
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
-		console.log(this.responseText);
+		//console.log(this.responseText);
 			var samples = JSON.parse(this.responseText);	
 			document.getElementById("filterSamplesListTabletable").innerHTML = "";
 			SamplesByNameToTable(samples);
@@ -218,7 +246,7 @@ function AddNewSubSampleToSample() {
 	var danger = document.getElementById("danger").value;
 	
 	var subSample = '{"name":"' + name + '", "description" : "' + description + '" , "danger" : "' + danger + '"}';
-	console.log(subSample);
+	//console.log(subSample);
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
@@ -234,7 +262,7 @@ function ListSubSamples() {
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			document.getElementById("SubSamplesListTable").innerHTML = "";
-			console.log(this.responseText);
+			//console.log(this.responseText);
 			var subsamples = JSON.parse(this.responseText);
 			SubSamplesToTable(subsamples);
 		}
@@ -269,7 +297,7 @@ function ListSubSamples() {
 	function subSampledeleter() {
 		var xhttp = new XMLHttpRequest();
 		var id = document.getElementById("deleteSubSamplefield").value;
-		console.log(id);
+		//console.log(id);
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
 				ListSubSamples();
@@ -288,7 +316,7 @@ function ListSubSamples() {
 	var id = document.getElementById("ProjectID").value;
 	var description = document.getElementById("ExperimentDescription").value;
 	var experiment = '{"name":"' + name + '", "description" : "' + description + '" }';
-	console.log(experiment);
+	//console.log(experiment);
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
@@ -473,7 +501,7 @@ nav {
 	padding: 1em;
 }
 nav ul {
-	list-style-type: none;
+	font-size:small;
 	padding: 0;
 }
 nav ul a {
@@ -500,14 +528,9 @@ article {
 		</header>
 
 		<nav>
-			<ul >
-				<li><a href="#">Example</a></li>
-				<li><a href="#">Demo</a></li>
-				<li><a href="#">Test</a></li>
+			<ul id="navlist">
 			</ul>
-			
-			<table id="navigationlist" border=1></table>
-			
+						
 		</nav>
 
 		<article>
@@ -524,7 +547,7 @@ article {
 			<br>
 			<button type="button" id="NewProjectCreator" onclick="AddNewProject()">Create new Project</button>
 			<input type="text" id="deletefield" name="DeleteById" value="select project" disabled size="15">
-			<button type="button" id="ProjectDeleteButton" onclick="ProjectDleter()">delete</button>
+			<button type="button" id="ProjectDeleteButton" onclick="ProjectDeleter()">delete</button>
 			<table id="list" border=1></table>
 			<br><hr><br>
 		<table width: 100%>	<tr><td>
