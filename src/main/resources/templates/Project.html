@@ -97,7 +97,7 @@ function RadioEnabler() {
 					+ "</td><td>"
 					+ "<input id='"
 					+ projects[i].id
-					+ "' type='radio' name='selector'  onclick=\"handleProjectSelector(this.id);\">"
+					+ "' type='radio' name='selector'  onclick=\"genericIdPass(this.id, 'deletefield'), genericIdPass(this.id, 'ProjectID'), genericIdPass(this.id, 'ProjectID2');\">"
 					+ "</td></tr>";
 		}
 		document.getElementById("list").innerHTML += "</table>";
@@ -181,7 +181,7 @@ function RadioEnabler() {
 
 					+ "<input id='"
 					+ samples[i].id
-					+ "' type='radio' name='SamplesListTableselector' onclick=\"handleSampleSelector(this.id);\">"
+					+ "' type='radio' name='SamplesListTableselector' onclick=\"genericIdPass(this.id, 'deleteSamplefield');\">"
 					+ "</td></tr>"
 		}
 		document.getElementById("SamplesListTable").innerHTML = document
@@ -389,21 +389,18 @@ function RadioEnabler() {
 	function AddNewExperimentCallback(responseText) {
 			ListExperiment();
 		}
-
 	function ListExperiment() {
-		var xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				document.getElementById("experimentlist").innerHTML = "";
-				console.log(this.responseText);
-				var experiments = JSON.parse(this.responseText);
-				ExperimentsToTable(experiments);
-			}
-		};
-		xhttp.open("GET", "http://localhost:8082/experimentlist");
-		xhttp.setRequestHeader("Content-type", "application/json");
-		xhttp.send();
+		getRequest(null,"/experimentlist",ListExperimentCallback);
 	}
+
+	function ListExperimentCallback(responseText) {
+		document.getElementById("experimentlist").innerHTML = "";
+		console.log(this.responseText);
+		var experiments = JSON.parse(responseText);
+		ExperimentsToTable(experiments);
+	}
+
+
 	function ExperimentsToTable(experiments) {
 		document.getElementById("experimentlist").innerHTML = document
 				.getElementById("experimentlist").innerHTML
@@ -433,22 +430,15 @@ function RadioEnabler() {
 	function FindExperimentByName() {
 		var xhttp = new XMLHttpRequest();
 		var name = document.getElementById("ExperimentName").value;
-
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				console.log(this.responseText);
-				var experiments = JSON.parse(this.responseText);
-				document.getElementById("ExperimentByNameTable").innerHTML = "";
-				ExperimentByNameToTable(experiments);
-
-			}
-		};
-		xhttp.open("POST", "http://localhost:8082/filterExperimentList/");
-		xhttp.setRequestHeader("Content-type", "application/json");
-
-		xhttp.send(name);
-
+		postRequest(name, "/filterExperimentList",FindExperimentByNameCallback);
 	}
+	function FindExperimentByNameCallback(responseText) {
+		console.log(responseText);
+		var experiments = JSON.parse(responseText);
+		document.getElementById("ExperimentByNameTable").innerHTML = "";
+		ExperimentByNameToTable(experiments);
+	}
+
 	function ExperimentByNameToTable(experiments) {
 		var id = document.getElementById("ProjectID").value;
 		document.getElementById("ExperimentByNameTable").innerHTML = document
@@ -474,22 +464,15 @@ function RadioEnabler() {
 	function FindExperimentByProject() {
 		var xhttp = new XMLHttpRequest();
 		var id = document.getElementById("deletefield").value;
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				document.getElementById("ExperimentsByProjectTable").innerHTML = "";
-				console.log(this.responseText);
-				var experiments = JSON.parse(this.responseText);
-				ExperimentsByProjectToTable(experiments);
-			}
-		};
-		xhttp
-				.open("POST",
-						"http://localhost:8082/projectFilterExperimentList/");
-		xhttp.setRequestHeader("Content-type", "application/json");
-
-		xhttp.send(id);
-
+		postRequest(id, "/projectFilterExperimentList",FindExperimentByProjectCallback);
 	}
+	function FindExperimentByProjectCallback(responseText) {
+		document.getElementById("ExperimentsByProjectTable").innerHTML = "";
+		console.log(this.responseText);
+		var experiments = JSON.parse(responseText);
+		ExperimentsByProjectToTable(experiments);
+	}
+
 	function ExperimentsByProjectToTable(experiments) {
 		var id = document.getElementById("ProjectID").value;
 		document.getElementById("ExperimentsByProjectTable").innerHTML = document
@@ -526,7 +509,9 @@ function RadioEnabler() {
 
 	/* ---------------------------------------- Selector Handling -------------------------------------------------
 	--------------------------------------------------------------------------------------------------------- */
-
+	function genericIdPass(idpass, fieldname){
+		document.getElementById(fieldname).value = idpass;
+	}
 	function handleProjectSelector(idpass) {
 		document.getElementById("deletefield").value = idpass;
 		document.getElementById("ProjectID").value = idpass;
