@@ -605,7 +605,46 @@ function NavList(items){		//show projects in navigation list
 	ListSamples();
 	ListExperiment();
 	ListSubSamples();
-	
+	/* ---------------------------------------- Request Handling -------------------------------------------------
+	--------------------------------------------------------------------------------------------------------- */
+
+	function getRequest(data, url, callback) {
+		xhttpRequest(data,url,callback,"GET");
+	}
+	function postRequest(data, restUrl, callback) {
+		xhttpRequest(data,url,callback,"POST");
+	}
+	function deleteRequest(data, url, callback) {
+		xhttpRequest(data,url,callback,"DELETE");
+	}
+	function xhttpRequest(data, url, callback, type) {
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				callback(this.responseText);	
+			}
+		};
+		xhttp.open(type, "http://localhost:8082"+url);
+		xhttp.setRequestHeader("Content-type", "application/json");
+		if(data == null) {//geen idee of dit ook anders kan (null opsturen?)
+			xhttp.send();
+		} else {
+			xhttp.send(data);
+		}
+	}
+	function GetOneProject2() {
+		var xhttp = new XMLHttpRequest();
+		var id = document.getElementById("ProjectID").value;
+		getRequest(null, "/findProject/" + id, GetOneProjectCallback);
+	}
+
+	function GetOneProjectCallback(responseText) {
+		console.log(responseText);
+		var project = JSON.parse(responseText);
+		document.getElementById("projectnameChange").value = project.name;
+		document.getElementById("projectcommentChange").value = project.comment;
+		showButton();
+	}
 	
 	
 </script>
@@ -681,7 +720,7 @@ article {
 			<button type="button" id="ProjectDeleteButton" onclick="ProjectDeleter()">delete</button>
 			<table id="list" border=1></table> </td>
 			<td>
-			<button type="button" id="ModifyProject" onclick="GetOneProject()">Modify Project</button>
+			<button type="button" id="ModifyProject" onclick="GetOneProject2()">Modify Project</button>
 			<div id="UpdateProject" ><table >
 				<tr>
 					<td>Name:</td>
