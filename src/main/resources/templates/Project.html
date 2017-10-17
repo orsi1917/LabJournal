@@ -141,18 +141,25 @@ function RadioEnabler() {
 		xhttp.send(project);
 
 	}
-	
 	function ProjectDeleter() {
-		var xhttp = new XMLHttpRequest();
 		var id = document.getElementById("deletefield").value;
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				ListProjects();
-			}
-		};
-		xhttp.open("DELETE", "http://localhost:8082/project/" + id, true);
-		xhttp.send();
+		deleteRequest(null, "/project/" + id, ProjectDeleterCallback);
 	}
+	function ProjectDeleterCallback(responseText) {
+		ListProjects();
+	}
+	
+// 	function ProjectDeleter() {
+// 		var xhttp = new XMLHttpRequest();
+// 		var id = document.getElementById("deletefield").value;
+// 		xhttp.onreadystatechange = function() {
+// 			if (this.readyState == 4 && this.status == 200) {
+// 				ListProjects();
+// 			}
+// 		};
+// 		xhttp.open("DELETE", "http://localhost:8082/project/" + id, true);
+// 		xhttp.send();
+// 	}
 	/* ---------------------------------------- Sample Handling -------------------------------------------------
 	 --------------------------------------------------------------------------------------------------------- */
 
