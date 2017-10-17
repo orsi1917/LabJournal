@@ -690,22 +690,25 @@ article {
 			<table id="filterSamplesListTabletable" border=1></table>
 			<table id="SamplesByProjectTable" border=1></table></td>
 	
-	<td><table>
-				<tr>
+	<td>
+				<button type="button" id="NewExperimentCreator" onclick="AddNewExperiment()">Add experiment to selected Project</button>
+			<table>	<tr>
 					<td>Name:</td>
 					<td><input type="text" id="ExperimentName" name="ExperimentName"	value="ExperimentName"></td></tr>
 				<tr>	<td>Description:</td>
 					<td><input type="text" id="ExperimentDescription" name="ExperimentDescription" value="description" size="15"></td></tr>
-				
-				<tr>
+								<tr>
 					<td>Project:</td>
 					<td><input type="text" id="ProjectID2" name="ProjectID" value="select project" size="15" disabled></td></tr>
+			</table>
+			<hr style="border-top: 2px dotted #6688FF"/>	
+			<table>	
 					<tr><td>Select Experiment:</td>
 					<td><input type="text" id="deleteExperimentField" name="DeleteById" value="select experiment" disabled size="15"></td></tr>
 					
 			</table>
 			<br>
-			<button type="button" id="NewExperimentCreator" onclick="AddNewExperiment()">Add experiment to selected Project</button>
+			
 			<button type="button" id="projectfilterexperimentlist" onclick="FindExperimentByProject()">Find samples in Project</button>
 			<button type="button" id="filterexperimentlist" onclick="FindExperimentByName()">Find examples with name</button>
 			<button type="button" id="ExperimentDeleter" onclick="Experimentdeleter()">delete experiment</button>
