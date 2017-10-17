@@ -64,20 +64,13 @@ function RadioEnabler() {
 		var ent = document.getElementById("projectname").value;
 		var ent2 = document.getElementById("projectcomment").value;
 		var project = '{"name":"' + ent + '", "comment" : "' + ent2 + '"}';
-		var xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				ListProjects();
-				hideButton();
-
-			}
-		};
-		xhttp.open("POST", "http://localhost:8082/projectpost", true);
-		xhttp.setRequestHeader("Content-type", "application/json");
-
-		xhttp.send(project);
-
+			postRequest(project ,"/projectpost/", AddNewProjectCallback);
 	}
+	function AddNewProjectCallback(responseText) {
+		ListProjects();
+	}
+	
+
 	function ListProjects() {
 		getRequest(null,"/projectlist", ListProjectsCallback);
 	}
@@ -152,25 +145,19 @@ function RadioEnabler() {
 
 	/* ---------------------------------------- Sample Handling -------------------------------------------------
 	 --------------------------------------------------------------------------------------------------------- */
+	 function AddNewSampleToProject() {
+		 var ent = document.getElementById("samplename").value;
+			var ent2 = document.getElementById("sampledescription").value;
+			var id = document.getElementById("ProjectID").value;
+			var sample = '{"name":"' + ent + '", "description" : "' + ent2 + '" }';
+			console.log(sample);
 
-	function AddNewSampleToProject() {
+			postRequest(sample ,"/addSampleToProject/" + id, AddNewSampleToProjectCallback);
+		}
+	function AddNewSampleToProjectCallback(responseText) {
+			ListSamples();
+		}
 
-		var ent = document.getElementById("samplename").value;
-		var ent2 = document.getElementById("sampledescription").value;
-		var id = document.getElementById("ProjectID").value;
-		var sample = '{"name":"' + ent + '", "description" : "' + ent2 + '" }';
-		console.log(sample);
-		var xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				ListSamples();
-			}
-		};
-		xhttp.open("POST", "http://localhost:8082/addSampleToProject/" + id,
-				true);
-		xhttp.setRequestHeader("Content-type", "application/json");
-		xhttp.send(sample);
-	}
 	function ListSamples() {
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
@@ -414,25 +401,19 @@ function RadioEnabler() {
 
 	/* ---------------------------------------- Experiment Handling -------------------------------------------------
 	 --------------------------------------------------------------------------------------------------------- */
+	 function AddNewExperiment() {
+		 var name = document.getElementById("ExperimentName").value;
+			var id = document.getElementById("ProjectID").value;
+			var description = document.getElementById("ExperimentDescription").value;
+			var experiment = '{"name":"' + name + '", "description" : "'
+					+ description + '" }';
+			console.log(experiment);
 
-	function AddNewExperiment() {
-
-		var name = document.getElementById("ExperimentName").value;
-		var id = document.getElementById("ProjectID").value;
-		var description = document.getElementById("ExperimentDescription").value;
-		var experiment = '{"name":"' + name + '", "description" : "'
-				+ description + '" }';
-		console.log(experiment);
-		var xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				ListExperiment();
-			}
-		};
-		xhttp.open("POST", 	"http://localhost:8082/addExperimentToProject/" + id, true);
-		xhttp.setRequestHeader("Content-type", "application/json");
-		xhttp.send(experiment);
-	}
+			postRequest(experiment ,"/addExperimentToProject/" + id, AddNewExperimentCallback);
+		}
+	function AddNewExperimentCallback(responseText) {
+			ListExperiment();
+		}
 
 	function ListExperiment() {
 		var xhttp = new XMLHttpRequest();
