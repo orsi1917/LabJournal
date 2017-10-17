@@ -3,9 +3,22 @@
 <head>
 <script>
 
-	/* ---------------------------------------- Project Handling -------------------------------------------------
+	/* ---------------------------------------- Enable/disable while editing Project -------------------------------------------------
 	 --------------------------------------------------------------------------------------------------------- */
-	 	//disables radio buttons
+	 	
+	function showButton(){ 
+		  document.getElementById("UpdateProject").style.visibility = 'visible';
+	}
+	function hideButton(){
+		document.getElementById("UpdateProject").style.visibility = "hidden";
+	}
+	function CancelProjectUpdate(){
+		hideButton();
+		RadioEnabler();
+		ListProjects();
+	}
+	 
+	 //disables radio buttons
 function RadioDisabler() {
 	var inputs = document.querySelectorAll('input[type="radio"]');
 	for (var i = 0; i < inputs.length; i++) {
@@ -19,32 +32,34 @@ function RadioEnabler() {
 		inputs[i].disabled = 'false';
 	}
 }	
-	 
+/* ----------------------------------------Navigation bar -------------------------------------------------
+--------------------------------------------------------------------------------------------------------- */
 		//debug code
-function Tester(z){		
+	function Tester(z){		
         var body = document.getElementsByTagName("html");
         console.log(document);
-}
+	}
 
-function alertme(){
+	function alertme(){
 	alert("x");
-}
+	}
 
 		//show projects in navigation list
-function NavList(items){
-	var element = document.getElementById("navlist");	
-	for(i = 0; i < items.length; i++){
-		var node = document.createTextNode(items[i].name);
-		var navi = document.createElement("li");
-		navi.appendChild(node);
-		element.appendChild(navi);
-		element.addEventListener("click", alertme);
+	function NavList(items){
+		var element = document.getElementById("navlist");	
+		for(i = 0; i < items.length; i++){
+			var node = document.createTextNode(items[i].name);
+			var navi = document.createElement("li");
+			navi.appendChild(node);
+			element.appendChild(navi);
+			element.addEventListener("click", alertme);
 	}
 		
 	console.log(navlist);
-}
+	}
 	
-	
+/* ---------------------------------------- Project Handling -------------------------------------------------
+--------------------------------------------------------------------------------------------------------- */
 	function AddNewProject() {
 		var ent = document.getElementById("projectname").value;
 		var ent2 = document.getElementById("projectcomment").value;
@@ -63,24 +78,20 @@ function NavList(items){
 		xhttp.send(project);
 
 	}
-
 	function ListProjects() {
-		var xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				document.getElementById("list").innerHTML = "";
-				console.log(this.responseText);
-				var projects = JSON.parse(this.responseText);
-				ProjectListToTable(projects);
-				hideButton();
-				NavList(projects);
-				
-			}
-		};
-		xhttp.open("GET", "http://localhost:8082/projectlist");
-		xhttp.setRequestHeader("Content-type", "application/json");
-		xhttp.send();
+		getRequest(null,"/projectlist", ListProjectsCallback);
 	}
+
+	function ListProjectsCallback(responseText) {
+		document.getElementById("list").innerHTML = "";
+		console.log(responseText);
+		var projects = JSON.parse(responseText);
+		ProjectListToTable(projects);
+		hideButton();
+		NavList(projects);
+	}
+
+	
 	function ProjectListToTable(projects) {
 		document.getElementById("list").innerHTML += "<Table><tr><th>ID</th><th>Name</th><th>Comment</th></tr>";
 		for (i = 0; i < projects.length; i++) {
@@ -101,19 +112,15 @@ function NavList(items){
 	function GetOneProject() {
 		var xhttp = new XMLHttpRequest();
 		var id = document.getElementById("ProjectID").value;
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-		console.log(this.responseText);
-			var project = JSON.parse(this.responseText);
-			document.getElementById("projectnameChange").value = project.name;
-			document.getElementById("projectcommentChange").value = project.comment;
-			showButton();
-			RadioDisabler()
-			}
-		};
-		xhttp.open("GET", "http://localhost:8082/findProject/" + id);
-		xhttp.setRequestHeader("Content-type", "application/json");
-		xhttp.send();
+		getRequest(null, "/findProject/" + id, GetOneProjectCallback);
+	}
+
+	function GetOneProjectCallback(responseText) {
+		console.log(responseText);
+		var project = JSON.parse(responseText);
+		document.getElementById("projectnameChange").value = project.name;
+		document.getElementById("projectcommentChange").value = project.comment;
+		showButton();
 	}
 	function UpdateProject() {
 		var ent = document.getElementById("projectnameChange").value;
@@ -250,20 +257,13 @@ function NavList(items){
 	function FindSampleByName() {
 		var xhttp = new XMLHttpRequest();
 		var name = document.getElementById("samplename").value;
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				console.log(this.responseText);
-				var samples = JSON.parse(this.responseText);
-				document.getElementById("filterSamplesListTabletable").innerHTML = "";
-				SamplesByNameToTable(samples);
-
-			}
-		};
-		xhttp.open("POST", "http://localhost:8082/filtersamplelist/");
-		xhttp.setRequestHeader("Content-type", "application/json");
-
-		xhttp.send(name);
-
+		postRequest(name, "/filtersamplelist",FindSampleByNameCallback);
+	}
+	function FindSampleByNameCallback(responseText) {
+		console.log(responseText);
+		var samples = JSON.parse(responseText);
+		document.getElementById("filterSamplesListTabletable").innerHTML = "";
+		SamplesByNameToTable(samples);
 	}
 	function SamplesByNameToTable(samples) {
 		var id = document.getElementById("ProjectID").value;
@@ -288,42 +288,32 @@ function NavList(items){
 				+ "</table>";
 	}
 	function Sampledeleter() {
-		var xhttp = new XMLHttpRequest();
 		var id = document.getElementById("deleteSamplefield").value;
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				ListSamples();
-			}
-		};
-		xhttp.open("DELETE", "http://localhost:8082/sample/" + id, true);
-		xhttp.send();
+		deleteRequest(null, "/sample/" + id, SampledeleterCallback);
+	}
+	function SampledeleterCallback(responseText) {
+		ListSamples();
 	}
 
 	/* ---------------------------------------- SubSample Handling -------------------------------------------------
 	 --------------------------------------------------------------------------------------------------------- */
-	function AddNewSubSampleToSample() {
+	 function AddNewSubSampleToSample() {
+			var name = document.getElementById("SubSampleName").value;
+				var id = document.getElementById("deleteSamplefield").value;
+				var description = document.getElementById("SubSampleDescription").value;
+				var danger = document.getElementById("danger").value;
+				var amount = document.getElementById("amount").value;
+				var unit = document.getElementById("unit").value;
+				var subSample = '{"name":"' + name + '", "description" : "'
+						+ description + '" , "danger" : "' + danger + '", "amount" : "'
+						+ amount + '", "unit" : "' + unit + '"}';
+				console.log(subSample);
 
-		var name = document.getElementById("SubSampleName").value;
-		var id = document.getElementById("deleteSamplefield").value;
-		var description = document.getElementById("SubSampleDescription").value;
-		var danger = document.getElementById("danger").value;
-		var amount = document.getElementById("amount").value;
-		var unit = document.getElementById("unit").value;
-		var subSample = '{"name":"' + name + '", "description" : "'
-				+ description + '" , "danger" : "' + danger + '", "amount" : "'
-				+ amount + '", "unit" : "' + unit + '"}';
-		console.log(subSample);
-		var xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				ListSubSamples();
-			}
-		};
-		xhttp.open("POST", "http://localhost:8082/addSubSampleToSample/" + id,
-				true);
-		xhttp.setRequestHeader("Content-type", "application/json");
-		xhttp.send(subSample);
-	}
+			postRequest(subSample ,"/addSubSampleToSample/" + id,AddNewSubSampleToSampleCallback);
+		}
+		function AddNewSubSampleToSampleCallback(responseText) {
+			ListSubSamples();
+		}
 	function ListSubSamples() {
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
@@ -417,16 +407,12 @@ function NavList(items){
 				+ "</table>";
 	}
 	function subSampledeleter() {
-		var xhttp = new XMLHttpRequest();
 		var id = document.getElementById("deleteSubSamplefield").value;
-		console.log(id);
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				ListSubSamples();
-			}
-		};
-		xhttp.open("DELETE", "http://localhost:8082/subsample/" + id, true);
-		xhttp.send();
+		deleteRequest(null, "/subsample/" + id, subSampledeleterCallback);
+	}
+
+	function subSampledeleterCallback(responseText) {
+		ListSubSamples();
 	}
 
 	/* ---------------------------------------- Experiment Handling -------------------------------------------------
@@ -605,25 +591,46 @@ function NavList(items){
 	function handleExperimentSelector(idpass) {
 		document.getElementById("deleteExamplefield").value = idpass;
 	}
-	function showButton(){
-		  document.getElementById("UpdateProject").style.visibility = 'visible';
+
+	/* ---------------------------------------- Request Handling -------------------------------------------------
+	--------------------------------------------------------------------------------------------------------- */
+	function getRequest(data, url, callback) {
+		xhttpRequest(data,url,callback,"GET");
+	}
+	function postRequest(data, url, callback) {
+		xhttpRequest(data,url,callback,"POST");
+	}
+	function deleteRequest(data, url, callback) {
+		xhttpRequest(data,url,callback,"DELETE");
+	}
+	function xhttpRequest(data, url, callback, type) {
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if (this.readyState == 4 && this.status == 200) {
+				callback(this.responseText);	
+			}
+		};
+		xhttp.open(type, "http://localhost:8082"+url);
+		xhttp.setRequestHeader("Content-type", "application/json");
+		if(data == null) {//geen idee of dit ook anders kan (null opsturen?)
+			xhttp.send();
+		} else {
+			xhttp.send(data);
 		}
-	function hideButton(){
-		document.getElementById("UpdateProject").style.visibility = "hidden";
-		}
-	function CancelProjectUpdate(){
-		hideButton();
-		RadioEnabler();
-		ListProjects();
-		}
-	
+	}
+
+	/* ----------------------------------------Data Loadrer -------------------------------------------------
+	--------------------------------------------------------------------------------------------------------- */
+	function dataLoader() {
 	ListProjects();
 	ListSamples();
 	ListExperiment();
 	ListSubSamples();
+}
+dataLoader();
+
 	
-	
-	
+
 </script>
 
 <style>
