@@ -114,26 +114,20 @@ function RadioEnabler() {
 		document.getElementById("projectnameChange").value = project.name;
 		document.getElementById("projectcommentChange").value = project.comment;
 		showButton();
+		RadioDisabler();
 	}
 	function UpdateProject() {
 		var ent = document.getElementById("projectnameChange").value;
 		var ent2 = document.getElementById("projectcommentChange").value;
 		var id = document.getElementById("ProjectID").value;
 		var project = '{"name":"' + ent + '", "comment" : "' + ent2 + '"}';
-		var xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				ListProjects();
-				RadioEnabler();
-
-			}
-		};
-		xhttp.open("POST", "http://localhost:8082/updateProject/" + id, true);
-		xhttp.setRequestHeader("Content-type", "application/json");
-
-		xhttp.send(project);
-
+			postRequest(project ,"/updateProject/"+ id, UpdateProjectCallback);
 	}
+	function UpdateProjectCallback(responseText) {
+		ListProjects();
+		RadioEnabler();
+	}
+
 	function ProjectDeleter() {
 		var id = document.getElementById("deletefield").value;
 		deleteRequest(null, "/project/" + id, ProjectDeleterCallback);
@@ -157,21 +151,17 @@ function RadioEnabler() {
 	function AddNewSampleToProjectCallback(responseText) {
 			ListSamples();
 		}
-
 	function ListSamples() {
-		var xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				document.getElementById("SamplesListTable").innerHTML = "";
-				console.log(this.responseText);
-				var samples = JSON.parse(this.responseText);
-				SamplesListToTable(samples);
-			}
-		};
-		xhttp.open("GET", "http://localhost:8082/samplelist");
-		xhttp.setRequestHeader("Content-type", "application/json");
-		xhttp.send();
+		getRequest(null,"/samplelist", ListSamplesCallback);
 	}
+
+	function ListSamplesCallback(responseText) {
+		document.getElementById("SamplesListTable").innerHTML = "";
+		console.log(this.responseText);
+		var samples = JSON.parse(responseText);
+		SamplesListToTable(samples);
+	}
+
 	function SamplesListToTable(samples) {
 		document.getElementById("SamplesListTable").innerHTML = document
 				.getElementById("SamplesListTable").innerHTML
@@ -198,26 +188,20 @@ function RadioEnabler() {
 				.getElementById("SamplesListTable").innerHTML
 				+ "</table>";
 	}
-
 	function FindSampleByProject() {
 		var xhttp = new XMLHttpRequest();
 		var id = document.getElementById("deletefield").value;
 		console.log(id);
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				document.getElementById("SamplesByProjectTable").innerHTML = "";				
-				var samples = JSON.parse(this.responseText);
-				console.log(this.responseText);
-				SamplesByProjectToTable(samples);
-			}
-		};
-		xhttp.open("POST", "http://localhost:8082/projectfiltersamplelist/");
-		xhttp.setRequestHeader("Content-type", "application/json");
-		xhttp.send(id);
-
+		postRequest(id, "/projectfiltersamplelist",FindSampleByProjectCallback);
 	}
+	function FindSampleByProjectCallback(responseText) {
+		document.getElementById("SamplesByProjectTable").innerHTML = "";				
+		var samples = JSON.parse(responseText);
+		console.log(this.responseText);
+		SamplesByProjectToTable(samples);
+	}
+
 	function SamplesByProjectToTable(samples) {
-		//var id = document.getElementById("ProjectID").value;
 		document.getElementById("SamplesByProjectTable").innerHTML = document
 				.getElementById("SamplesByProjectTable").innerHTML
 				+ "<Table><tr><th>ID</th><th>Name</th><th>Description</th><th>Project ID</th></tr>";
@@ -295,23 +279,20 @@ function RadioEnabler() {
 
 			postRequest(subSample ,"/addSubSampleToSample/" + id,AddNewSubSampleToSampleCallback);
 		}
-		function AddNewSubSampleToSampleCallback(responseText) {
+	function AddNewSubSampleToSampleCallback(responseText) {
 			ListSubSamples();
 		}
 	function ListSubSamples() {
-		var xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				document.getElementById("SubSamplesListTable").innerHTML = "";
-				console.log(this.responseText);
-				var subsamples = JSON.parse(this.responseText);
-				SubSamplesToTable(subsamples);
-			}
-		};
-		xhttp.open("GET", "http://localhost:8082/subsamplelist");
-		xhttp.setRequestHeader("Content-type", "application/json");
-		xhttp.send();
+		getRequest(null,"/subsamplelist",ListSubSamplesCallback);
 	}
+
+	function ListSubSamplesCallback(responseText) {
+		document.getElementById("SubSamplesListTable").innerHTML = "";
+		console.log(responseText);
+		var subsamples = JSON.parse(responseText);
+		SubSamplesToTable(subsamples);
+	}
+
 	function SubSamplesToTable(subsamples) {
 		document.getElementById("SubSamplesListTable").innerHTML = document
 				.getElementById("SubSamplesListTable").innerHTML
@@ -344,24 +325,18 @@ function RadioEnabler() {
 				.getElementById("SubSamplesListTable").innerHTML
 				+ "</table>";
 	}
-	function FindSubSampleBySample() {
+	function FindSubSampleBySample(){
 		var xhttp = new XMLHttpRequest();
 		var id = document.getElementById("deleteSamplefield").value;
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				document.getElementById("SubSamplesBySampleTable").innerHTML = "";
-				console.log(this.responseText);
-				var subSamples = JSON.parse(this.responseText);
-				SubSamplesBySampleToTable(subSamples);
-			}
-		};
-		xhttp.open("POST",
-				"http://localhost:8082/samplefiltersubsamplelist/");
-		xhttp.setRequestHeader("Content-type", "application/json");
-
-		xhttp.send(id);
-
+		postRequest(id, "/samplefiltersubsamplelist",FindSubSampleBySampleCallback);
 	}
+	function FindSubSampleBySampleCallback(responseText) {
+		document.getElementById("SubSamplesBySampleTable").innerHTML = "";
+		console.log(responseText);
+		var subSamples = JSON.parse(responseText);
+		SubSamplesBySampleToTable(subSamples);
+	}
+
 	function SubSamplesBySampleToTable(subsamples) {
 		var id = document.getElementById("ProjectID").value;
 		document.getElementById("SubSamplesBySampleTable").innerHTML = document
