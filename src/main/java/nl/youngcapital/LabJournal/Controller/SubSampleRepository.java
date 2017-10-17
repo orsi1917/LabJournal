@@ -22,6 +22,6 @@ public interface SubSampleRepository extends CrudRepository<SubSample, Long>{
 	@Transactional
 	@Modifying
 //@Query("SELECT id, name, description, project FROM Sample s where s.getProject().getId()=?")
-	@Query("SELECT id, name, description,  amount, unit, danger, sample  FROM SubSample s where s.sample.id=?")
+	@Query("SELECT s  FROM SubSample s where s.sample.id=?")
 	public List<SubSample> sampleFilterSubSample(long id);
 }
