@@ -424,16 +424,12 @@ function RadioEnabler() {
 				+ "</table>";
 	}
 	function subSampledeleter() {
-		var xhttp = new XMLHttpRequest();
 		var id = document.getElementById("deleteSubSamplefield").value;
-		console.log(id);
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				ListSubSamples();
-			}
-		};
-		xhttp.open("DELETE", "http://localhost:8082/subsample/" + id, true);
-		xhttp.send();
+		deleteRequest(null, "/subsample/" + id, subSampledeleterCallback);
+	}
+
+	function subSampledeleterCallback(responseText) {
+		ListSubSamples();
 	}
 
 	/* ---------------------------------------- Experiment Handling -------------------------------------------------
@@ -751,7 +747,7 @@ article {
 			<button type="button" id="ProjectDeleteButton" onclick="ProjectDeleter()">delete</button>
 			<table id="list" border=1></table> </td>
 			<td>
-			<button type="button" id="ModifyProject" onclick="GetOneProject2()">Modify Project</button>
+			<button type="button" id="ModifyProject" onclick="GetOneProject()">Modify Project</button>
 			<div id="UpdateProject" ><table >
 				<tr>
 					<td>Name:</td>
