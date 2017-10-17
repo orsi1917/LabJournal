@@ -257,21 +257,15 @@ function RadioEnabler() {
 	function FindSampleByName() {
 		var xhttp = new XMLHttpRequest();
 		var name = document.getElementById("samplename").value;
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				console.log(this.responseText);
-				var samples = JSON.parse(this.responseText);
-				document.getElementById("filterSamplesListTabletable").innerHTML = "";
-				SamplesByNameToTable(samples);
-
-			}
-		};
-		xhttp.open("POST", "http://localhost:8082/filtersamplelist/");
-		xhttp.setRequestHeader("Content-type", "application/json");
-
-		xhttp.send(name);
-
+		postRequest(name, "/filtersamplelist",FindSampleByNameCallback);
 	}
+	function FindSampleByNameCallback(responseText) {
+		console.log(responseText);
+		var samples = JSON.parse(responseText);
+		document.getElementById("filterSamplesListTabletable").innerHTML = "";
+		SamplesByNameToTable(samples);
+	}
+	
 	function SamplesByNameToTable(samples) {
 		var id = document.getElementById("ProjectID").value;
 		document.getElementById("filterSamplesListTabletable").innerHTML = document
@@ -295,15 +289,11 @@ function RadioEnabler() {
 				+ "</table>";
 	}
 	function Sampledeleter() {
-		var xhttp = new XMLHttpRequest();
 		var id = document.getElementById("deleteSamplefield").value;
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				ListSamples();
-			}
-		};
-		xhttp.open("DELETE", "http://localhost:8082/sample/" + id, true);
-		xhttp.send();
+		deleteRequest(null, "/sample/" + id, SampledeleterCallback);
+	}
+	function SampledeleterCallback(responseText) {
+		ListSamples();
 	}
 
 	/* ---------------------------------------- SubSample Handling -------------------------------------------------
