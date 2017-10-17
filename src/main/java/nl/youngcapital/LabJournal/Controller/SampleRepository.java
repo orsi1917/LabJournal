@@ -28,7 +28,7 @@ public interface SampleRepository extends CrudRepository<Sample, Long>{
 	@Transactional
 	@Modifying
 //@Query("SELECT id, name, description, project FROM Sample s where s.getProject().getId()=?")
-	@Query("SELECT id, name, description, project FROM Sample s where s.project.id=?")
+	@Query("SELECT s FROM Sample s where s.project.id=?")
 	public List<Sample> projectfiltersample(long id);
 	
 }
