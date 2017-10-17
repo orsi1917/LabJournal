@@ -5,24 +5,23 @@
 
 	/* ---------------------------------------- Project Handling -------------------------------------------------
 	 --------------------------------------------------------------------------------------------------------- */
+	 	//disables radio buttons
 function RadioDisabler() {
-	//document.getElementsByName("projectselector").disabled = true;
 	var inputs = document.querySelectorAll('input[type="radio"]');
 	for (var i = 0; i < inputs.length; i++) {
 		inputs[i].disabled = 'true';
 	}
 }
-	
+		//enables radio buttons	
 function RadioEnabler() {
-	//document.getElementsByName("projectselector").disabled = false;
 	var inputs = document.querySelectorAll('input[type="radio"]');
 	for (var i = 0; i < inputs.length; i++) {
 		inputs[i].disabled = 'false';
 	}
 }	
 	 
-	 
-function Tester(z){
+		//debug code
+function Tester(z){		
         var body = document.getElementsByTagName("html");
         console.log(document);
 }
@@ -31,8 +30,8 @@ function alertme(){
 	alert("x");
 }
 
-
-function NavList(items){		//show projects in navigation list
+		//show projects in navigation list
+function NavList(items){
 	var element = document.getElementById("navlist");
 	
 	for(i = 0; i < items.length; i++){
