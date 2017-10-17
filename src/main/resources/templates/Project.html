@@ -384,26 +384,28 @@ function NavList(items){		//show projects in navigation list
 		xhttp.send(id);
 
 	}
-	function SubSamplesBySampleToTable(subSamples) {
+	function SubSamplesBySampleToTable(subsamples) {
 		var id = document.getElementById("ProjectID").value;
 		document.getElementById("SubSamplesBySampleTable").innerHTML = document
 				.getElementById("SubSamplesBySampleTable").innerHTML
 				+ "<Table><tr><th>ID</th><th>Name</th><th>Description</th><th>Amount</th><th>Danger</th><th>Sample ID</th></tr>";
-		for (i = 0; i < subSamples.length; i++) {
+		for (i = 0; i < subsamples.length; i++) {
 			document.getElementById("SubSamplesBySampleTable").innerHTML = document
 					.getElementById("SubSamplesBySampleTable").innerHTML
 					+ "<tr><td>"
-					+ subSamples[i][0]
+					+ subsamples[i].id
 					+ "</td><td>"
-					+ subSamples[i][1]
+					+ subsamples[i].name
 					+ "</td><td>"
-					+ subSamples[i][2]
+					+ subsamples[i].description
 					+ "</td><td>"
-					+ subSamples[i][4] + " " + subSamples[i][5]
+					+ subsamples[i].amount
+					+ " "
+					+ subsamples[i].unit
 					+ "</td><td>"
-					+ subSamples[i][3]
+					+ subsamples[i].danger
 					+ "</td><td>"
-					+ subSamples[i][6].id;
+					+ subsamples[i].sample.id
 			+"</td></tr>"
 		}
 		document.getElementById("SubSamplesBySampleTable").innerHTML = document
@@ -605,7 +607,9 @@ function NavList(items){		//show projects in navigation list
 	function hideButton(){
 		document.getElementById("UpdateProject").style.visibility = "hidden";
 		}
-
+	function CancelProjectUpdate(){
+		hideButton();
+		}
 	
 	ListProjects();
 	ListSamples();
@@ -696,7 +700,8 @@ article {
 					<td>Comment:</td>
 					<td><input type="text" id="projectcommentChange" name="Comment" value="NewComments" size="15"></td>
 			</table>
-			<button type="button" id="UpdateProjectButton" onclick="UpdateProject()" >Update Project</button></div>
+			<button type="button" id="UpdateProjectButton" onclick="UpdateProject()" >Update Project</button>
+			<button type="button" id="CancelProjectUpdate" onclick="CancelProjectUpdate()">Cancel</button></div>
 			</td></tr></table>
 			<br>
 			<hr>
