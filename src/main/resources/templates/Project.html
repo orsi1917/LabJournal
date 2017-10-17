@@ -318,7 +318,7 @@ function RadioEnabler() {
 
 					+ "<input id='"
 					+ subsamples[i].id
-					+ "' type='radio' name='SubSamplesListTableselector' onclick=\"handleSubsampleSelector(this.id);\">"
+					+ "' type='radio' name='SubSamplesListTableselector' onclick=\"genericIdPass(this.id, 'deleteSubSamplefield');\">"
 					+ "</td></tr>"
 		}
 		document.getElementById("SubSamplesListTable").innerHTML = document
@@ -420,7 +420,7 @@ function RadioEnabler() {
 
 					+ "<input id='"
 					+ experiments[i].id
-					+ "' type='radio' name='experimentlistselector' onclick=\"handleExperimentSelector(this.id);\">"
+					+ "' type='radio' name='experimentlistselector' onclick=\"genericIdPass(this.id, 'deleteExperimentField');\">"
 					+ "</td></tr>"
 		}
 		document.getElementById("experimentlist").innerHTML = document
@@ -512,23 +512,23 @@ function RadioEnabler() {
 	function genericIdPass(idpass, fieldname){
 		document.getElementById(fieldname).value = idpass;
 	}
-	function handleProjectSelector(idpass) {
-		document.getElementById("deletefield").value = idpass;
-		document.getElementById("ProjectID").value = idpass;
-		document.getElementById("ProjectID2").value = idpass;
+// 	function handleProjectSelector(idpass) {
+// 		document.getElementById("deletefield").value = idpass;
+// 		document.getElementById("ProjectID").value = idpass;
+// 		document.getElementById("ProjectID2").value = idpass;
 
-	}
-	function handleSampleSelector(idpass) {
-		document.getElementById("deleteSamplefield").value = idpass;
+// 	}
+// 	function handleSampleSelector(idpass) {
+// 		document.getElementById("deleteSamplefield").value = idpass;
 
-	}
-	function handleSubsampleSelector(idpass) {
-		document.getElementById("deleteSubSamplefield").value = idpass;
+// 	}
+// 	function handleSubsampleSelector(idpass) {
+// 		document.getElementById("deleteSubSamplefield").value = idpass;
 
-	}
-	function handleExperimentSelector(idpass) {
-		document.getElementById("deleteExamplefield").value = idpass;
-	}
+// 	}
+// 	function handleExperimentSelector(idpass) {
+// 		document.getElementById("deleteExamplefield").value = idpass;
+// 	}
 
 	/* ---------------------------------------- Request Handling -------------------------------------------------
 	--------------------------------------------------------------------------------------------------------- */
@@ -690,7 +690,7 @@ article {
 					<td>Project:</td>
 					<td><input type="text" id="ProjectID2" name="ProjectID" value="select project" size="15" disabled></td></tr>
 					<tr><td>Select Experiment:</td>
-					<td><input type="text" id="deleteExamplefield" name="DeleteById" value="select experiment" disabled size="15"></td></tr>
+					<td><input type="text" id="deleteExperimentField" name="DeleteById" value="select experiment" disabled size="15"></td></tr>
 					
 			</table>
 			<br>
