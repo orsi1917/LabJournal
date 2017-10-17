@@ -5,7 +5,15 @@
 
 	/* ---------------------------------------- Project Handling -------------------------------------------------
 	 --------------------------------------------------------------------------------------------------------- */
-	
+function disabler() {
+	document.getElementsByName("projectselector").disabled = true;
+	var inputs = document.querySelectorAll('input[type="radio"]');
+	for (var i = 0; i < inputs.length; i++) {
+		inputs[i].disabled = 'true';
+	}
+}
+	 
+	 
 function Tester(z){
         var body = document.getElementsByTagName("html");
         console.log(document);
