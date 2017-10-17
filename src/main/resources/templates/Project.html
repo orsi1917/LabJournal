@@ -3,7 +3,7 @@
 <head>
 <script>
 
-	/* ---------------------------------------- Enable/disable while editing Project -------------------------------------------------
+	/* ---------------------------------------- Enable/disable while editing  -------------------------------------------------
 	 --------------------------------------------------------------------------------------------------------- */
 	 	
 	function showButton(){ 
@@ -145,7 +145,6 @@ function RadioEnabler() {
 			var id = document.getElementById("ProjectID").value;
 			var sample = '{"name":"' + ent + '", "description" : "' + ent2 + '" }';
 			console.log(sample);
-
 			postRequest(sample ,"/addSampleToProject/" + id, AddNewSampleToProjectCallback);
 		}
 	function AddNewSampleToProjectCallback(responseText) {
@@ -178,7 +177,6 @@ function RadioEnabler() {
 					+ "</td><td>"
 					+ samples[i].project.id
 					+ "</td><td>"
-
 					+ "<input id='"
 					+ samples[i].id
 					+ "' type='radio' name='SamplesListTableselector' onclick=\"genericIdPass(this.id, 'deleteSamplefield');\">"
@@ -216,7 +214,7 @@ function RadioEnabler() {
 					+ samples[i].description
 					+ "</td><td>"
 					+ samples[i].project.id
-			+"</td></tr>"
+					+"</td></tr>"
 		}
 		document.getElementById("SamplesByProjectTable").innerHTML = document
 				.getElementById("SamplesByProjectTable").innerHTML
@@ -285,14 +283,12 @@ function RadioEnabler() {
 	function ListSubSamples() {
 		getRequest(null,"/subsamplelist",ListSubSamplesCallback);
 	}
-
 	function ListSubSamplesCallback(responseText) {
 		document.getElementById("SubSamplesListTable").innerHTML = "";
 		console.log(responseText);
 		var subsamples = JSON.parse(responseText);
 		SubSamplesToTable(subsamples);
 	}
-
 	function SubSamplesToTable(subsamples) {
 		document.getElementById("SubSamplesListTable").innerHTML = document
 				.getElementById("SubSamplesListTable").innerHTML
@@ -315,7 +311,6 @@ function RadioEnabler() {
 					+ "</td><td>"
 					+ subsamples[i].sample.id
 					+ "</td><td>"
-
 					+ "<input id='"
 					+ subsamples[i].id
 					+ "' type='radio' name='SubSamplesListTableselector' onclick=\"genericIdPass(this.id, 'deleteSubSamplefield');\">"
@@ -336,7 +331,6 @@ function RadioEnabler() {
 		var subSamples = JSON.parse(responseText);
 		SubSamplesBySampleToTable(subSamples);
 	}
-
 	function SubSamplesBySampleToTable(subsamples) {
 		var id = document.getElementById("ProjectID").value;
 		document.getElementById("SubSamplesBySampleTable").innerHTML = document
@@ -359,7 +353,7 @@ function RadioEnabler() {
 					+ subsamples[i].danger
 					+ "</td><td>"
 					+ subsamples[i].sample.id
-			+"</td></tr>"
+					+"</td></tr>"
 		}
 		document.getElementById("SubSamplesBySampleTable").innerHTML = document
 				.getElementById("SubSamplesBySampleTable").innerHTML
@@ -392,15 +386,12 @@ function RadioEnabler() {
 	function ListExperiment() {
 		getRequest(null,"/experimentlist",ListExperimentCallback);
 	}
-
 	function ListExperimentCallback(responseText) {
 		document.getElementById("experimentlist").innerHTML = "";
 		console.log(this.responseText);
 		var experiments = JSON.parse(responseText);
 		ExperimentsToTable(experiments);
 	}
-
-
 	function ExperimentsToTable(experiments) {
 		document.getElementById("experimentlist").innerHTML = document
 				.getElementById("experimentlist").innerHTML
@@ -417,7 +408,6 @@ function RadioEnabler() {
 					+ "</td><td>"
 					+ experiments[i].project.id
 					+ "</td><td>"
-
 					+ "<input id='"
 					+ experiments[i].id
 					+ "' type='radio' name='experimentlistselector' onclick=\"genericIdPass(this.id, 'deleteExperimentField');\">"
@@ -455,7 +445,7 @@ function RadioEnabler() {
 					+ experiments[i].description
 					+ "</td><td>"
 					+ experiments[i].project.id
-			+"</td></tr>"
+					+"</td></tr>"
 		}
 		document.getElementById("ExperimentByNameTable").innerHTML = document
 				.getElementById("ExperimentByNameTable").innerHTML
@@ -489,7 +479,7 @@ function RadioEnabler() {
 					+ experiments[i].description
 					+ "</td><td>"
 					+ experiments[i].project.id
-			+"</td></tr>"
+					+"</td></tr>"
 		}
 		document.getElementById("ExperimentsByProjectTable").innerHTML = document
 				.getElementById("ExperimentsByProjectTable").innerHTML
@@ -564,8 +554,8 @@ function RadioEnabler() {
 	ListSamples();
 	ListExperiment();
 	ListSubSamples();
-}
-dataLoader();
+	}
+	dataLoader();
 
 	
 
