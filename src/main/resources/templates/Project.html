@@ -265,7 +265,6 @@ function RadioEnabler() {
 		document.getElementById("filterSamplesListTabletable").innerHTML = "";
 		SamplesByNameToTable(samples);
 	}
-	
 	function SamplesByNameToTable(samples) {
 		var id = document.getElementById("ProjectID").value;
 		document.getElementById("filterSamplesListTabletable").innerHTML = document
@@ -298,29 +297,23 @@ function RadioEnabler() {
 
 	/* ---------------------------------------- SubSample Handling -------------------------------------------------
 	 --------------------------------------------------------------------------------------------------------- */
-	function AddNewSubSampleToSample() {
+	 function AddNewSubSampleToSample() {
+			var name = document.getElementById("SubSampleName").value;
+				var id = document.getElementById("deleteSamplefield").value;
+				var description = document.getElementById("SubSampleDescription").value;
+				var danger = document.getElementById("danger").value;
+				var amount = document.getElementById("amount").value;
+				var unit = document.getElementById("unit").value;
+				var subSample = '{"name":"' + name + '", "description" : "'
+						+ description + '" , "danger" : "' + danger + '", "amount" : "'
+						+ amount + '", "unit" : "' + unit + '"}';
+				console.log(subSample);
 
-		var name = document.getElementById("SubSampleName").value;
-		var id = document.getElementById("deleteSamplefield").value;
-		var description = document.getElementById("SubSampleDescription").value;
-		var danger = document.getElementById("danger").value;
-		var amount = document.getElementById("amount").value;
-		var unit = document.getElementById("unit").value;
-		var subSample = '{"name":"' + name + '", "description" : "'
-				+ description + '" , "danger" : "' + danger + '", "amount" : "'
-				+ amount + '", "unit" : "' + unit + '"}';
-		console.log(subSample);
-		var xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				ListSubSamples();
-			}
-		};
-		xhttp.open("POST", "http://localhost:8082/addSubSampleToSample/" + id,
-				true);
-		xhttp.setRequestHeader("Content-type", "application/json");
-		xhttp.send(subSample);
-	}
+			postRequest(subSample ,"/addSubSampleToSample/" + id,AddNewSubSampleToSampleCallback);
+		}
+		function AddNewSubSampleToSampleCallback(responseText) {
+			ListSubSamples();
+		}
 	function ListSubSamples() {
 		var xhttp = new XMLHttpRequest();
 		xhttp.onreadystatechange = function() {
@@ -604,7 +597,7 @@ function RadioEnabler() {
 	function getRequest(data, url, callback) {
 		xhttpRequest(data,url,callback,"GET");
 	}
-	function postRequest(data, restUrl, callback) {
+	function postRequest(data, url, callback) {
 		xhttpRequest(data,url,callback,"POST");
 	}
 	function deleteRequest(data, url, callback) {
@@ -635,33 +628,7 @@ function RadioEnabler() {
 	ListSubSamples();
 }
 dataLoader();
-	/* ---------------------------------------- Request Handling -------------------------------------------------
-	--------------------------------------------------------------------------------------------------------- */
 
-	function getRequest(data, url, callback) {
-		xhttpRequest(data,url,callback,"GET");
-	}
-	function postRequest(data, restUrl, callback) {
-		xhttpRequest(data,url,callback,"POST");
-	}
-	function deleteRequest(data, url, callback) {
-		xhttpRequest(data,url,callback,"DELETE");
-	}
-	function xhttpRequest(data, url, callback, type) {
-		var xhttp = new XMLHttpRequest();
-		xhttp.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				callback(this.responseText);	
-			}
-		};
-		xhttp.open(type, "http://localhost:8082"+url);
-		xhttp.setRequestHeader("Content-type", "application/json");
-		if(data == null) {//geen idee of dit ook anders kan (null opsturen?)
-			xhttp.send();
-		} else {
-			xhttp.send(data);
-		}
-	}
 	
 
 </script>
