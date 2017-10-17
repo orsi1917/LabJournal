@@ -5,8 +5,23 @@
 
 	/* ---------------------------------------- Project Handling -------------------------------------------------
 	 --------------------------------------------------------------------------------------------------------- */
-	
-function Tester(z){
+	 	//disables radio buttons
+function RadioDisabler() {
+	var inputs = document.querySelectorAll('input[type="radio"]');
+	for (var i = 0; i < inputs.length; i++) {
+		inputs[i].disabled = 'true';
+	}
+}
+		//enables radio buttons	
+function RadioEnabler() {
+	var inputs = document.querySelectorAll('input[type="radio"]');
+	for (var i = 0; i < inputs.length; i++) {
+		inputs[i].disabled = 'false';
+	}
+}	
+	 
+		//debug code
+function Tester(z){		
         var body = document.getElementsByTagName("html");
         console.log(document);
 }
@@ -15,10 +30,9 @@ function alertme(){
 	alert("x");
 }
 
-
-function NavList(items){		//show projects in navigation list
-	var element = document.getElementById("navlist");
-	
+		//show projects in navigation list
+function NavList(items){
+	var element = document.getElementById("navlist");	
 	for(i = 0; i < items.length; i++){
 		var node = document.createTextNode(items[i].name);
 		var navi = document.createElement("li");
@@ -94,7 +108,7 @@ function NavList(items){		//show projects in navigation list
 			document.getElementById("projectnameChange").value = project.name;
 			document.getElementById("projectcommentChange").value = project.comment;
 			showButton();
-			
+			RadioDisabler()
 			}
 		};
 		xhttp.open("GET", "http://localhost:8082/findProject/" + id);
@@ -110,7 +124,7 @@ function NavList(items){		//show projects in navigation list
 		xhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
 				ListProjects();
-			
+				RadioEnabler();
 
 			}
 		};
@@ -599,6 +613,8 @@ function NavList(items){		//show projects in navigation list
 		}
 	function CancelProjectUpdate(){
 		hideButton();
+		RadioEnabler();
+		ListProjects();
 		}
 	
 	ListProjects();
