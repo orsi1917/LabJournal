@@ -43,7 +43,6 @@ public class Operation {
 	public String getLocation() {
 		return location;
 	}
-	
 	public String getPerson() {
 		return person;
 	}

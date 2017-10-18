@@ -28,16 +28,6 @@ public class SampleEindpoint {
 	SampleRepository sampleRepository;
 	@Autowired
 	ProjectService projectService;
-	
-	
-	@ResponseBody
-	@RequestMapping(value = "/sample", method = RequestMethod.GET)
-	public Sample getsample2() {
-		Sample sample = new Sample();
-		System.out.println(sample);
-		sampleService.saveSample(sample);
-		return sample;
-	}
 
 		
 	@ResponseBody
