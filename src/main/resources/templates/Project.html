@@ -97,7 +97,7 @@ function RadioEnabler() {
 					+ "</td><td>"
 					+ "<input id='"
 					+ projects[i].id
-					+ "' type='radio' name='selector'  onclick=\"genericIdPass(this.id, 'deletefield'), genericIdPass(this.id, 'ProjectID'), genericIdPass(this.id, 'ProjectID2'), genericIdPass(this.id, 'ProjectID3');\">"
+					+ "' type='radio' name='selector'  onclick=\"genericIdPass(this.id, 'deletefield'), genericIdPass(this.id, 'ProjectID'), genericIdPass(this.id, 'ProjectID2'), genericIdPass(this.id, 'ProjectID3'), genericIdPass(this.id, 'ProjectID4');\">"
 					+ "</td></tr>";
 		}
 		document.getElementById("list").innerHTML += "</table>";
@@ -419,7 +419,7 @@ function RadioEnabler() {
 	}
 	function FindExperimentByName() {
 		var xhttp = new XMLHttpRequest();
-		var name = document.getElementById("ExperimentName").value;
+		var name = document.getElementById("ExperimentName2").value;
 		postRequest(name, "/filterExperimentList",FindExperimentByNameCallback);
 	}
 	function FindExperimentByNameCallback(responseText) {
@@ -700,18 +700,20 @@ article {
 								<tr>
 					<td>Project:</td>
 					<td><input type="text" id="ProjectID2" name="ProjectID" value="select project" size="15" disabled></td></tr>
-			</table>
+			</table>	
 			<hr style="border-top: 2px dotted #6688FF"/>	
-			<table>	
+			<table><tr>
+			<td><button type="button" id="projectfilterexperimentlist" onclick="FindExperimentByProject()">Find experimets in Project</button></td>
+			<td><input type="text" id="ProjectID4" name="ProjectID" value="select project" size="15" disabled></td></tr><br><br>
+			<tr><td><button type="button" id="filterexperimentlist" onclick="FindExperimentByName()">Find experiment by name</button></td>
+				<td><input type="text" id="ExperimentName2" name="ExperimentName"	value="ExperimentName"></td></tr>	</table>
+				<br><br>
+				<table>
 					<tr><td>Select Experiment:</td>
-					<td><input type="text" id="deleteExperimentField" name="DeleteById" value="select experiment" disabled size="15"></td></tr>
-					
+					<td><input type="text" id="deleteExperimentField" name="DeleteById" value="select experiment" disabled size="15"></td>
+					<td><button type="button" id="ExperimentDeleter" onclick="Experimentdeleter()">delete experiment</button><td></tr>
 			</table>
-			<br>
 			
-			<button type="button" id="projectfilterexperimentlist" onclick="FindExperimentByProject()">Find samples in Project</button>
-			<button type="button" id="filterexperimentlist" onclick="FindExperimentByName()">Find examples with name</button>
-			<button type="button" id="ExperimentDeleter" onclick="Experimentdeleter()">delete experiment</button>
 		<table id="experimentlist" border=1></table>
 		<table id="ExperimentsByProjectTable" border=1></table>
 		<table id="ExperimentByNameTable" border=1></table></td></tr>
