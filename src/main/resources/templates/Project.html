@@ -668,6 +668,26 @@ table.table1 th {
     color: white;
 
 }
+hr { 
+  border: 0; 
+  height: 4px; 
+  background-image: -webkit-linear-gradient(top, #4583fa, #86cef2);
+  background-image: -moz-linear-gradient(top, #4583fa, #86cef2);
+  background-image: -ms-linear-gradient(top, #4583fa, #86cef2);
+  background-image: -o-linear-gradient(top, #4583fa, #86cef2); 
+}
+input[type=text] {
+    
+    padding: 4px 3px;
+    margin: 0px 0;
+    box-sizing: border-box;
+    border: 2px solid #25638a;
+    border-radius: 4px;
+
+}
+input[type=text]:focus {
+    background-color: #c9ddff;
+}
 </style>
 
 </head>
@@ -731,7 +751,7 @@ table.table1 th {
 				<tr>		<td>Project:</td>
 					<td><input type="text" id="ProjectID" name="ProjectID" value="select project" size="15" disabled></td></tr>
 				</table>
-					<hr style="border-top: 2px dotted #6688FF"/>
+					<hr >
 					<button type="button" id="projectfilterSamplesListTable" onclick="FindSampleByProject()">Find samples in Project</button>
 					<input type="text" id="ProjectID3" name="ProjectID3" value="select project" size="15" disabled>
 					<br><br>
@@ -757,7 +777,7 @@ table.table1 th {
 					<td>Project:</td>
 					<td><input type="text" id="ProjectID2" name="ProjectID" value="select project" size="15" disabled></td></tr>
 			</table>	
-			<hr style="border-top: 2px dotted #6688FF"/>	
+			<hr >	
 			<table><tr>
 			<td><button type="button" id="projectfilterexperimentlist" onclick="FindExperimentByProject()">Find experimets in Project</button></td>
 			<td><input type="text" id="ProjectID4" name="ProjectID" value="select project" size="15" disabled></td></tr><br><br>
@@ -792,7 +812,7 @@ table.table1 th {
 					
 				</table>
 				<br>
-			<hr style="border-top: 2px dotted #6688FF"/>
+			<hr >
 			<table><tr>
 			<td><button type="button" id="ListSubsampleBySample" onclick="FindSubSampleBySample()">Find subsample by sample</button></td>
 			<td><input type="text" id="deleteSamplefield3" name="DeleteById" value="select experiment" disabled size="15"></td></td>
