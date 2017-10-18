@@ -595,11 +595,12 @@ header {
 
 nav {
 	float: left;
-	max-width: 160px;
+	width: 160px;
 	margin: 0;
 	padding: 1em;
-/* 	height: 100%; */
-/* 	background-color: lightblue; */
+	height: 250%; 
+	 background: #d5eeff;
+
 
 }
 
@@ -670,7 +671,7 @@ table.table1 th {
 }
 hr { 
   border: 0; 
-  height: 4px; 
+  height: 3px; 
   background-image: -webkit-linear-gradient(top, #4583fa, #86cef2);
   background-image: -moz-linear-gradient(top, #4583fa, #86cef2);
   background-image: -ms-linear-gradient(top, #4583fa, #86cef2);
@@ -709,7 +710,7 @@ input[type=text]:focus {
 
 		<article>
 			<h2>My First Buttons</h2>
-	<table> <tr><td>
+	<table > <tr><td>
 			<button type="button" id="NewProjectCreator" onclick="AddNewProject()">Create new Project</button>
 			<table>
 				<tr>
@@ -724,8 +725,8 @@ input[type=text]:focus {
 			<input type="text" id="deletefield" name="DeleteById" value="select project" disabled size="15">
 			<button type="button" id="ProjectDeleteButton" onclick="ProjectDeleter()">delete</button><br>
 			<table id="list" class="table1" border=1></table> </td>
-			<td>
-			<div id="UpdateProject" ><table >
+			<td >
+			<div id="UpdateProject" align="center" valign="middle"><table >
 				<tr>
 					<td>Name:</td>
 					<td><input type="text" id="projectnameChange" name="Name"	value="NewProjectname"></td>
