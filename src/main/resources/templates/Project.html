@@ -179,7 +179,7 @@ function RadioEnabler() {
 					+ "</td><td>"
 					+ "<input id='"
 					+ samples[i].id
-					+ "' type='radio' name='SamplesListTableselector' onclick=\"genericIdPass(this.id, 'deleteSamplefield');\">"
+					+ "' type='radio' name='SamplesListTableselector' onclick=\"genericIdPass(this.id, 'deleteSamplefield'), genericIdPass(this.id, 'deleteSamplefield2'), genericIdPass(this.id, 'deleteSamplefield3');\">"
 					+ "</td></tr>"
 		}
 		document.getElementById("SamplesListTable").innerHTML = document
@@ -595,6 +595,7 @@ nav {
 	max-width: 160px;
 	margin: 0;
 	padding: 1em;
+
 }
 
 nav ul {
@@ -718,6 +719,7 @@ article {
 		<table id="ExperimentsByProjectTable" border=1></table>
 		<table id="ExperimentByNameTable" border=1></table></td></tr>
 		<tr><td><hr>
+		<button type="button" id="newSubSample" onclick="AddNewSubSampleToSample()">Add new Subsample to selcted sample</button>
 		<table>
 				<tr>
 					<td>Name:</td>
@@ -726,17 +728,24 @@ article {
 					<td><input type="text" id="SubSampleDescription" name="SubSampleDescription" value="subsample description" size="15"></td></tr>
 				<tr><td>Danger:</td>
 					<td><input type="text" id="danger" name="danger" value="none" size="15"></td></tr>
-				<tr><td>Select SubSample:</td>
-					<td><input type="text" id="deleteSubSamplefield" name="DeleteById" value="select experiment" disabled size="15"></td></tr>
-					<tr><td>Amount:</td>
+				<tr><td>Amount:</td>
 					<td><input type="text" id="amount" name="amount" value="1" size="15"></td></tr>
 				<tr><td>Unit:</td>
 					<td><input type="text" id="unit" name="unit" value="mg" size="15"></td></tr>
+				<tr><td>Select Sample:</td>
+					<td><input type="text" id="deleteSamplefield2" name="DeleteById" value="select sample" disabled size="15"></td></tr>
+					
 				</table>
 				<br>
-			<button type="button" id="newSubSample" onclick="AddNewSubSampleToSample()">Add new Subsample to selcted sample</button>
-			<button type="button" id="subsampledeletebutton" onclick="subSampledeleter()">delete subsample</button>
-			<button type="button" id="ListSubsampleBySample" onclick="FindSubSampleBySample()">Find subsample by sample</button>
+			<hr style="border-top: 2px dotted #6688FF"/>
+			<table><tr>
+			<td><button type="button" id="ListSubsampleBySample" onclick="FindSubSampleBySample()">Find subsample by sample</button></td>
+			<td><input type="text" id="deleteSamplefield3" name="DeleteById" value="select experiment" disabled size="15"></td></td>
+			
+			</tr></table><table>
+			<tr><td>Select SubSample:</td>
+				<td><input type="text" id="deleteSubSamplefield" name="DeleteById" value="select subsample" disabled size="15"></td>
+				<td><button type="button" id="subsampledeletebutton" onclick="subSampledeleter()">delete subsample</button></td></tr></table>
 			<table id="SubSamplesListTable" border=1></table>
 			<table id="SubSamplesBySampleTable" border=1></table>
 		</td></tr></table>
