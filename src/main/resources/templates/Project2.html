@@ -4,13 +4,16 @@
 <link rel="stylesheet" type="text/css" href="LabJournal.css">
 <script type="text/javascript" src="LabJournal.js"></script>
 
+
+
+<title>Dit is een nieuwe pagina</title>
 </head>
 <body>
 
 
 	<div class="container">
 
-		<header id="TOP" >
+		<header id="TOP" onload='console.log(getQueryVariable("id"));'>
 	<br>
 			<h1  >Lab Journal</h1>
 		</header>
@@ -155,14 +158,14 @@
 					<td><input type="text" id="deleteExperimentField2" name="DeleteById" value="select experiment" disabled size="15"></td>
 			</table>
 		<br><hr >
-		<input type="text" id="deleteOperationField" name="DeleteById" value="select operation" disabled size="15">
+		<tr><td><input type="text" id="deleteOperationField" name="DeleteById" value="select experiment" disabled size="15"></td></tr>
 			<table id="OperationListTable" border=1 class="table1"></table>
 			<table id="OperationsByExperimentTable" border=1 class="table1"></table>
 			
 		
 	</tr>	</table>
 		</article>
-	<a href="Project2.html">klik hier</a>
+
 		<footer><h3><br>Program by Orsi & Steven</h3></footer>
 
 	</div>

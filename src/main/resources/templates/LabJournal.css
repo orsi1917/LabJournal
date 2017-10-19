@@ -1,0 +1,126 @@
+div.container {
+	width: 100%;
+	border: 1px solid gray;
+		
+}
+h1 {
+  font-size: 60px;
+}
+
+header {
+	padding: 1em;
+
+	height: 200px;
+	color: #0021AA;
+	background-image: url("5664.jpg");
+	background-size: cover;
+	clear: left;
+	text-align: center;
+}
+ footer {
+	padding: 1em;
+
+	height: 120px;
+	color: #0021AA;
+	background-image: url("5664.jpg");
+	background-size: cover;
+	clear: left;
+	text-align: center;
+}
+
+nav {
+	float: left;
+	width: 160px;
+	margin: 0;
+	padding: 1em;
+	height: 250%; 
+	 background: #d5eeff;
+
+
+}
+
+nav ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+nav ul a {
+	text-decoration: none;
+}
+
+article {
+	margin-left: 170px;
+	border-left: 1px solid gray;
+	padding: 1em;
+	overflow: hidden;
+}
+button {
+  background: #25638a;
+  background-image: -webkit-linear-gradient(top, #25638a, #66bef2);
+  background-image: -moz-linear-gradient(top, #25638a, #66bef2);
+  background-image: -ms-linear-gradient(top, #25638a, #66bef2);
+  background-image: -o-linear-gradient(top, #25638a, #66bef2);
+  background-image: linear-gradient(to bottom, #25638a, #66bef2);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  font-family: Georgia;
+  color: #ffffff;
+  font-size: 14px;
+  padding: 7px 12px 7px 12px;
+  text-decoration: none;
+}
+
+button:hover {
+  background: #107d7d;
+  background-image: -webkit-linear-gradient(top, #107d7d, #5acedb);
+  background-image: -moz-linear-gradient(top, #107d7d, #5acedb);
+  background-image: -ms-linear-gradient(top, #107d7d, #5acedb);
+  background-image: -o-linear-gradient(top, #107d7d, #5acedb);
+  background-image: linear-gradient(to bottom, #107d7d, #5acedb);
+  text-decoration: none;
+}
+table.table1 {
+    border-collapse: collapse;
+ 	border: 1px solid #ddd;
+    width: 100%;
+}
+
+ table.table1 th, table.table1 td {
+    text-align: left;
+    padding: 5px;
+}
+
+table.table1 tr:nth-child(even){background-color: #c9ddff}
+table.table1 tr:nth-child(odd){background-color: #e0e8ff}
+
+table.table1 th {
+  background: #25638a;
+  background-image: -webkit-linear-gradient(top, #25638a, #66bef2);
+  background-image: -moz-linear-gradient(top, #25638a, #66bef2);
+  background-image: -ms-linear-gradient(top, #25638a, #66bef2);
+  background-image: -o-linear-gradient(top, #25638a, #66bef2);
+  background-image: linear-gradient(to bottom, #25638a, #66bef2);
+    color: white;
+
+}
+hr { 
+  border: 0; 
+  height: 3px; 
+  background-image: -webkit-linear-gradient(top, #4583fa, #86cef2);
+  background-image: -moz-linear-gradient(top, #4583fa, #86cef2);
+  background-image: -ms-linear-gradient(top, #4583fa, #86cef2);
+  background-image: -o-linear-gradient(top, #4583fa, #86cef2); 
+}
+input[type=text] {
+    
+    padding: 4px 3px;
+    margin: 0px 0;
+    box-sizing: border-box;
+    border: 2px solid #25638a;
+    border-radius: 28px;
+
+}
+input[type=text]:focus {
+    background-color: #c9ddff;
+}
