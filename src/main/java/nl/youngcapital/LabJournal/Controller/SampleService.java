@@ -31,6 +31,10 @@ public class SampleService {
 	public List<Experiment> projectfilterExperiment(long id) {
 		return experimentRepository.projectfiltersample(id);
 	}
+	public void updateSample(String name, String description, long id) {
+		sampleRepository.updateSample(name, description, id);
+		
+	}
 
 	
 	public Sample saveSample(Sample sample) {

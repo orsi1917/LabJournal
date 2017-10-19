@@ -1,4 +1,6 @@
-	function GetTheProject() {
+	/* ---------------------------------------- Project Handling -------------------------------------------------
+	 ---------------------------------------------------------------------------------------------------------*/	
+function GetTheProject() {
 		var xhttp = new XMLHttpRequest();
 		var id = document.getElementById("ProjectID").value;
 		getRequest(null, "/findProject/" + id, GetOneProjectCallback);
@@ -45,6 +47,30 @@
 		}
 		document.getElementById("SamplesByProjectTable").innerHTML = document
 				.getElementById("SamplesByProjectTable").innerHTML
-				+ "</table>";
+				+ "</table>";		
 	}
-	
+	function GetOneSample() {
+		var xhttp = new XMLHttpRequest();
+		var id = document.getElementById("SampleID").value;
+		getRequest(null, "/findSample/" + id, GetOneSampleCallback);
+	}
+
+	function GetOneSampleCallback(responseText) {
+		console.log(responseText);
+		var sample = JSON.parse(responseText);
+		document.getElementById("SampleNameChange").value = sample.name;
+		document.getElementById("SampleDescriptionChange").value = sample.description;
+		
+	}
+	function UpdateSample() {
+		var ent = document.getElementById("SampleNameChange").value;
+		var ent2 = document.getElementById("SampleDescriptionChange").value;
+		var id = document.getElementById("SampleID").value;
+		var sample = '{"name":"' + ent + '", "description" : "' + ent2 + '"}';
+			postRequest(sample ,"/updateSample/"+ id, UpdateProjectCallback);
+	}
+	function UpdateSampleCallback(responseText) {
+		FindSampleByProject2();
+		RadioEnabler();
+		
+	}
