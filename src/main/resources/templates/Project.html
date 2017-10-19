@@ -410,7 +410,7 @@ function RadioEnabler() {
 					+ "</td><td>"
 					+ "<input id='"
 					+ experiments[i].id
-					+ "' type='radio' name='experimentlistselector' onclick=\"genericIdPass(this.id, 'deleteExperimentField');\">"
+					+ "' type='radio' name='experimentlistselector' onclick=\"genericIdPass(this.id, 'deleteExperimentField'), genericIdPass(this.id, 'deleteExperimentField2');\">"
 					+ "</td></tr>"
 		}
 		document.getElementById("experimentlist").innerHTML = document
@@ -495,6 +495,24 @@ function RadioEnabler() {
 	}
 	/* ---------------------------------------- Operation Handling -------------------------------------------------
 	--------------------------------------------------------------------------------------------------------- */
+	 function AddNewOperationToExperiment() {
+			var comment = document.getElementById("OperationComment").value;
+			var id = document.getElementById("deleteExperimentField2").value;
+			var instrument = document.getElementById("Instrument").value;
+			var settings = document.getElementById("InstrumentSettings").value;
+			var location = document.getElementById("Location").value;
+			var person = document.getElementById("Person").value;
+			var operation = '{"comment":"' + comment + '", "instrument" : "'
+					+ instrument + '" , "settings" : "' + settings + '", "location" : "'
+					+ location + '", "person" : "' + person + '"}';
+			console.log(operation);
+
+		postRequest(operation ,"/addOperationToExperiment/" + id,AddNewOperationToExperimentCallback);
+	}
+function AddNewOperationToExperimentCallback(responseText) {
+	console.log("done!");
+	//	ListSubSamples();
+	}
 	
 	
 
@@ -824,7 +842,29 @@ input[type=text]:focus {
 				<td><button type="button" id="subsampledeletebutton" onclick="subSampledeleter()">delete subsample</button></td></tr></table>
 			<table id="SubSamplesListTable" border=1 class="table1"></table>
 			<table id="SubSamplesBySampleTable" border=1 class="table1"></table>
-		</td></tr></table>
+		</td><td><hr>
+		<button type="button" id="newOperation" onclick="AddNewOperationToExperiment()">Add new Operation to selected experiment</button>
+		<table>
+				<tr>
+					<td>Comment:</td>
+					<td><input type="text" id="OperationComment" name="OperationComment" 	value="comment"></td></tr>
+				<tr><td>Instrument:</td>
+					<td><input type="text" id="Instrument" name="Instrument" value="instrument" size="15"></td></tr>
+					<tr><td>Instrument settings:</td>
+					<td><input type="text" id="InstrumentSettings" name="InstrumentSettings" value="settings" size="15"></td></tr>
+				<tr><td>File location:</td>
+					<td><input type="text" id="Location" name="Location" value="n/a" size="15"></td></tr>
+				<tr><td>Executed by:</td>
+					<td><input type="text" id="Person" name="Person" value="n/a" size="15"></td></tr>
+				<td>Select Experiment:</td>
+					<td><input type="text" id="deleteExperimentField2" name="DeleteById" value="select experiment" disabled size="15"></td>
+			</table>
+		<br><hr >
+			<table id="OperationListTable" border=1 class="table1"></table>
+			<table id="SubSamplesBySampleTable" border=1 class="table1"></table>
+		
+		
+	</tr>	</table>
 		</article>
 
 		<footer><h3><br>Program by Orsi & Steven</h3></footer>
