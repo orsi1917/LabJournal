@@ -67,7 +67,7 @@ function GetTheProject() {
 		var ent2 = document.getElementById("SampleDescriptionChange").value;
 		var id = document.getElementById("SampleID").value;
 		var sample = '{"name":"' + ent + '", "description" : "' + ent2 + '"}';
-			postRequest(sample ,"/updateSample/"+ id, UpdateProjectCallback);
+			postRequest(sample ,"/updateSample/"+ id, UpdateSampleCallback);
 	}
 	function UpdateSampleCallback(responseText) {
 		FindSampleByProject2();
