@@ -3,7 +3,7 @@
 <head>
 <link rel="stylesheet" type="text/css" href="LabJournal.css">
 <script type="text/javascript" src="LabJournal.js"></script>
-
+<script> dataLoader();</script>
 </head>
 <body>
 
@@ -30,8 +30,8 @@
 					<td>Name:</td>
 					<td><input type="text" id="projectname" name="Name"	value="projectname"></td>
 				<tr>
-					<td>Comment:</td>
-					<td><input type="text" id="projectcomment" name="Comment" value="comments" size="15"></td>
+					<td>Comment:</td></tr>
+					<tr><td><textarea rows="10" cols="30" id="projectcomment" name="Comment" value="comments" size="15"></textarea></td></tr>
 			</table>
 			<br>
 			<button type="button" id="ModifyProject" onclick="GetOneProject()">Modify Project</button>
