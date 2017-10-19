@@ -7,7 +7,9 @@
 <script>
 window.onload = function() {
 
-	genericIdPass(getQueryVariable("id"), "ProjectID")
+	genericIdPass(getQueryVariable("id"), "ProjectID");
+	GetTheProject();
+	FindSampleByProject2();
 };
 </script>
 
@@ -32,12 +34,22 @@ window.onload = function() {
 		</nav>
 
 		<article>
-			<h2>My First Buttons</h2>
+			<button type="button" id="NewProjectCreator" onclick='GetTheProject()'>Test Button</button>
+			<input type="text" id="ProjectID" name="ProjectID" value="select project" disabled size="15">
 	
-			<button type="button" id="NewProjectCreator" onclick='genericIdPass(getQueryVariable("id"), "ProjectID")'>Get number</button>
-		
-		<input type="text" id="ProjectID" name="ProjectID" value="select project" disabled size="15">
-			
+			<h2>Project: <label id="ProjectName"></label></h2>	
+			<h4>Comment: </h4><p id="ProjectComment"></p>
+		<table>
+			<tr>
+				<td>	
+					<input type="text" id="SampleID" name="ProjectID" value="select project" disabled size="15">
+					<table id="SamplesByProjectTable" border=1 class="table1"></table>	
+				</td>
+				<td>
+				</td>
+			</tr>	
+		</table>	
+	
 		</article>
 
 		<footer><h3><br>Program by Orsi & Steven</h3></footer>

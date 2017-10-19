@@ -6,6 +6,10 @@ div.container {
 h1 {
   font-size: 60px;
 }
+h4 {
+  color: #25638a;
+
+}
 
 header {
 	padding: 1em;
