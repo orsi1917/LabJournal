@@ -77,7 +77,7 @@ function RadioEnabler() {
 		console.log(responseText);
 		var projects = JSON.parse(responseText);
 		ProjectListToTable(projects);
-		hideButton();
+	
 		NavList(projects);
 	}
 
@@ -126,6 +126,7 @@ function RadioEnabler() {
 	function UpdateProjectCallback(responseText) {
 		ListProjects();
 		RadioEnabler();
+		hideButton();
 	}
 
 	function ProjectDeleter() {
@@ -510,8 +511,7 @@ function RadioEnabler() {
 		postRequest(operation ,"/addOperationToExperiment/" + id,AddNewOperationToExperimentCallback);
 	}
 	function AddNewOperationToExperimentCallback(responseText) {
-		console.log("done!");
-		//	ListSubSamples();
+		ListOperations();
 	}
 	function ListOperations() {
 		getRequest(null,"/operationlist",ListOperationsCallback);
@@ -545,7 +545,7 @@ function RadioEnabler() {
 					+ operations[i].experiment.id
 					+ "</td><td>"
 					+ "<input id='"
-					+ subsamples[i].id
+					+ operations[i].id
 					+ "' type='radio' name='OperationListTableselector' onclick=\"genericIdPass(this.id, 'deleteOperationField');\">"
 					+ "</td></tr>"
 		}
@@ -623,6 +623,7 @@ function RadioEnabler() {
 	ListSamples();
 	ListExperiment();
 	ListSubSamples();
+	ListOperations()
 	}
 	
 

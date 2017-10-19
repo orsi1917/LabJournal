@@ -3,7 +3,12 @@
 <head>
 <link rel="stylesheet" type="text/css" href="LabJournal.css">
 <script type="text/javascript" src="LabJournal.js"></script>
-<script>genericIdPass(getQueryVariable("id"), "ProjectID")</script>
+<script>
+window.onload = function() {
+	console.log("hoera");
+	genericIdPass(getQueryVariable("id"), "ProjectID")
+};
+</script>
 
 
 

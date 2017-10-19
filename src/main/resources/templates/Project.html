@@ -3,7 +3,13 @@
 <head>
 <link rel="stylesheet" type="text/css" href="LabJournal.css">
 <script type="text/javascript" src="LabJournal.js"></script>
-<script> dataLoader();</script>
+
+<script>
+window.onload = function() {
+	dataLoader();
+	hideButton();
+};
+</script>
 </head>
 <body>
 
@@ -29,7 +35,7 @@
 				Name:	<input type="text" id="projectname" name="Name"	value="projectname">
 				<table><tr>
 					<td>Comment:</td></tr>
-					<tr><td><textarea rows="10" cols="30" id="projectcomment" name="Comment" value="comments" size="15"></textarea></td></tr>
+					<tr><td><textarea rows="4" cols="45" id="projectcomment" name="Comment" placeholder="comments" size="15"></textarea></td></tr>
 			</table>
 			<br>
 			<button type="button" id="ModifyProject" onclick="GetOneProject()">Modify Project</button>
@@ -59,7 +65,7 @@
 					<td><input type="text" id="samplename" name="Name"	value="samplename"></td></tr>
 				<tr>
 					<td>Comment:</td>
-					<td><input type="text" id="sampledescription" name="Description" value="description" size="15"></td></tr>
+					<td><br><textarea rows="4" cols="45"  id="sampledescription" name="Description" value="description" size="15"></textarea></td></tr>
 				<tr>		<td>Project:</td>
 					<td><input type="text" id="ProjectID" name="ProjectID" value="select project" size="15" disabled></td></tr>
 				</table>
@@ -84,7 +90,7 @@
 					<td>Name:</td>
 					<td><input type="text" id="ExperimentName" name="ExperimentName"	value="ExperimentName"></td></tr>
 				<tr>	<td>Description:</td>
-					<td><input type="text" id="ExperimentDescription" name="ExperimentDescription" value="description" size="15"></td></tr>
+					<td><br><textarea rows="4" cols="45"  id="ExperimentDescription" name="ExperimentDescription" value="description" size="15"></textarea></td></tr>
 								<tr>
 					<td>Project:</td>
 					<td><input type="text" id="ProjectID2" name="ProjectID" value="select project" size="15" disabled></td></tr>
@@ -112,7 +118,7 @@
 					<td>Name:</td>
 					<td><input type="text" id="SubSampleName" name="SubSampleName" 	value="subsample name"></td></tr>
 				<tr><td>Description:</td>
-					<td><input type="text" id="SubSampleDescription" name="SubSampleDescription" value="subsample description" size="15"></td></tr>
+					<td><br><textarea rows="4" cols="45"   id="SubSampleDescription" name="SubSampleDescription" value="subsample description" size="15"></textarea></td></tr>
 				<tr><td>Danger:</td>
 					<td><input type="text" id="danger" name="danger" value="none" size="15"></td></tr>
 				<tr><td>Amount:</td>
@@ -140,7 +146,7 @@
 		<table>
 				<tr>
 					<td>Comment:</td>
-					<td><input type="text" id="OperationComment" name="OperationComment" 	value="comment"></td></tr>
+					<td><br><textarea rows="4" cols="45"   id="OperationComment" name="OperationComment" placeholder="comment"></textarea></td></tr>
 				<tr><td>Instrument:</td>
 					<td><input type="text" id="Instrument" name="Instrument" value="instrument" size="15"></td></tr>
 					<tr><td>Instrument settings:</td>
@@ -160,7 +166,7 @@
 		
 	</tr>	</table>
 		</article>
-	<a href="Project2.html">klik hier</a>
+
 		<footer><h3><br>Program by Orsi & Steven</h3></footer>
 
 	</div>
