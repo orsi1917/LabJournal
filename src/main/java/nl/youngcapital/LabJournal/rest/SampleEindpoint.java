@@ -49,8 +49,17 @@ public class SampleEindpoint {
 	 @RequestMapping(value = "/projectfiltersamplelist", method = RequestMethod.POST)
 	 public List<Sample> filterfindAll(@RequestBody long id) {
 		 return sampleService.projectfilterSample(id);
-
 	  }
+	 @RequestMapping(value = "/findSample/{id}", method = RequestMethod.GET)
+	 public Sample findOneSample(@PathVariable long id) {
+		
+		 return (Sample)sampleRepository.findOne(id);
+	 }
+	 @RequestMapping(value = "/updateSample/{id}", method = RequestMethod.POST)
+	 public void updateSample(@RequestBody Sample sample, @PathVariable long id) {
+		 sampleService.updateSample(sample.getName(), sample.getDescription(), id);
+			 
+	 }
 	 
 	 @ResponseBody
 	  @RequestMapping(value = "/sample/{id}", method = RequestMethod.DELETE)

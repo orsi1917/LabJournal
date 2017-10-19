@@ -1,0 +1,78 @@
+
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="LabJournal.css">
+<script type="text/javascript" src="LabJournal.js"></script>
+<script type="text/javascript" src="Project.js"></script>
+<script>
+window.onload = function() {
+
+	genericIdPass(getQueryVariable("id"), "ProjectID");
+	GetTheProject();
+	FindSampleByProject2();
+	hideArea("UpdateSample");
+};
+</script>
+
+
+
+<title>Dit is een nieuwe pagina</title>
+</head>
+<body>
+
+
+	<div class="container">
+
+		<header id="TOP" onload='console.log(getQueryVariable("id"));'>
+	<br>
+			<h1  >Lab Journal</h1>
+		</header>
+
+		<nav>
+			<ul id="navlist">
+			</ul>
+						
+		</nav>
+
+		<article>
+			<button type="button" id="NewProjectCreator" onclick='GetTheProject()'>Test Button</button>
+			<input type="text" id="ProjectID" name="ProjectID" value="select project" disabled size="15">
+	
+			<h2>Project: <label id="ProjectName"></label></h2>	
+			<h4>Comment: </h4><p id="ProjectComment"></p>
+		<table>
+			<tr>
+				<td>	
+					<input type="text" id="SampleID" name="ProjectID" value="selectsample" disabled size="6">
+					<button type="button" id="ModifySample" onclick="GetOneSample()">Modify Sample</button>
+					<button type="button" id="SampleDeleter" onclick="Sampledeleter2()">delete sample</button>
+					<table id="SamplesByProjectTable" border=1 class="table1"></table>	
+				</td>
+				<td>
+					<div id="UpdateSample" align="center" valign="middle">
+					<Table>
+						<tr>
+							<td>Name:</td>
+							<td><input type="text" id="SampleNameChange" name="Name"	value="NewProjectname"></td>
+						</tr>
+						<tr>
+							<td>Comment:</td>
+							<td><textarea rows="10" cols="30"  type="text" id="SampleDescriptionChange" name="Comment" value="NewComments" size="15"></textarea></td>
+						</tr>
+						<button type="button" id="UpdateSampleButton" onclick="UpdateSample()" >Update Sample</button>
+					</table>
+					</div>
+				</td>
+				
+			</tr>	
+		</table>	
+	
+		</article>
+
+		<footer><h3><br>Program by Orsi & Steven</h3></footer>
+
+	</div>
+
+
+</body>
+</html>
