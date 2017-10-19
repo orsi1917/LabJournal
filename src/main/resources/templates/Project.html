@@ -16,6 +16,7 @@
 		hideButton();
 		RadioEnabler();
 		ListProjects();
+		ListOperations();
 	}
 	 
 	 //disables radio buttons
@@ -91,8 +92,11 @@ function RadioEnabler() {
 			document.getElementById("list").innerHTML += "<tr><td>"
 					+ projects[i].id
 					+ "</td><td>"
+					+ "<a href='Project2.html?id="
+					+ projects[i].id
+					+ "'>"
 					+ projects[i].name
-					+ "</td><td>"
+					+ "</a></td><td>"
 					+ projects[i].comment
 					+ "</td><td>"
 					+ "<input id='"
@@ -509,9 +513,49 @@ function RadioEnabler() {
 
 		postRequest(operation ,"/addOperationToExperiment/" + id,AddNewOperationToExperimentCallback);
 	}
-function AddNewOperationToExperimentCallback(responseText) {
-	console.log("done!");
-	//	ListSubSamples();
+	function AddNewOperationToExperimentCallback(responseText) {
+		console.log("done!");
+		//	ListSubSamples();
+	}
+	function ListOperations() {
+		getRequest(null,"/operationlist",ListOperationsCallback);
+	}
+	function ListOperationsCallback(responseText) {
+		document.getElementById("OperationListTable").innerHTML = "";
+		console.log(responseText);
+		var operations = JSON.parse(responseText);
+		OperationsToTable(operations);
+	}
+	function OperationsToTable(operations) {
+		document.getElementById("OperationListTable").innerHTML = document
+				.getElementById("OperationListTable").innerHTML
+				+ "<Table><tr><th>Comment</th><th>Instrument</th><th>Settings</th><th>File location</th><th>Executed by</th><th>Experiment ID</th><th></th></tr>";
+		for (i = 0; i < operations.length; i++) {
+			document.getElementById("OperationListTable").innerHTML = document
+					.getElementById("OperationListTable").innerHTML
+					+ "<tr><td>"
+					+ operations[i].comment
+					+ "</td><td>"
+					+ operations[i].instrument
+					+ "</td><td>"
+					+ operations[i].settings
+					+ "</td><td>"
+					+ operations[i].settings
+					+  "</td><td>"
+					+ operations[i].location
+					+ "</td><td>"
+					+ operations[i].person
+					+ "</td><td>"
+					+ operations[i].experiment.id
+					+ "</td><td>"
+					+ "<input id='"
+					+ subsamples[i].id
+					+ "' type='radio' name='OperationListTableselector' onclick=\"genericIdPass(this.id, 'deleteOperationField');\">"
+					+ "</td></tr>"
+		}
+		document.getElementById("OperationListTable").innerHTML = document
+			.getElementById("OperationListTable").innerHTML
+			+ "</table>";
 	}
 	
 	
@@ -860,13 +904,14 @@ input[type=text]:focus {
 					<td><input type="text" id="deleteExperimentField2" name="DeleteById" value="select experiment" disabled size="15"></td>
 			</table>
 		<br><hr >
+		<input type="text" id="deleteOperationField" name="DeleteById" value="select operation" disabled size="15">
 			<table id="OperationListTable" border=1 class="table1"></table>
-			<table id="SubSamplesBySampleTable" border=1 class="table1"></table>
-		
+			<table id="OperationsByExperimentTable" border=1 class="table1"></table>
+			
 		
 	</tr>	</table>
 		</article>
-
+	<a href="Project2.html">klik hier</a>
 		<footer><h3><br>Program by Orsi & Steven</h3></footer>
 
 	</div>
