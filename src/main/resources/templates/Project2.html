@@ -10,6 +10,7 @@ window.onload = function() {
 	genericIdPass(getQueryVariable("id"), "ProjectID");
 	GetTheProject();
 	FindSampleByProject2();
+	hideArea("UpdateSample");
 };
 </script>
 
@@ -42,19 +43,27 @@ window.onload = function() {
 		<table>
 			<tr>
 				<td>	
-					<input type="text" id="SampleID" name="ProjectID" value="select project" disabled size="6">
+					<input type="text" id="SampleID" name="ProjectID" value="selectsample" disabled size="6">
 					<button type="button" id="ModifySample" onclick="GetOneSample()">Modify Sample</button>
+					<button type="button" id="SampleDeleter" onclick="Sampledeleter2()">delete sample</button>
 					<table id="SamplesByProjectTable" border=1 class="table1"></table>	
 				</td>
-				<tr>
-					<td>Name:</td>
-					<td><input type="text" id="SampleNameChange" name="Name"	value="NewProjectname"></td>
-				<tr>
-					<td>Comment:</td>
-					<td><textarea rows="10" cols="30"  type="text" id="SampleDescriptionChange" name="Comment" value="NewComments" size="15"></textarea></td>
-					<button type="button" id="UpdateSampleButton" onclick="UpdateSample()" >Update Sample</button>
 				<td>
+					<div id="UpdateSample" align="center" valign="middle">
+					<Table>
+						<tr>
+							<td>Name:</td>
+							<td><input type="text" id="SampleNameChange" name="Name"	value="NewProjectname"></td>
+						</tr>
+						<tr>
+							<td>Comment:</td>
+							<td><textarea rows="10" cols="30"  type="text" id="SampleDescriptionChange" name="Comment" value="NewComments" size="15"></textarea></td>
+						</tr>
+						<button type="button" id="UpdateSampleButton" onclick="UpdateSample()" >Update Sample</button>
+					</table>
+					</div>
 				</td>
+				
 			</tr>	
 		</table>	
 	

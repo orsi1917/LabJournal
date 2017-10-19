@@ -1,4 +1,13 @@
-	/* ---------------------------------------- Project Handling -------------------------------------------------
+/* ---------------------------------------- Hide and Show -------------------------------------------------
+	 ---------------------------------------------------------------------------------------------------------*/	
+function showArea(field){ 
+		  document.getElementById(field).style.visibility = 'visible';
+	}
+	function hideArea(field){
+		document.getElementById(field).style.visibility = "hidden";
+	}	
+
+/* ---------------------------------------- Project Handling -------------------------------------------------
 	 ---------------------------------------------------------------------------------------------------------*/	
 function GetTheProject() {
 		var xhttp = new XMLHttpRequest();
@@ -50,6 +59,7 @@ function GetTheProject() {
 				+ "</table>";		
 	}
 	function GetOneSample() {
+		showArea("UpdateSample");
 		var xhttp = new XMLHttpRequest();
 		var id = document.getElementById("SampleID").value;
 		getRequest(null, "/findSample/" + id, GetOneSampleCallback);
@@ -72,5 +82,13 @@ function GetTheProject() {
 	function UpdateSampleCallback(responseText) {
 		FindSampleByProject2();
 		RadioEnabler();
+		hideArea("UpdateSample");
 		
+	}
+	function Sampledeleter2() {
+		var id = document.getElementById("SampleID").value;
+		deleteRequest(null, "/sample/" + id, SampledeleterCallback2);
+	}
+	function SampledeleterCallback2(responseText) {
+		FindSampleByProject2();
 	}
