@@ -25,11 +25,9 @@
 			<h2>My First Buttons</h2>
 	<table > <tr><td>
 			<button type="button" id="NewProjectCreator" onclick="AddNewProject()">Create new Project</button>
-			<table>
-				<tr>
-					<td>Name:</td>
-					<td><input type="text" id="projectname" name="Name"	value="projectname"></td>
-				<tr>
+			<br><br>
+				Name:	<input type="text" id="projectname" name="Name"	value="projectname">
+				<table><tr>
 					<td>Comment:</td></tr>
 					<tr><td><textarea rows="10" cols="30" id="projectcomment" name="Comment" value="comments" size="15"></textarea></td></tr>
 			</table>
@@ -45,7 +43,7 @@
 					<td><input type="text" id="projectnameChange" name="Name"	value="NewProjectname"></td>
 				<tr>
 					<td>Comment:</td>
-					<td><input type="text" id="projectcommentChange" name="Comment" value="NewComments" size="15"></td>
+					<td><textarea rows="10" cols="30"  type="text" id="projectcommentChange" name="Comment" value="NewComments" size="15"></textarea></td>
 			</table>
 			<button type="button" id="UpdateProjectButton" onclick="UpdateProject()" >Update Project</button>
 			<button type="button" id="CancelProjectUpdate" onclick="CancelProjectUpdate()">Cancel</button></div>
