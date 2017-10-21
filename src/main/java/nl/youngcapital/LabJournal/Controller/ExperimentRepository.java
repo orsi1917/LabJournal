@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import nl.youngcapital.LabJournal.Experiment;
-import nl.youngcapital.LabJournal.Sample;
+
 
 @Component
 public interface ExperimentRepository extends CrudRepository<Experiment, Long>{

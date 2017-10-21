@@ -224,3 +224,11 @@ function GetTheProject() {
 		uncheckCheckBox("ModifyExperimentCheckBox");
 		
 	}
+	function Experimentdeleter2() {
+		var id = document.getElementById("ExperimentID").value;
+		deleteRequest(null, "/experiment/" + id, ExperimentdeleterCallback2);
+	}
+
+	function ExperimentdeleterCallback2(responseText) {
+		FindExperimentByProject2();
+	}

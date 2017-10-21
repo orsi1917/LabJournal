@@ -116,10 +116,12 @@ function loadpage(){
 					</table>
 					</div>
 				</td>
+				<td>
 				<td style="vertical-align:top">
 				<input type="text" id="ExperimentID" name="ExperimentID" hidden size="6" >
 				<button type="button" id="AddNewExperiment" onclick="checkCheckBox('AddExperimentCheckBox')">Create experiment </button>
 				<button type="button" id="ModifyExperiment" onclick="GetOneExperiment()">Modify Experiment</button>
+				<button type="button" id="ExperimentDeleter" onclick="Experimentdeleter2()">Delete experiment</button>
 				<table id="ExperimentsByProjectTable" border=1 class="table1"></table>
 				</td>
 				
