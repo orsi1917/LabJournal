@@ -140,4 +140,9 @@ display: none;
 .toggle-box:checked + div {
   display: block;
 }
-
+.toright {
+    float: right;
+}
+.toleft {
+    float: left;
+}
