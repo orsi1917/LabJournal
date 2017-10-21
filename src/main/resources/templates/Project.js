@@ -100,14 +100,14 @@ function GetTheProject() {
 			postRequest(sample ,"/updateSample/"+ id, UpdateSampleCallback);
 	}
 	function UpdateSampleCallback(responseText) {
-		FindSampleByProject2();
 		RadioEnabler();
+		loadpage();
 		uncheckCheckBox("UpdateSampleCheckBox");
 		
 	}
 	function cancelUpdate(id){
 		RadioEnabler();
-		FindSampleByProject2();
+		loadpage();
 		uncheckCheckBox(id); 
 		
 	}

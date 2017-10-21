@@ -5,7 +5,15 @@
 <script type="text/javascript" src="LabJournal.js"></script>
 <script type="text/javascript" src="Project.js"></script>
 <script>
-window.onload = function() {
+window.onload = function () {
+
+	genericIdPass(getQueryVariable("id"), "ProjectID");
+	GetTheProject();
+	FindSampleByProject2();
+	FindExperimentByProject2();
+	
+};
+function loadpage(){
 
 	genericIdPass(getQueryVariable("id"), "ProjectID");
 	GetTheProject();
