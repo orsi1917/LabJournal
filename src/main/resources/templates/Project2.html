@@ -53,7 +53,7 @@ function loadpage(){
 			<h4>Comment: </h4><p id="ProjectComment"></p>
 		<table>
 			<tr>
-				<td>	
+				<td style="vertical-align:top">	
 					<input type="text" id="SampleID" name="ProjectID" value="selectsample" disabled size="6" hidden="true">
 					<button type="button" id="AddNewSample" onclick="checkCheckBox('AddSampleCheckBox')">Create new sample </button>
 					<button type="button" id="ModifySample" onclick="GetOneSample()">Modify Sample</button>
@@ -116,8 +116,8 @@ function loadpage(){
 					</table>
 					</div>
 				</td>
-				<td>
-				<input type="text" id="ExperimentID" name="ExperimentID"   hidden size="6" >
+				<td style="vertical-align:top">
+				<input type="text" id="ExperimentID" name="ExperimentID" hidden size="6" >
 				<button type="button" id="AddNewExperiment" onclick="checkCheckBox('AddExperimentCheckBox')">Create experiment </button>
 				<button type="button" id="ModifyExperiment" onclick="GetOneExperiment()">Modify Experiment</button>
 				<table id="ExperimentsByProjectTable" border=1 class="table1"></table>
