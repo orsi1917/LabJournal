@@ -89,9 +89,23 @@ function loadpage(){
 								<td><br><textarea rows="4" cols="40"  id="sampledescription" name="Description" ></textarea></td></tr>
 					</table>
 					</div>
+					<input class="toggle-box" id="AddExperimentCheckBox" type="checkbox">
+					<div id="AddExperiment" align="center" >
+					<button type="button" id="NewExampleCreator" onclick="AddNewExperiment2() ">Add Experiment</button>
+					<button type="button" id="CancelNewSExperiment" onclick="cancelUpdate('AddExperimentCheckBox')">Cancel</button>
+						<table>
+							<tr>
+								<td>Name:</td>
+								<td><input type="text" id="ExperimentName" name="Name"	value="Experiment name"></td></tr>
+							<tr>
+								<td>Description:</td>
+								<td><br><textarea rows="4" cols="40"  id="ExperimentDescription" name="ExperimentDescription" ></textarea></td></tr>
+					</table>
+					</div>
 				</td>
 				<td>
 				<input type="text" id="ExperimentID" name="ProjectID" value="selectsample" disabled size="6" >
+				<button type="button" id="AddNewSample" onclick="checkCheckBox('AddExperimentCheckBox')">Create new experiment </button>
 				<table id="ExperimentsByProjectTable" border=1 class="table1"></table>
 				</td>
 				

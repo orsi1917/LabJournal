@@ -134,6 +134,21 @@ function GetTheProject() {
 	}
 	/* ---------------------------------------- Experiment Handling -------------------------------------------------
 	 --------------------------------------------------------------------------------------------------------- */
+	 function AddNewExperiment2() {
+		 var name = document.getElementById("ExperimentName").value;
+			var id = document.getElementById("ProjectID").value;
+			var description = document.getElementById("ExperimentDescription").value;
+			var experiment = '{"name":"' + name + '", "description" : "'
+					+ description + '" }';
+			console.log(experiment);
+
+			postRequest(experiment ,"/addExperimentToProject/" + id, AddNewExperimentCallback2);
+		}
+	function AddNewExperimentCallback2(responseText) {
+		uncheckCheckBox("AddExperimentCheckBox");
+		FindExperimentByProject2();
+		}
+	
 	function FindExperimentByProject2() {
 		var xhttp = new XMLHttpRequest();
 		var id = document.getElementById("ProjectID").value;
