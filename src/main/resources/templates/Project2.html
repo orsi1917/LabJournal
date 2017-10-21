@@ -10,6 +10,7 @@ window.onload = function() {
 	genericIdPass(getQueryVariable("id"), "ProjectID");
 	GetTheProject();
 	FindSampleByProject2();
+	FindExperimentByProject2();
 	
 };
 </script>
@@ -45,8 +46,8 @@ window.onload = function() {
 		<table>
 			<tr>
 				<td>	
-					<input type="text" id="SampleID" name="ProjectID" value="selectsample" disabled size="6">
-					<button type="button" id="AddNewSample" onclick="checkCheckBox('AddSampleCheckBox')">Add sample </button>
+					<input type="text" id="SampleID" name="ProjectID" value="selectsample" disabled size="6" hidden="true">
+					<button type="button" id="AddNewSample" onclick="checkCheckBox('AddSampleCheckBox')">Create new sample </button>
 					<button type="button" id="ModifySample" onclick="GetOneSample()">Modify Sample</button>
 					<button type="button" id="SampleDeleter" onclick="Sampledeleter2()">delete sample</button>
 					<table id="SamplesByProjectTable" border=1 class="table1"></table>	
@@ -57,27 +58,33 @@ window.onload = function() {
 					<Table>
 						<tr>
 							<td>Name:</td>
-							<td><input type="text" id="SampleNameChange" name="Name"	value="NewProjectname"></td>
+							<td><input type="text" id="SampleNameChange" name="Name" value="NewSamplename"></td>
 						</tr>
 						<tr>
 							<td>Comment:</td>
 							<td><textarea rows="10" cols="30"  id="SampleDescriptionChange" name="Comment" ></textarea></td>
 						</tr>
 						<button type="button" id="UpdateSampleButton" onclick="UpdateSample()" >Update Sample</button>
+						<button type="button" id="CancelSampleUpdate" onclick="cancelUpdate('UpdateSampleCheckBox')">Cancel</button>
 					</table>
 					</div>
 					<input class="toggle-box" id="AddSampleCheckBox" type="checkbox">
 					<div id="AddSample" align="center" >
-					<button type="button" id="NewSampleCreator" onclick="AddNewSampleToProject2() ">Add sample to selected Project</button>
+					<button type="button" id="NewSampleCreator" onclick="AddNewSampleToProject2() ">Add Sample</button>
+					<button type="button" id="CancelNewSample" onclick="cancelUpdate('AddSampleCheckBox')">Cancel</button>
 						<table>
 							<tr>
 								<td>Name:</td>
 								<td><input type="text" id="samplename" name="Name"	value="samplename"></td></tr>
 							<tr>
 								<td>Comment:</td>
-								<td><br><textarea rows="4" cols="45"  id="sampledescription" name="Description" value="description" size="15"></textarea></td></tr>
+								<td><br><textarea rows="4" cols="40"  id="sampledescription" name="Description" ></textarea></td></tr>
 					</table>
 					</div>
+				</td>
+				<td>
+				<input type="text" id="ExperimentID" name="ProjectID" value="selectsample" disabled size="6" >
+				<table id="ExperimentsByProjectTable" border=1 class="table1"></table>
 				</td>
 				
 			</tr>	
