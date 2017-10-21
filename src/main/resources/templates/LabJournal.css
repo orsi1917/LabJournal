@@ -95,7 +95,7 @@ table.table1 {
     padding: 5px;
 }
 
-table.table1 tr:nth-child(even){background-color: #c9ddff}
+table.table1 tr:nth-child(even){background-color: #e0e8ff}
 table.table1 tr:nth-child(odd){background-color: #e0e8ff}
 
 table.table1 th {

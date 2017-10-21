@@ -60,7 +60,21 @@ function GetTheProject() {
 		document.getElementById("SamplesByProjectTable").innerHTML = document
 				.getElementById("SamplesByProjectTable").innerHTML
 				+ "<Table><tr><th>ID</th><th>Name</th></tr>";
-		for (i = 0; i < samples.length; i++) {
+		if (samples.length != 0){
+			genericIdPass(samples[0].id, 'SampleID');
+			document.getElementById("SamplesByProjectTable").innerHTML = document
+			.getElementById("SamplesByProjectTable").innerHTML
+			+ "<tr><td>"
+			+ samples[0].id
+			+ "</td><td>"
+			+ samples[0].name
+			+"</td><td>"
+			+ "<input id='"
+			+ samples[0].id
+			+ "' type='radio' checked name='SamplesListTableselector' onclick=\"genericIdPass(this.id, 'SampleID');\">"
+			+ "</td></tr>"
+		}
+		for (i = 1; i < samples.length; i++) {
 			document.getElementById("SamplesByProjectTable").innerHTML = document
 					.getElementById("SamplesByProjectTable").innerHTML
 					+ "<tr><td>"
@@ -133,11 +147,24 @@ function GetTheProject() {
 	}
 
 	function ExperimentsByProjectToTable2(experiments) {
-		var id = document.getElementById("ProjectID").value;
-		document.getElementById("ExperimentsByProjectTable").innerHTML = document
+			document.getElementById("ExperimentsByProjectTable").innerHTML = document
+			.getElementById("ExperimentsByProjectTable").innerHTML
+			+ "<Table><tr><th>ID</th><th>Name</th></tr>";
+		if ( experiments.length != 0){ 
+			genericIdPass(experiments[0].id, 'ExperimentID');
+			document.getElementById("ExperimentsByProjectTable").innerHTML = document
 				.getElementById("ExperimentsByProjectTable").innerHTML
-				+ "<Table><tr><th>ID</th><th>Name</th></tr>";
-		for (i = 0; i < experiments.length; i++) {
+				+ "<tr><td>"
+				+ experiments[0].id
+				+ "</td><td>"
+				+ experiments[0].name
+				+ "</td><td>"
+				+ "<input id='"
+				+ experiments[0].id
+				+ "' type='radio' checked name='ExperimentsListTableselector' onclick=\"genericIdPass(this.id, 'ExperimentID');\">"
+				+ "</td></tr>";
+		}
+		for (i = 1; i < experiments.length; i++) {
 			document.getElementById("ExperimentsByProjectTable").innerHTML = document
 					.getElementById("ExperimentsByProjectTable").innerHTML
 					+ "<tr><td>"
