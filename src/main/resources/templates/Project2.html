@@ -35,6 +35,8 @@ window.onload = function() {
 		</nav>
 
 		<article>
+			
+
 			<button type="button" id="NewProjectCreator" onclick='GetTheProject()'>Test Button</button>
 			<input type="text" id="ProjectID" name="ProjectID" value="select project" disabled size="15">
 	
@@ -44,12 +46,13 @@ window.onload = function() {
 			<tr>
 				<td>	
 					<input type="text" id="SampleID" name="ProjectID" value="selectsample" disabled size="6">
+					<button type="button" id="AddNewSample" onclick="checkCheckBox('AddSampleCheckBox')">Add sample </button>
 					<button type="button" id="ModifySample" onclick="GetOneSample()">Modify Sample</button>
 					<button type="button" id="SampleDeleter" onclick="Sampledeleter2()">delete sample</button>
 					<table id="SamplesByProjectTable" border=1 class="table1"></table>	
 				</td>
 				<td>
-					<div id="UpdateSample" align="center" valign="middle">
+					<div id="UpdateSample" align="center" >
 					<Table>
 						<tr>
 							<td>Name:</td>
@@ -57,11 +60,12 @@ window.onload = function() {
 						</tr>
 						<tr>
 							<td>Comment:</td>
-							<td><textarea rows="10" cols="30"  type="text" id="SampleDescriptionChange" name="Comment" value="NewComments" size="15"></textarea></td>
+							<td><textarea rows="10" cols="30"  id="SampleDescriptionChange" name="Comment" ></textarea></td>
 						</tr>
 						<button type="button" id="UpdateSampleButton" onclick="UpdateSample()" >Update Sample</button>
 					</table>
 					</div>
+					<input class="toggle-box" id="AddSampleCheckBox" type="checkbox">
 					<div id="AddSample" align="center" valign="middle">
 					<button type="button" id="NewSampleCreator" onclick="AddNewSampleToProject2() ">Add sample to selected Project</button>
 						<table>

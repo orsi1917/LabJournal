@@ -5,7 +5,13 @@ function showArea(field){
 	}
 	function hideArea(field){
 		document.getElementById(field).style.visibility = "hidden";
-	}	
+	}
+function checkCheckBox(id){
+	document.getElementById(id).checked=true;
+}
+function uncheckCheckBox(id){
+	document.getElementById(id).checked=false;
+}
 
 /* ---------------------------------------- Project Handling -------------------------------------------------
 	 ---------------------------------------------------------------------------------------------------------*/	
@@ -33,6 +39,7 @@ function GetTheProject() {
 			postRequest(sample ,"/addSampleToProject/" + id, AddNewSampleToProjectCallback2);
 		}
 	function AddNewSampleToProjectCallback2(responseText) {
+		uncheckCheckBox("AddSampleCheckBox");
 		FindSampleByProject2();
 		}
 	

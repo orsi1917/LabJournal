@@ -128,3 +128,16 @@ input[type=text] {
 input[type=text]:focus {
     background-color: #c9ddff;
 }
+.toggle-box {
+display: none;
+}
+
+.toggle-box  + div {
+  display: none;
+  margin-bottom: 10px;
+}
+
+.toggle-box:checked + div {
+  display: block;
+}
+
