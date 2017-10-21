@@ -78,7 +78,7 @@ function GetTheProject() {
 				+ "</table>";		
 	}
 	function GetOneSample() {
-		showArea("UpdateSample");
+		checkCheckBox("UpdateSampleCheckBox");
 		RadioEnabler();
 		var xhttp = new XMLHttpRequest();
 		var id = document.getElementById("SampleID").value;
@@ -102,7 +102,7 @@ function GetTheProject() {
 	function UpdateSampleCallback(responseText) {
 		FindSampleByProject2();
 		RadioEnabler();
-		hideArea("UpdateSample");
+		uncheckCheckBox("UpdateSampleCheckBox");
 		
 	}
 	function Sampledeleter2() {

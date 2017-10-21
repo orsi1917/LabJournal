@@ -10,7 +10,7 @@ window.onload = function() {
 	genericIdPass(getQueryVariable("id"), "ProjectID");
 	GetTheProject();
 	FindSampleByProject2();
-	hideArea("UpdateSample");
+	
 };
 </script>
 
@@ -52,6 +52,7 @@ window.onload = function() {
 					<table id="SamplesByProjectTable" border=1 class="table1"></table>	
 				</td>
 				<td>
+					<input class="toggle-box" id="UpdateSampleCheckBox" type="checkbox">
 					<div id="UpdateSample" align="center" >
 					<Table>
 						<tr>
@@ -66,7 +67,7 @@ window.onload = function() {
 					</table>
 					</div>
 					<input class="toggle-box" id="AddSampleCheckBox" type="checkbox">
-					<div id="AddSample" align="center" valign="middle">
+					<div id="AddSample" align="center" >
 					<button type="button" id="NewSampleCreator" onclick="AddNewSampleToProject2() ">Add sample to selected Project</button>
 						<table>
 							<tr>
