@@ -24,6 +24,18 @@ function GetTheProject() {
 	}
 	/* ---------------------------------------- Sample Handling -------------------------------------------------
 	 ---------------------------------------------------------------------------------------------------------*/
+	 function AddNewSampleToProject2() {
+		 var ent = document.getElementById("samplename").value;
+			var ent2 = document.getElementById("sampledescription").value;
+			var id = document.getElementById("ProjectID").value;
+			var sample = '{"name":"' + ent + '", "description" : "' + ent2 + '" }';
+			console.log(sample);
+			postRequest(sample ,"/addSampleToProject/" + id, AddNewSampleToProjectCallback2);
+		}
+	function AddNewSampleToProjectCallback2(responseText) {
+		FindSampleByProject2();
+		}
+	
 	function FindSampleByProject2() {
 		var xhttp = new XMLHttpRequest();
 		var id = document.getElementById("ProjectID").value;
@@ -60,6 +72,7 @@ function GetTheProject() {
 	}
 	function GetOneSample() {
 		showArea("UpdateSample");
+		RadioEnabler();
 		var xhttp = new XMLHttpRequest();
 		var id = document.getElementById("SampleID").value;
 		getRequest(null, "/findSample/" + id, GetOneSampleCallback);

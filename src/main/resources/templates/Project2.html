@@ -62,6 +62,17 @@ window.onload = function() {
 						<button type="button" id="UpdateSampleButton" onclick="UpdateSample()" >Update Sample</button>
 					</table>
 					</div>
+					<div id="AddSample" align="center" valign="middle">
+					<button type="button" id="NewSampleCreator" onclick="AddNewSampleToProject2() ">Add sample to selected Project</button>
+						<table>
+							<tr>
+								<td>Name:</td>
+								<td><input type="text" id="samplename" name="Name"	value="samplename"></td></tr>
+							<tr>
+								<td>Comment:</td>
+								<td><br><textarea rows="4" cols="45"  id="sampledescription" name="Description" value="description" size="15"></textarea></td></tr>
+					</table>
+					</div>
 				</td>
 				
 			</tr>	
