@@ -12,7 +12,22 @@ function checkCheckBox(id){
 function uncheckCheckBox(id){
 	document.getElementById(id).checked=false;
 }
-
+//function DisableButtonsExcept(name1, name2) {
+//	var inputs = document.getElementsByTagName("button");
+//	for (var i = 0; i < inputs.length; i++) {
+//		if (inputs[i].id != name1 && inputs[i].id != name2 ){
+//		inputs[i].disabled = 'true';
+//		}
+//	}
+//}
+//		
+//function ButtonEnabler() {
+//	var inputs = document.getElementsByTagName("button");
+//	for (var i = 0; i < inputs.length; i++) {
+//		inputs[i].disabled = 'false';
+//	}
+//	
+//}
 /* ---------------------------------------- Project Handling -------------------------------------------------
 	 ---------------------------------------------------------------------------------------------------------*/	
 function GetTheProject() {
@@ -31,7 +46,7 @@ function GetTheProject() {
 	/* ---------------------------------------- Sample Handling -------------------------------------------------
 	 ---------------------------------------------------------------------------------------------------------*/
 	 function AddNewSampleToProject2() {
-		 var ent = document.getElementById("samplename").value;
+		 	var ent = document.getElementById("samplename").value;
 			var ent2 = document.getElementById("sampledescription").value;
 			var id = document.getElementById("ProjectID").value;
 			var sample = '{"name":"' + ent + '", "description" : "' + ent2 + '" }';
@@ -41,7 +56,7 @@ function GetTheProject() {
 	function AddNewSampleToProjectCallback2(responseText) {
 		uncheckCheckBox("AddSampleCheckBox");
 		FindSampleByProject2();
-		}
+			}
 	
 	function FindSampleByProject2() {
 		var xhttp = new XMLHttpRequest();
@@ -93,6 +108,7 @@ function GetTheProject() {
 	}
 	function GetOneSample() {
 		checkCheckBox("UpdateSampleCheckBox");
+		// DisableButtonsExcept("UpdateSampleButton", "CancelSampleUpdate");
 		RadioDisabler();
 		var xhttp = new XMLHttpRequest();
 		var id = document.getElementById("SampleID").value;
@@ -115,22 +131,26 @@ function GetTheProject() {
 	}
 	function UpdateSampleCallback(responseText) {
 		RadioEnabler();
+		//ButtonEnabler();
 		loadpage();
 		uncheckCheckBox("UpdateSampleCheckBox");
 		
 	}
 	function cancelUpdate(id){
 		RadioEnabler();
+	//	ButtonEnabler();
 		loadpage();
 		uncheckCheckBox(id); 
 		
 	}
 	function Sampledeleter2() {
+		uncheckCheckBox("UpdateSampleCheckBox")
+		uncheckCheckBox("AddSampleCheckBox")
 		var id = document.getElementById("SampleID").value;
 		deleteRequest(null, "/sample/" + id, SampledeleterCallback2);
 	}
 	function SampledeleterCallback2(responseText) {
-		FindSampleByProject2();
+		loadpage();
 	}
 	/* ---------------------------------------- Experiment Handling -------------------------------------------------
 	 --------------------------------------------------------------------------------------------------------- */
@@ -225,10 +245,12 @@ function GetTheProject() {
 		
 	}
 	function Experimentdeleter2() {
+		uncheckCheckBox("ModifyExperimentCheckBox")
+		uncheckCheckBox("AddExperimentCheckBox")
 		var id = document.getElementById("ExperimentID").value;
 		deleteRequest(null, "/experiment/" + id, ExperimentdeleterCallback2);
 	}
 
 	function ExperimentdeleterCallback2(responseText) {
-		FindExperimentByProject2();
+		loadpage();
 	}

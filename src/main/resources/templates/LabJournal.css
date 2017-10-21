@@ -108,6 +108,7 @@ table.table1 th {
     color: white;
 
 }
+
 hr { 
   border: 0; 
   height: 3px; 
@@ -145,4 +146,7 @@ display: none;
 }
 .toleft {
     float: left;
+    
 }
+.btn {
+}	
