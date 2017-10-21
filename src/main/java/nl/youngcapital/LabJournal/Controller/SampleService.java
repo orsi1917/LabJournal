@@ -35,7 +35,10 @@ public class SampleService {
 		sampleRepository.updateSample(name, description, id);
 		
 	}
-
+	public void updateExperiment(String name, String description, long id) {
+		experimentRepository.updateExperiment(name, description, id);
+		
+	}
 	
 	public Sample saveSample(Sample sample) {
 		sampleRepository.save(sample);

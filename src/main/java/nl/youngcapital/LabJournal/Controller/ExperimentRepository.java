@@ -24,5 +24,10 @@ public interface ExperimentRepository extends CrudRepository<Experiment, Long>{
 //@Query("SELECT id, name, description, project FROM Sample s where s.getProject().getId()=?")
 	@Query("SELECT e FROM Experiment e where e.project.id=?")
 	public List<Experiment> projectfiltersample(long id);
+	
+	@Transactional
+	@Modifying
+	@Query("UPDATE Experiment SET name = ?, description=?  where id = ?")
+	public void updateExperiment(String name,  String description, long id);
 
 }

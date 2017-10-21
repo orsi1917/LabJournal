@@ -93,7 +93,7 @@ function GetTheProject() {
 	}
 	function GetOneSample() {
 		checkCheckBox("UpdateSampleCheckBox");
-		RadioEnabler();
+		RadioDisabler();
 		var xhttp = new XMLHttpRequest();
 		var id = document.getElementById("SampleID").value;
 		getRequest(null, "/findSample/" + id, GetOneSampleCallback);
@@ -195,4 +195,32 @@ function GetTheProject() {
 		document.getElementById("ExperimentsByProjectTable").innerHTML = document
 				.getElementById("ExperimentsByProjectTable").innerHTML
 				+ "</table>";
+	}
+	function GetOneExperiment() {
+		checkCheckBox("ModifyExperimentCheckBox");
+		RadioDisabler();
+		var xhttp = new XMLHttpRequest();
+		var id = document.getElementById("ExperimentID").value;
+		getRequest(null, "/findExperiment/" + id, GetOneExperimentCallback);
+	}
+
+	function GetOneExperimentCallback(responseText) {
+		console.log(responseText);
+		var experiment = JSON.parse(responseText);
+		document.getElementById("NewExperimentName").value = experiment.name;
+		document.getElementById("NewExperimentDescription").value = experiment.description;
+		
+	}
+	function UpdateExperiment() {
+		var ent = document.getElementById("NewExperimentName").value;
+		var ent2 = document.getElementById("NewExperimentDescription").value;
+		var id = document.getElementById("ExperimentID").value;
+		var experiment = '{"name":"' + ent + '", "description" : "' + ent2 + '"}';
+			postRequest(experiment ,"/updateExperiment/"+ id, UpdateExperimentCallback);
+	}
+	function UpdateExperimentCallback(responseText) {
+		RadioEnabler();
+		loadpage();
+		uncheckCheckBox("ModifyExperimentCheckBox");
+		
 	}

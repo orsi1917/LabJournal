@@ -50,9 +50,9 @@ public class SampleEindpoint {
 	 public List<Sample> filterfindAll(@RequestBody long id) {
 		 return sampleService.projectfilterSample(id);
 	  }
+	 
 	 @RequestMapping(value = "/findSample/{id}", method = RequestMethod.GET)
-	 public Sample findOneSample(@PathVariable long id) {
-		
+	 public Sample findOneSample(@PathVariable long id) {		
 		 return (Sample)sampleRepository.findOne(id);
 	 }
 	 @RequestMapping(value = "/updateSample/{id}", method = RequestMethod.POST)

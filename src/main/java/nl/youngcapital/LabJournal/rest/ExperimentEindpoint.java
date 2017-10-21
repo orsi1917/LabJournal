@@ -62,5 +62,15 @@ public class ExperimentEindpoint {
 	  public void updatesample(@PathVariable  long id) {
 	    experimentRepository.delete(id);
 	  } 
+	 @RequestMapping(value = "/findExperiment/{id}", method = RequestMethod.GET)
+	 public Experiment findOneExperiment(@PathVariable long id) {
+		
+		 return (Experiment)experimentRepository.findOne(id);
+	 }
+	 @RequestMapping(value = "/updateExperiment/{id}", method = RequestMethod.POST)
+	 public void updateSample(@RequestBody Experiment experiment, @PathVariable long id) {
+		sampleService.updateExperiment(experiment.getName(), experiment.getDescription(), id);
+			 
+	 }
 }
 
