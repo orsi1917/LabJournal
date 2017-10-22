@@ -88,7 +88,7 @@ public class SampleEindpoint {
 				 break;
 			 }
 		 }	 
-		 sample.addExperiment(experiment);
+		 
 		 sampleService.saveSample(sample);
 	 }
 	 
