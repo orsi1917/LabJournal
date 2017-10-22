@@ -18,8 +18,8 @@ public class Project {
 	
 	
 	private String comment;
-	@OneToMany//(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	List <Experiment> experiment;
+	@OneToMany (mappedBy = "project")//(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	List <Experiment> experiment= new ArrayList();
 
 	private String name;
 	@OneToMany(mappedBy = "project") //, cascade = CascadeType.ALL, fetch = FetchType.LAZY)

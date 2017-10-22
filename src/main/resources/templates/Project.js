@@ -67,7 +67,6 @@ function GetTheProject() {
 	function FindSampleByProjectCallback2(responseText) {
 		document.getElementById("SamplesByProjectTable").innerHTML = "";				
 		var samples = JSON.parse(responseText);
-		console.log(this.responseText);
 		SamplesByProjectToTable2(samples);
 	}
 
@@ -154,6 +153,18 @@ function GetTheProject() {
 		uncheckCheckBox(id); 
 		
 	}
+	function CoupleSampleAndExperiment() {
+		var xhttp = new XMLHttpRequest();
+		var sid = document.getElementById("SampleID").value;
+		var eid = document.getElementById("SampleID").value;
+		getRequest(null, "/addExperimentToSample/" + sid + "/" + eid, CoupleSampleAndExperimentCallback);
+	}
+
+	function CoupleSampleAndExperimentCallback(responseText) {
+		console.log("done");
+	
+		
+	}
 	function Sampledeleter2() {
 		uncheckCheckBox("UpdateSampleCheckBox")
 		uncheckCheckBox("AddSampleCheckBox")
@@ -187,7 +198,6 @@ function GetTheProject() {
 	}
 	function FindExperimentByProjectCallback2(responseText) {
 		document.getElementById("ExperimentsByProjectTable").innerHTML = "";
-		console.log(this.responseText);
 		var experiments = JSON.parse(responseText);
 		ExperimentsByProjectToTable2(experiments);
 	}

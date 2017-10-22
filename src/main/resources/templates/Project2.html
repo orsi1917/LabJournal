@@ -46,7 +46,7 @@ function loadpage(){
 		<article>
 			
 
-			<button class="btn" type="button" id="NewProjectCreator" onclick=''>Test Button</button>
+			<button class="btn" type="button" id="NewProjectCreator" onclick='CoupleSampleAndExperiment()'>Test Button</button>
 			<input type="text" id="ProjectID" name="ProjectID" value="select project" disabled size="15">
 	
 			<h2>Project: <label id="ProjectName"></label></h2>	
@@ -56,14 +56,15 @@ function loadpage(){
 			<tr>
 				<td style="vertical-align:top">	
 					<div class ="toleft" >
-						<input type="text" id="SampleID" name="ProjectID" value="selectsample" disabled size="6" hidden="true">
+						<input type="text" id="SampleID" name="SampleID" value="selectsample" disabled size="6" hidden="true">
 						<button type="button" id="AddNewSample" onclick="checkCheckBox('AddSampleCheckBox')">Create new sample </button>
 						<button type="button" id="ModifySample" onclick="GetOneSample()">Modify Sample</button>
 						<button type="button" id="SampleDeleter" onclick="Sampledeleter2()">delete sample</button>
 						<table id="SamplesByProjectTable"  border=1 class="table1"></table>	
 					</div>
 				</td>
-				<td style="vertical-align:top; min-width:150px;">	
+				<td style="vertical-align:top; min-width:150px;">
+				<button type="button" id="CoupleSampleAndExperiment" onclick="CoupleSampleAndExperiment()">Couple Sample and Experiment</button>							
 					<input class="toggle-box" id="UpdateSampleCheckBox" type="checkbox">
 					<div id="UpdateSample" align="center" >
 					<Table>

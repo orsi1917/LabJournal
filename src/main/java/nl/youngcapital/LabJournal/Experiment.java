@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -25,7 +26,11 @@ public class Experiment { //xyz
 	@ManyToOne
 	@JoinColumn(name = "project_id")
 	private Project project;
-	@ManyToMany
+	@ManyToMany 
+	@JoinTable(
+		      name="Sample_Experiment",
+		      joinColumns=@JoinColumn(name="experiments_id", referencedColumnName="id"),
+		      inverseJoinColumns=@JoinColumn(name="samples_id", referencedColumnName="id")) 
 	List <Sample> samples = new ArrayList();
 	public Experiment() {
 		super();
