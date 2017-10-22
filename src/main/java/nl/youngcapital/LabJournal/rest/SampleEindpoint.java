@@ -67,12 +67,12 @@ public class SampleEindpoint {
 		 sampleService.saveSample(sample);
 		 Experiment experiment = (Experiment)experimentRepository.findOne(eid);
 		 sampleService.saveExperiment(experiment);
-//		 ArrayList <Experiment> list = (ArrayList<Experiment>) sample.getExperiments();
-//		 for (int i=0; i<list.size(); i++) {			
-//			 if ( ( list.get(i)).getId() ==eid ) {
-//				 return;
-//			 }
-//		 }	 
+		 
+		 for (int i=0; i<(sample.getExperiments()).size(); i++) {			
+			 if ( ( (sample.getExperiments()).get(i)).getId() ==eid ) {
+				 return;
+			 }
+		 }	 
 		 sample.addExperiment(experiment);
 		 sampleService.saveSample(sample);
 	 }
