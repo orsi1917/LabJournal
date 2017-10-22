@@ -126,3 +126,12 @@ function GetTheSample() {
 		loadpage();
 		uncheckCheckBox("UpdateSubSampleCheckBox");
 	}
+	function SubSampledeleter2() {
+		uncheckCheckBox("UpdateSubSampleCheckBox")
+		uncheckCheckBox("AddSubSampleCheckBox")
+		var id = document.getElementById("SubSampleID").value;
+		deleteRequest(null, "/subsample/" + id, SubSampledeleterCallback2);
+	}
+	function SubSampledeleterCallback2(responseText) {
+		loadpage();
+	}

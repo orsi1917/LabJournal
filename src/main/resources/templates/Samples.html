@@ -60,7 +60,7 @@ function loadpage(){
 						<input type="text" id="SubSampleID" name="SubSampleID" value="selectsubsample" disabled size="6" hidden="true">
 						<button type="button" id="AddNewSubSample" onclick="checkCheckBox('AddSubSampleCheckBox')">Create new subsample </button>
 						<button type="button" id="ModifySubSample" onclick="GetOneSubSample()">Modify Subsample</button>
-						<button type="button" id="SubSampleDeleter" onclick="Sampledeleter2()">Delete Subsample</button>
+						<button type="button" id="SubSampleDeleter" onclick="SubSampledeleter2()">Delete Subsample</button>
 						<table id="SubSamplesBySampleTable" border=1 class="table1"></table>	
 					</div>
 				</td>
@@ -83,7 +83,7 @@ function loadpage(){
 						<tr><td>Unit:</td>
 								<td><input type="text" id="NewUnit" name="unit" value="mg" size="15"></td></tr>
 						<button type="button" id="UpdateSampleButton" onclick="UpdateSubSample()" >Update Sample</button>
-						<button type="button" id="CancelSampleUpdate" onclick="cancelUpdate('UpdateSampleCheckBox')">Cancel</button>
+						<button type="button" id="CancelSampleUpdate" onclick="cancelUpdate('UpdateSubSampleCheckBox')">Cancel</button>
 					</table>
 					</div>
 					<input class="toggle-box" id="AddSubSampleCheckBox" type="checkbox">
