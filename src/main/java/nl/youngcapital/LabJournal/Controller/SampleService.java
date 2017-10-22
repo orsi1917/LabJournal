@@ -62,4 +62,8 @@ public class SampleService {
 	public List<SubSample> sampleFilterSubSample(long id) {
 		return subSampleRepository.sampleFilterSubSample(id);
 	}
+	public void updateSubSample(String name, String description, String danger, int amount, String unit, long id) {
+		subSampleRepository.updateSubSample(name, description, danger, amount, unit, id);
+		
+	}
 }

@@ -55,9 +55,16 @@ public class SubSampleEindpoint {
 	 @RequestMapping(value = "/samplefiltersubsamplelist", method = RequestMethod.POST)
 	 public List<SubSample> filterfindAll(@RequestBody long id) {
 		 return sampleService.sampleFilterSubSample(id);
-
 	  }
-	 
+	 @RequestMapping(value = "/findSubSample/{id}", method = RequestMethod.GET)
+	 public SubSample findOneSubSample(@PathVariable long id) {		
+		 return (SubSample)subSampleRepository.findOne(id);
+	 }
+	 @RequestMapping(value = "/updateSubSample/{id}", method = RequestMethod.POST)
+	 public void updateSample(@RequestBody SubSample subsample, @PathVariable long id) {
+		 sampleService.updateSubSample(subsample.getName(), subsample.getDescription(), subsample.getDanger(), subsample.getAmount(), subsample.getUnit(), id);
+			 
+	 }
 	 @ResponseBody
 	  @RequestMapping(value = "/subsample/{id}", method = RequestMethod.DELETE)
 	  public void updatesample(@PathVariable  long id) {
