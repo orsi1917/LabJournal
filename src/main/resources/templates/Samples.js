@@ -11,6 +11,7 @@ function GetTheSample() {
 		var sample = JSON.parse(responseText);
 		document.getElementById("SampleName").innerHTML = sample.name;
 		document.getElementById("SampleDescription").innerHTML = sample.description;
+		document.getElementById("ExperimentsByProjectTable").innerHTML = "";
 		ExperimentsByProjectToTable2(sample.experiments);
 		
 	}
@@ -147,5 +148,6 @@ function GetTheSample() {
 	}
 
 	function RemoveExperimentCallback(responseText) {
+		loadpage();
 	
 	}

@@ -203,6 +203,7 @@ function GetTheProject() {
 	}
 
 	function ExperimentsByProjectToTable2(experiments) {
+		var id = document.getElementById("ProjectID").value;
 			document.getElementById("ExperimentsByProjectTable").innerHTML = document
 			.getElementById("ExperimentsByProjectTable").innerHTML
 			+ "<Table><tr><th>ID</th><th>Name</th></tr>";
@@ -213,6 +214,11 @@ function GetTheProject() {
 				+ "<tr><td>"
 				+ experiments[0].id
 				+ "</td><td>"
+				+ "<a href='Experiment.html?id="
+				+ id
+				+"&experiment_id="
+				+ experiments[0].id
+				+ "'>"
 				+ experiments[0].name
 				+ "</td><td>"
 				+ "<input id='"
@@ -226,6 +232,11 @@ function GetTheProject() {
 					+ "<tr><td>"
 					+ experiments[i].id
 					+ "</td><td>"
+					+ "<a href='Experiment.html?id="
+					+ id
+					+"&experiment_id="
+					+ experiments[i].id
+					+ "'>"
 					+ experiments[i].name
 					+ "</td><td>"
 					+ "<input id='"
