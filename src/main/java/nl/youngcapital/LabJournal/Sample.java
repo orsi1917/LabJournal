@@ -20,8 +20,8 @@ public class Sample {
 	@ManyToMany 
 	@JoinTable(
 		      name="Sample_Experiment",
-		      joinColumns=@JoinColumn(name="samples_id", referencedColumnName="id"),
-		      inverseJoinColumns=@JoinColumn(name="experiments_id", referencedColumnName="id"))
+		      joinColumns=@JoinColumn(name="sample_id", referencedColumnName="id"),
+		      inverseJoinColumns=@JoinColumn(name="experiment_id", referencedColumnName="id"))
 	List <Experiment> experiments = new ArrayList();
 	public Sample(String name, String description) {
 		super();
@@ -49,6 +49,9 @@ public class Sample {
 	}
 	public void addExperiment (Experiment experiment) {
 		experiments.add(experiment);
+	}
+	public void removeExperiment (int i) {
+		experiments.remove(i);
 	}
 	public Long getId() {
 		return id;

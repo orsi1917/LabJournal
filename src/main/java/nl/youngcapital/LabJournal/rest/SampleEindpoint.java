@@ -76,6 +76,21 @@ public class SampleEindpoint {
 		 sample.addExperiment(experiment);
 		 sampleService.saveSample(sample);
 	 }
+	 @RequestMapping(value = "/removeExperimentFroomSample/{sid}/{eid}", method = RequestMethod.GET)
+	 public void removeExperimentFroomSample(@PathVariable long sid, @PathVariable long eid) {
+		 Sample sample = (Sample)sampleRepository.findOne(sid);
+		 sampleService.saveSample(sample);
+		 Experiment experiment = (Experiment)experimentRepository.findOne(eid);
+		 sampleService.saveExperiment(experiment);		 
+		 for (int i=0; i<(sample.getExperiments()).size(); i++) {			
+			 if ( ( (sample.getExperiments()).get(i)).getId() ==eid ) {
+				 sample.removeExperiment(i);
+				 break;
+			 }
+		 }	 
+		 sample.addExperiment(experiment);
+		 sampleService.saveSample(sample);
+	 }
 	 
 	 @ResponseBody
 	  @RequestMapping(value = "/sample/{id}", method = RequestMethod.DELETE)

@@ -29,8 +29,8 @@ public class Experiment { //xyz
 	@ManyToMany 
 	@JoinTable(
 		      name="Sample_Experiment",
-		      joinColumns=@JoinColumn(name="experiments_id", referencedColumnName="id"),
-		      inverseJoinColumns=@JoinColumn(name="samples_id", referencedColumnName="id")) 
+		      joinColumns=@JoinColumn(name="experiment_id", referencedColumnName="id"),
+		      inverseJoinColumns=@JoinColumn(name="sample_id", referencedColumnName="id")) 
 	List <Sample> samples = new ArrayList();
 	public Experiment() {
 		super();

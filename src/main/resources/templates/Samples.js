@@ -11,6 +11,7 @@ function GetTheSample() {
 		var sample = JSON.parse(responseText);
 		document.getElementById("SampleName").innerHTML = sample.name;
 		document.getElementById("SampleDescription").innerHTML = sample.description;
+		ExperimentsByProjectToTable2(sample.experiments);
 		
 	}
 	/* ---------------------------------------- SubSample Handling -------------------------------------------------
@@ -134,4 +135,17 @@ function GetTheSample() {
 	}
 	function SubSampledeleterCallback2(responseText) {
 		loadpage();
+	}
+	/* ---------------------------------------- Experiment Handling -------------------------------------------------
+	 --------------------------------------------------------------------------------------------------------- */
+	
+	function RemoveExperiment() {
+		var xhttp = new XMLHttpRequest();
+		var sid = document.getElementById("SampleID").value;
+		var eid = document.getElementById("ExperimentID").value;
+		getRequest(null, "/removeExperimentFroomSample/" + sid + "/"+ eid, RemoveExperimentCallback);
+	}
+
+	function RemoveExperimentCallback(responseText) {
+	
 	}
