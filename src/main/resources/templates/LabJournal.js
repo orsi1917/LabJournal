@@ -15,7 +15,7 @@
 		ListOperations();
 	}
 	 
-	 //disables radio buttons
+	 //disables  buttons
 function RadioDisabler() {
 	var inputs = document.querySelectorAll('input[type="radio"]');
 	for (var i = 0; i < inputs.length; i++) {

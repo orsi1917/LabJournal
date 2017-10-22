@@ -72,6 +72,7 @@ function GetTheProject() {
 	}
 
 	function SamplesByProjectToTable2(samples) {
+		var id = document.getElementById("ProjectID").value;
 		document.getElementById("SamplesByProjectTable").innerHTML = document
 				.getElementById("SamplesByProjectTable").innerHTML
 				+ "<Table><tr><th>ID</th><th>Name</th></tr>";
@@ -82,6 +83,11 @@ function GetTheProject() {
 			+ "<tr><td>"
 			+ samples[0].id
 			+ "</td><td>"
+			+ "<a href='Samples.html?id="
+			+ id
+			+"&sample_id="
+			+ samples[0].id
+			+ "'>"
 			+ samples[0].name
 			+"</td><td>"
 			+ "<input id='"
@@ -95,6 +101,11 @@ function GetTheProject() {
 					+ "<tr><td>"
 					+ samples[i].id
 					+ "</td><td>"
+					+ "<a href='Samples.html?id="
+					+ id
+					+"&sample_id="
+					+ samples[i].id
+					+ "'>"
 					+ samples[i].name
 					+"</td><td>"
 					+ "<input id='"
