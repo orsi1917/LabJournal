@@ -16,7 +16,16 @@ function GetTheExperiment() {
 	}
 	/* ---------------------------------------- Operations Handling -------------------------------------------------
 	 --------------------------------------------------------------------------------------------------------- */
-	
+	function FindOperationsByExperiment(){
+		var xhttp = new XMLHttpRequest();
+		var id = document.getElementById("ExperimentID").value;
+		postRequest(id, "/experimentfilteroperationlist",FindOperationsByExperimentCallback);
+	}
+	function FindOperationsByExperimentCallback(responseText) {
+		document.getElementById("OperationListTable").innerHTML = "";
+		var operations = JSON.parse(responseText);
+		OperationByExperimentToTable(operations);
+		
 	function OperationByExperimentToTable(operations) {
 		document.getElementById("OperationListTable").innerHTML = document
 				.getElementById("OperationListTable").innerHTML
@@ -47,4 +56,5 @@ function GetTheExperiment() {
 		document.getElementById("OperationListTable").innerHTML = document
 			.getElementById("OperationListTable").innerHTML
 			+ "</table>";
+	}
 	}
