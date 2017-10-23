@@ -11,6 +11,7 @@ window.onload = function () {
 	genericIdPass(getQueryVariable("experiment_id"), "ExperimentID");
 	GetTheExperiment();
 	FindOperationsByExperiment();
+	FindSamplesByExperiment();
 	
 	
 };
@@ -47,7 +48,7 @@ function loadpage(){
 		<article>
 			
 
-			<button class="btn" type="button" id="NewProjectCreator" onclick='FindSamplesByExperiment()'>Test Button</button>
+			<button class="btn" type="button" id="NewProjectCreator" onclick='FindSamplesByExperiment2()'>Test Button</button>
 			<input type="text" id="ProjectID" name="ProjectID" value="select project" disabled size="15">
 			<input type="text" id="ExperimentID" name="ExperimentID" value="select project" disabled size="15">
 	
@@ -136,6 +137,7 @@ function loadpage(){
 				<button type="button" id="ModifyExperiment" onclick="GetOneExperiment()">Modify Experiment</button>
 				<button type="button" id="ExperimentDeleter" onclick="Experimentdeleter2()">Delete experiment</button>
 				<table id="SamplesByExperimentTable" border=1 class="table1"></table>
+				<div id="trial" ></div>
 				</td>
 				
 			</tr>	

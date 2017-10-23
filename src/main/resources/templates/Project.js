@@ -117,6 +117,12 @@ function GetTheProject() {
 				+ "</table>";		
 	}
 	function GetOneSample() {
+//		if ( document.getElementById("AddSample").checked |
+//			document.getElementById("AddExperiment").checked |
+//			document.getElementById("ModifyExperiment").checked 
+//		){
+//			return;
+//		}
 		checkCheckBox("UpdateSampleCheckBox");
 		// DisableButtonsExcept("UpdateSampleButton", "CancelSampleUpdate");
 		RadioDisabler();

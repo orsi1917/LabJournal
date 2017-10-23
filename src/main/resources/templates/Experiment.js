@@ -187,3 +187,97 @@ function GetTheExperiment() {
 				.getElementById("SamplesByExperimentTable").innerHTML
 				+ "</table>";		
 	}
+	function FindSamplesByExperiment2(){
+		var xhttp = new XMLHttpRequest();
+		var id = document.getElementById("ExperimentID").value;
+		postRequest(id, "/experimentfiltersamplelist/" + id, FindSamplesByExperimentCallback2);
+	}
+	function FindSamplesByExperimentCallback2(responseText) {
+		document.getElementById("trial").innerHTML = "";
+		var samples = JSON.parse(responseText);
+		SamplesByExperimentToTable2(samples);
+	}
+	
+	function SamplesByExperimentToTable2(samples) {
+		
+		for (i = 0; i < samples.length; i++) {
+			document.getElementById("trial").innerHTML = document
+					.getElementById("trial").innerHTML
+					+ '<input class="expand-box" id="identifier-'
+					+ samples[i].id
+					+'" type="checkbox">'
+					+ '<label for="identifier-'
+					+ samples[i].id
+					+'">'
+					+ samples[i].name
+					+'</label>'
+					+ '<div id="newSubsamplelist'
+					+ samples[i].id
+					+'">'
+					+'</div> ';
+				getSubSamplesforSample(samples[i].id);		
+			
+		}
+			
+	}
+	function getSubSamplesforSample(id) {
+		 	var xhttp = new XMLHttpRequest();		 			 
+		 	xhttp.onreadystatechange = function() {
+		 		if (this.readyState == 4 && this.status == 200) {
+		 			console.log(this.responseText);
+		 			var subSamples = JSON.parse(this.responseText);	
+		 			console.log(subSamples);
+		 			var tablemaker ='<Table class="table1"><tr><th>ID</th><th>Name</th><th>Amount</th><th>Danger</th><th></th></tr>';
+		 			for (i = 0; i < subSamples.length; i++) {
+		 				console.log(subSamples[i].name);
+		 				tablemaker = tablemaker
+		 				+ "<tr><td>"
+		 				+ subSamples[i].id
+		 				+ "</td><td>"
+		 				+ subSamples[i].name
+		 				+ "</td><td>"
+		 				+ subSamples[i].amount
+		 				+ " "
+		 				+ subSamples[i].unit
+		 				+ "</td><td>"
+		 				+ subSamples[i].danger
+		 				+ "</td><td>"
+		 				+ "<input id='"
+		 				+ subSamples[i].id
+		 				+ "' type='radio' name='SubSamplesListTableselector' onclick=\"genericIdPass(this.id, 'SubSampleID');\">"
+		 				+ "</td></tr>"
+		 			}
+		 			tablemaker = tablemaker + "</table>";
+		 			var fieldID= "newSubsamplelist"+id;
+		 			document.getElementById(fieldID).innerHTML = document.getElementById(fieldID).innerHTML + tablemaker;
+		 			}
+		 		};
+		 		xhttp.open("POST", "http://localhost:8082/samplefiltersubsamplelist/" );
+		 		xhttp.setRequestHeader("Content-type", "application/json");		 
+		 		xhttp.send(id);
+		 
+		 }
+//	function subsamplerows(id) {
+//		var subSamples = getSubSamplesforSample(id);
+//		var string ="";
+//		for (i = 0; i < subSamples.length; i++) {
+//			string = string
+//			+ "<tr><td>"
+//			+ subsamples[i].id
+//			+ "</td><td>"
+//			+ subsamples[i].name
+//			+ "</td><td>"
+//			+ subsamples[i].amount
+//			+ " "
+//			+ subsamples[i].unit
+//			+ "</td><td>"
+//			+ subsamples[i].danger
+//			+ "</td><td>"
+//			+ "<input id='"
+//			+ subsamples[i].id
+//			+ "' type='radio' name='SubSamplesListTableselector' onclick=\"genericIdPass(this.id, 'SubSampleID');\">"
+//			+ "</td></tr>"
+//		}
+//		return string;
+//	}
+//	
