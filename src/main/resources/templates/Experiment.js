@@ -199,18 +199,28 @@ function GetTheExperiment() {
 	}
 	
 	function SamplesByExperimentToTable2(samples) {
-		
+		document.getElementById("trial").innerHTML = document
+		.getElementById("trial").innerHTML
+		+'<Table class="table1 " border="1"><tr><th>ID</th><th>Name</th><th>Link</th></tr>'
 		for (i = 0; i < samples.length; i++) {
 			document.getElementById("trial").innerHTML = document
 					.getElementById("trial").innerHTML
-					+ '<input class="expand-box" id="identifier-'
+					+ '<input class="expand-box" class="table1"id="identifier-'
 					+ samples[i].id
 					+'" type="checkbox">'
 					+ '<label for="identifier-'
 					+ samples[i].id
-					+'">'
+					+'"><Table class="table1" border="1"><tr><td>'
+					+ samples[i].id
+					+'</td><td>'
 					+ samples[i].name
-					+'</label>'
+					+'</td><td>'
+					+ "<a href='Samples.html?id="
+					+ samples[i].id
+					+"&sample_id="
+					+ samples[0].id
+					+ "'>details</a>"
+					+'</td></tr></table></label>'
 					+ '<div id="newSubsamplelist'
 					+ samples[i].id
 					+'">'
