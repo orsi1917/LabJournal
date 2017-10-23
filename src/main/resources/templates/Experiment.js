@@ -29,24 +29,32 @@ function GetTheExperiment() {
 	function OperationByExperimentToTable(operations) {
 		document.getElementById("OperationListTable").innerHTML = document
 				.getElementById("OperationListTable").innerHTML
-				+ "<Table><tr><th>Comment</th><th>Instrument</th><th>Settings</th><th>File location</th><th>Executed by</th><th>Experiment ID</th><th></th></tr>";
-		for (i = 0; i < operations.length; i++) {
+				+ "<Table><tr><th>Instrument</th><th>File location</th><th>Executed by</th><th></th></tr>";
+		if (operations.length > 0){
+			genericIdPass(operations[0].id, 'OperationID');
+			document.getElementById("OperationListTable").innerHTML = document
+			.getElementById("OperationListTable").innerHTML
+				+ "<tr><td>"
+				+ operations[0].instrument
+				+ "</td><td>"
+				+ operations[0].location
+				+ "</td><td>"
+				+ operations[0].person
+				+ "</td><td>"
+				+ "<input id='"
+				+ operations[0].id
+				+ "' type='radio' checked name='OperationListTableselector' onclick=\"genericIdPass(this.id, 'deleteOperationField');\">"
+				+ "</td></tr>"
+		}
+		for (i = 1; i < operations.length; i++) {
 			document.getElementById("OperationListTable").innerHTML = document
 					.getElementById("OperationListTable").innerHTML
 					+ "<tr><td>"
-					+ operations[i].comment
-					+ "</td><td>"
 					+ operations[i].instrument
 					+ "</td><td>"
-					+ operations[i].settings
-					+ "</td><td>"
-					+ operations[i].settings
-					+  "</td><td>"
 					+ operations[i].location
 					+ "</td><td>"
 					+ operations[i].person
-					+ "</td><td>"
-					+ operations[i].experiment.id
 					+ "</td><td>"
 					+ "<input id='"
 					+ operations[i].id
