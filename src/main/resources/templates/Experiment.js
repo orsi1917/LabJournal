@@ -227,7 +227,7 @@ function GetTheExperiment() {
 		 			console.log(this.responseText);
 		 			var subSamples = JSON.parse(this.responseText);	
 		 			console.log(subSamples);
-		 			var tablemaker ='<Table class="table1"><tr><th>ID</th><th>Name</th><th>Amount</th><th>Danger</th><th></th></tr>';
+		 			var tablemaker ='<Table class="table1" border="1"><tr><th>ID</th><th>Name</th><th>Amount</th><th>Danger</th><th></th></tr>';
 		 			for (i = 0; i < subSamples.length; i++) {
 		 				console.log(subSamples[i].name);
 		 				tablemaker = tablemaker
