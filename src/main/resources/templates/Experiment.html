@@ -1,4 +1,3 @@
-
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="LabJournal.css">
@@ -60,10 +59,10 @@ function loadpage(){
 				<td style="vertical-align:top">	
 					<div class ="toleft" >
 						<input type="text" id="OperationID" name="OperationID" value="selectsample" disabled size="6" hidden="true">
-						<button type="button" id="AddNewSample" onclick="checkCheckBox('AddSampleCheckBox')">Create new sample </button>
+						<button type="button" id="AddNewOperation" onclick="checkCheckBox('AddOperationCheckBox')">Create new operation </button>
 						<button type="button" id="ModifySample" onclick="GetOneSample()">Modify Sample</button>
 						<button type="button" id="SampleDeleter" onclick="Sampledeleter2()">delete sample</button>
-						<table id="OperationListTable"  border=1 class="table1"></table>	
+						<table id="OperationListTable2"  border=1 class="table1"></table>	
 					</div>
 				</td>
 				<td style="vertical-align:top; min-width:150px;">
@@ -82,18 +81,23 @@ function loadpage(){
 						<button type="button" id="CancelSampleUpdate" onclick="cancelUpdate('UpdateSampleCheckBox')">Cancel</button>
 					</table>
 					</div>
-					<input class="toggle-box" id="AddSampleCheckBox" type="checkbox">
+					<input class="toggle-box" id="AddOperationCheckBox" type="checkbox">
 					<div id="AddSample" align="center" >
-					<button type="button" id="NewSampleCreator" onclick="AddNewSampleToProject2() ">Add Sample</button>
-					<button type="button" id="CancelNewSample" onclick="cancelUpdate('AddSampleCheckBox')">Cancel</button>
+					<button type="button" id="NewSampleCreator" onclick="AddNewOperationToExperiment2() ">Add Operation</button>
+					<button type="button" id="CancelNewSample" onclick="cancelUpdate('AddOperationCheckBox')">Cancel</button>
 						<table>
 							<tr>
-								<td>Name:</td>
-								<td><input type="text" id="samplename" name="Name"	value="samplename"></td></tr>
-							<tr>
 								<td>Comment:</td>
-								<td><br><textarea rows="10" cols="30"  id="sampledescription" name="Description" ></textarea></td></tr>
-					</table>
+								<td><br><textarea rows="10" cols="30"   id="OperationComment" name="OperationComment" placeholder="comment"></textarea></td></tr>
+							<tr><td>Instrument:</td>
+								<td><input type="text" id="Instrument" name="Instrument" value="instrument" size="15"></td></tr>
+							<tr><td>Instrument settings:</td>
+								<td><input type="text" id="InstrumentSettings" name="InstrumentSettings" value="settings" size="15"></td></tr>
+							<tr><td>File location:</td>
+								<td><input type="text" id="Location" name="Location" value="n/a" size="15"></td></tr>
+							<tr><td>Executed by:</td>
+								<td><input type="text" id="Person" name="Person" value="n/a" size="15"></td></tr>
+						</table>
 					</div>
 					<input class="toggle-box" id="AddExperimentCheckBox" type="checkbox">
 					<div id="AddExperiment" align="center" >
