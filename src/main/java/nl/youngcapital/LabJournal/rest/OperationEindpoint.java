@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import nl.youngcapital.LabJournal.Operation;
@@ -57,5 +58,10 @@ public class OperationEindpoint {
 		 operationService.updateOperation(operation.getComment(), operation.getInstrument(), operation.getLocation(), operation.getPerson(), operation.getSettings(), id);
 			 
 	 }
+	 @ResponseBody
+	  @RequestMapping(value = "/operation/{id}", method = RequestMethod.DELETE)
+	  public void delelteOperation(@PathVariable  long id) {
+	    operationRepository.delete(id);
+	  } 
  
 }

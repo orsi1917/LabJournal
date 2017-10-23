@@ -118,3 +118,11 @@ function GetTheExperiment() {
 		loadpage();
 		uncheckCheckBox("UpdateOperationCheckBox");
 	}
+	function operationDeleter() {
+		var id = document.getElementById("OperationID").value;
+		deleteRequest(null, "/operation/" + id, operationDeleterCallback);
+	}
+
+	function operationDeleterCallback(responseText) {
+		FindOperationsByExperiment();
+	}
