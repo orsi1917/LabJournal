@@ -61,7 +61,7 @@ function GetTheExperiment() {
 				+ "</td><td>"
 				+ "<input id='"
 				+ operations[0].id
-				+ "' type='radio' checked name='OperationListTableselector' onclick=\"genericIdPass(this.id, 'deleteOperationField');\">"
+				+ "' type='radio' checked name='OperationListTableselector' onclick=\"genericIdPass(this.id, 'OperationID');\">"
 				+ "</td></tr>"
 		}
 		for (i = 1; i < operations.length; i++) {
@@ -76,11 +76,27 @@ function GetTheExperiment() {
 					+ "</td><td>"
 					+ "<input id='"
 					+ operations[i].id
-					+ "' type='radio' name='OperationListTableselector' onclick=\"genericIdPass(this.id, 'deleteOperationField');\">"
+					+ "' type='radio' name='OperationListTableselector' onclick=\"genericIdPass(this.id, 'OperationID');\">"
 					+ "</td></tr>"
 		}
 		document.getElementById("OperationListTable2").innerHTML = document
 			.getElementById("OperationListTable2").innerHTML
 			+ "</table>";
 	}
+	}
+	function GetOneOperation() {
+		checkCheckBox("UpdateOperationCheckBox");
+		RadioDisabler();
+		var xhttp = new XMLHttpRequest();
+		var id = document.getElementById("OperationID").value;
+		getRequest(null, "/findOperaton/" + id,  GetOneOperationCallback);
+	}
+
+	function  GetOneOperationCallback(responseText) {
+		var operation = JSON.parse(responseText);
+		document.getElementById("NewOperationComment").value = operation.comment;
+		document.getElementById("NewInstrument").value = operation.instrument;
+		document.getElementById("NewInstrumentSettings").value = operation.settings;
+		document.getElementById("NewLocation").value = operation.location;
+		document.getElementById("NewPerson").value = operation.person;
 	}

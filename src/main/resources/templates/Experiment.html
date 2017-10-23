@@ -60,25 +60,28 @@ function loadpage(){
 					<div class ="toleft" >
 						<input type="text" id="OperationID" name="OperationID" value="selectsample" disabled size="6" hidden="true">
 						<button type="button" id="AddNewOperation" onclick="checkCheckBox('AddOperationCheckBox')">Create new operation </button>
-						<button type="button" id="ModifySample" onclick="GetOneSample()">Modify Sample</button>
+						<button type="button" id="ModifySample" onclick="GetOneOperation()">Modify operation</button>
 						<button type="button" id="SampleDeleter" onclick="Sampledeleter2()">delete sample</button>
 						<table id="OperationListTable2"  border=1 class="table1"></table>	
 					</div>
 				</td>
 				<td style="vertical-align:top; min-width:150px;">
-					<input class="toggle-box" id="UpdateSampleCheckBox" type="checkbox">
-					<div id="UpdateSample" align="center" >
+					<input class="toggle-box" id="UpdateOperationCheckBox" type="checkbox">
+					<div id="UpdateOperation" align="center" >
 					<Table>
-						<tr>
-							<td>Name:</td>
-							<td><input type="text" id="SampleNameChange" name="Name" value="NewSamplename"></td>
-						</tr>
-						<tr>
-							<td>Comment:</td>
-							<td><textarea rows="10" cols="30"  id="SampleDescriptionChange" name="Comment" ></textarea></td>
-						</tr>
-						<button type="button" id="UpdateSampleButton" onclick="UpdateSample()" >Update Sample</button>
-						<button type="button" id="CancelSampleUpdate" onclick="cancelUpdate('UpdateSampleCheckBox')">Cancel</button>
+						<tr>	
+								<td>Comment:</td>
+								<td><br><textarea rows="10" cols="30"   id="NewOperationComment" name="OperationComment" placeholder="comment"></textarea></td></tr>
+							<tr><td>Instrument:</td>
+								<td><input type="text" id="NewInstrument" name="Instrument" value="instrument" size="15"></td></tr>
+							<tr><td>Instrument settings:</td><br>
+								<td><textarea rows="10" cols="30" id="NewInstrumentSettings" name="InstrumentSettings" ></textarea></td></tr>
+							<tr><td>File location:</td>
+								<td><input type="text" id="NewLocation" name="Location" value="n/a" size="15"></td></tr>
+							<tr><td>Executed by:</td>
+								<td><input type="text" id="NewPerson" name="Person" value="n/a" size="15"></td></tr>
+						<button type="button" id="UpdateSampleButton" onclick="UpdateOperation()" >Update Operation</button>
+						<button type="button" id="CancelSampleUpdate" onclick="cancelUpdate('UpdateOperationCheckBox')">Cancel</button>
 					</table>
 					</div>
 					<input class="toggle-box" id="AddOperationCheckBox" type="checkbox">
@@ -91,8 +94,8 @@ function loadpage(){
 								<td><br><textarea rows="10" cols="30"   id="OperationComment" name="OperationComment" placeholder="comment"></textarea></td></tr>
 							<tr><td>Instrument:</td>
 								<td><input type="text" id="Instrument" name="Instrument" value="instrument" size="15"></td></tr>
-							<tr><td>Instrument settings:</td>
-								<td><input type="text" id="InstrumentSettings" name="InstrumentSettings" value="settings" size="15"></td></tr>
+							<tr><td>Instrument settings:</td><br>
+								<td><textarea rows="10" cols="30"  id="InstrumentSettings" name="InstrumentSettings" ></textarea></td></tr>
 							<tr><td>File location:</td>
 								<td><input type="text" id="Location" name="Location" value="n/a" size="15"></td></tr>
 							<tr><td>Executed by:</td>

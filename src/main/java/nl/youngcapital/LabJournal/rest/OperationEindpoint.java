@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import nl.youngcapital.LabJournal.Operation;
+import nl.youngcapital.LabJournal.Sample;
 import nl.youngcapital.LabJournal.Experiment;
 import nl.youngcapital.LabJournal.Controller.ExperimentRepository;
 import nl.youngcapital.LabJournal.Controller.OperationRepository;
@@ -38,15 +39,18 @@ public class OperationEindpoint {
 		 System.out.println(experiment.getId());
 	 }
 
- @RequestMapping(value = "/operationlist", method = RequestMethod.GET)
- public List<Operation> findAll() {
-    return (List<Operation>)operationRepository.findAll();
-  }
+	 @RequestMapping(value = "/operationlist", method = RequestMethod.GET)
+	 public List<Operation> findAll() {
+		 return (List<Operation>)operationRepository.findAll();
+	 }
  
- @RequestMapping(value = "/experimentfilteroperationlist", method = RequestMethod.POST)
- public List<Operation> experimentfilterOperation(@RequestBody long id) {
+	 @RequestMapping(value = "/experimentfilteroperationlist", method = RequestMethod.POST)
+	 public List<Operation> experimentfilterOperation(@RequestBody long id) {
 	 return operationService.experimentfilterOperation(id);
-
-  }
+	 }
+	 @RequestMapping(value = "/findOperaton/{id}", method = RequestMethod.GET)
+	 public Operation findOneOperaton(@PathVariable long id) {		
+		 return (Operation)operationRepository.findOne(id);
+	 }
  
 }
