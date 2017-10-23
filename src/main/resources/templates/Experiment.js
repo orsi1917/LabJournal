@@ -100,3 +100,21 @@ function GetTheExperiment() {
 		document.getElementById("NewLocation").value = operation.location;
 		document.getElementById("NewPerson").value = operation.person;
 	}
+	function UpdateOperation() {
+		var comment = document.getElementById("NewOperationComment").value;
+		var id = document.getElementById("OperationID").value;
+		var instrument = document.getElementById("NewInstrument").value;
+		var settings = document.getElementById("NewInstrumentSettings").value;
+		var location = document.getElementById("NewLocation").value;
+		var person = document.getElementById("NewPerson").value;
+		var operation = '{"comment":"' + comment + '", "instrument" : "'
+		+ instrument + '" , "settings" : "' + settings + '", "location" : "'
+		+ location + '", "person" : "' + person + '"}';
+			postRequest(operation ,"/updateOperation/"+ id, UpdateOperationCallback);
+	}
+	function UpdateOperationCallback(responseText) {
+		RadioEnabler();
+		//ButtonEnabler();
+		loadpage();
+		uncheckCheckBox("UpdateOperationCheckBox");
+	}

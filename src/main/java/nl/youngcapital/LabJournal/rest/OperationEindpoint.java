@@ -52,5 +52,10 @@ public class OperationEindpoint {
 	 public Operation findOneOperaton(@PathVariable long id) {		
 		 return (Operation)operationRepository.findOne(id);
 	 }
+	 @RequestMapping(value = "/updateOperation/{id}", method = RequestMethod.POST)
+	 public void updateSample(@RequestBody Operation operation, @PathVariable long id) {
+		 operationService.updateOperation(operation.getComment(), operation.getInstrument(), operation.getLocation(), operation.getPerson(), operation.getSettings(), id);
+			 
+	 }
  
 }
