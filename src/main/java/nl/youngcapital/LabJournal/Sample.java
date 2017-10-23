@@ -50,8 +50,8 @@ public class Sample {
 	public void addExperiment (Experiment experiment) {
 		experiments.add(experiment);
 	}
-	public void removeExperiment (int i) {
-		experiments.remove(i);
+	public void removeExperiment (Experiment experiment) {
+		experiments.remove(experiment);
 	}
 	public Long getId() {
 		return id;

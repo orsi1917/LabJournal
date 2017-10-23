@@ -11,7 +11,7 @@ window.onload = function () {
 	genericIdPass(getQueryVariable("experiment_id"), "ExperimentID");
 	GetTheExperiment();
 	FindOperationsByExperiment();
-	FindSamplesByExperiment();
+	FindSamplesByExperiment2();
 	
 	
 };
@@ -21,6 +21,7 @@ function loadpage(){
 	genericIdPass(getQueryVariable("experiment_id"), "ExperimentID");
 	GetTheExperiment();
 	FindOperationsByExperiment();
+	FindSamplesByExperiment2();
 	
 };
 </script>
@@ -67,6 +68,7 @@ function loadpage(){
 					</div>
 				</td>
 				<td style="vertical-align:top; min-width:150px;">
+				<button type="button" id="CoupleSampleAndExperiment" onclick="CoupleSubSampleAndOperation()">Couple Subsample and operation</button>
 					<input class="toggle-box" id="UpdateOperationCheckBox" type="checkbox">
 					<div id="UpdateOperation" align="center" >
 					<Table>
@@ -132,10 +134,11 @@ function loadpage(){
 				</td>
 				<td>
 				<td class ="toright" style="vertical-align:top">
+				<input type="text" id="SubSampleID" name="SubSampleID" hidden size="6" >
 				<input type="text" id="SampleID" name="SampleID" hidden size="6" >
-				<button type="button" id="AddNewExperiment" onclick="checkCheckBox('AddExperimentCheckBox')">Create experiment </button>
-				<button type="button" id="ModifyExperiment" onclick="GetOneExperiment()">Modify Experiment</button>
-				<button type="button" id="ExperimentDeleter" onclick="Experimentdeleter2()">Delete experiment</button>
+				<button type="button" id="AddNewExperiment" onclick="">Create experiment </button>
+				<button type="button" id="ModifyExperiment" onclick="">Modify Experiment</button>
+				<button type="button" id="ExperimentDeleter" onclick="">Delete experiment</button>
 				<table id="SamplesByExperimentTable" border=1 class="table1"></table>
 				<div id="trial" class ="expand"></div>
 				</td>

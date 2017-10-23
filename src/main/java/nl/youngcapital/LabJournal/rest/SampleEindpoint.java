@@ -88,7 +88,7 @@ public class SampleEindpoint {
 		 sampleService.saveExperiment(experiment);		 
 		 for (int i=0; i<(sample.getExperiments()).size(); i++) {			
 			 if ( ( (sample.getExperiments()).get(i)).getId() ==eid ) {
-				 sample.removeExperiment(i);
+				 sample.removeExperiment(experiment);
 				 break;
 			 }
 		 }	 

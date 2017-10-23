@@ -1,11 +1,13 @@
 package nl.youngcapital.LabJournal;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -35,11 +37,22 @@ public class SubSample {
 	private String danger;
 
 
-	@ManyToMany
-	private List <Operation> operations;
+	@ManyToMany 
+	@JoinTable(
+		      name="SubSample_Operation",
+		      joinColumns=@JoinColumn(name="subSample_id", referencedColumnName="id"),
+		      inverseJoinColumns=@JoinColumn(name="operation_id", referencedColumnName="id"))
+	private List <Operation> operations = new ArrayList();
 	@ManyToOne
 	@JoinColumn(name = "Sample_id")
 	private Sample sample;
+	
+	public void addOperation(Operation operation) {
+		operations.add(operation);
+	}
+	public void removeOperation(Operation operation) {
+		operations.remove(operation);
+	}
 	
 		public String getDanger() {
 			return danger;

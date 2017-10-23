@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
@@ -22,7 +23,11 @@ public class Operation {
 	private String location;
 	private String person;
 	private String settings;
-	@ManyToMany
+	@ManyToMany 
+	@JoinTable(
+		      name="SubSample_Operation",
+		      joinColumns=@JoinColumn(name="operation_id", referencedColumnName="id"),
+		      inverseJoinColumns=@JoinColumn(name="subSample_id", referencedColumnName="id"))
 	List <SubSample> subSamples;
 	private String time;
 	public Operation() {
@@ -31,6 +36,7 @@ public class Operation {
 	public String getComment() {
 		return comment;
 	}
+
 	public Experiment getExperiment() {
 		return experiment;
 	}
@@ -49,9 +55,7 @@ public class Operation {
 	public String getSettings() {
 		return settings;
 	}
-	public List<SubSample> getSubSamples() {
-		return subSamples;
-	}
+
 	public String getTime() {
 		return time;
 	}

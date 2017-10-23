@@ -126,7 +126,18 @@ function GetTheExperiment() {
 	function operationDeleterCallback(responseText) {
 		FindOperationsByExperiment();
 	}
+	function CoupleSubSampleAndOperation() {
+		var xhttp = new XMLHttpRequest();
+		var sid = document.getElementById("SubSampleID").value;
+		var oid = document.getElementById("OperationID").value;
+		getRequest(null, "/addOperationToSubSample/" + sid + "/" + oid,  CoupleSubSampleAndOperation);
+	}
+
+	function  CoupleSubSampleAndOperationCallback(responseText) {
+		console.log("done");
 	
+		
+	}
 	/* ---------------------------------------- Sample Handling -------------------------------------------------
 	 --------------------------------------------------------------------------------------------------------- */
 	
@@ -201,7 +212,7 @@ function GetTheExperiment() {
 	function SamplesByExperimentToTable2(samples) {
 		document.getElementById("trial").innerHTML = document
 		.getElementById("trial").innerHTML
-		+'<Table class="table1 " border="1"><tr><th>ID</th><th>Name</th><th>Link</th></tr>'
+		+'<Table class="table1 " border="1"><tr><th>ID</th><th>Name</th><th>Link</th><th></th></tr>'
 		for (i = 0; i < samples.length; i++) {
 			document.getElementById("trial").innerHTML = document
 					.getElementById("trial").innerHTML
@@ -220,7 +231,7 @@ function GetTheExperiment() {
 					+"&sample_id="
 					+ samples[0].id
 					+ "'>details</a>"
-					+'</td></tr></table></label>'
+					+ '</td></tr></table></label>'
 					+ '<div id="newSubsamplelist'
 					+ samples[i].id
 					+'">'
@@ -233,10 +244,8 @@ function GetTheExperiment() {
 	function getSubSamplesforSample(id) {
 		 	var xhttp = new XMLHttpRequest();		 			 
 		 	xhttp.onreadystatechange = function() {
-		 		if (this.readyState == 4 && this.status == 200) {
-		 			console.log(this.responseText);
-		 			var subSamples = JSON.parse(this.responseText);	
-		 			console.log(subSamples);
+		 		if (this.readyState == 4 && this.status == 200) {		 			
+		 			var subSamples = JSON.parse(this.responseText);			 			
 		 			var tablemaker ='<Table class="table1" border="1"><tr><th>ID</th><th>Name</th><th>Amount</th><th>Danger</th><th></th></tr>';
 		 			for (i = 0; i < subSamples.length; i++) {
 		 				console.log(subSamples[i].name);
