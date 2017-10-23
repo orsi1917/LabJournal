@@ -35,7 +35,10 @@ public class SampleService {
 		sampleRepository.updateSample(name, description, id);
 		
 	}
-
+	public void updateExperiment(String name, String description, long id) {
+		experimentRepository.updateExperiment(name, description, id);
+		
+	}
 	
 	public Sample saveSample(Sample sample) {
 		sampleRepository.save(sample);
@@ -58,5 +61,9 @@ public class SampleService {
 	}
 	public List<SubSample> sampleFilterSubSample(long id) {
 		return subSampleRepository.sampleFilterSubSample(id);
+	}
+	public void updateSubSample(String name, String description, String danger, int amount, String unit, long id) {
+		subSampleRepository.updateSubSample(name, description, danger, amount, unit, id);
+		
 	}
 }

@@ -1,5 +1,6 @@
 package nl.youngcapital.LabJournal;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -8,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -15,8 +17,12 @@ import javax.persistence.OneToMany;
 @Entity
 public class Sample {
 	private String description;
-	@ManyToMany
-	List <Experiment> experiments;
+	@ManyToMany 
+	@JoinTable(
+		      name="Sample_Experiment",
+		      joinColumns=@JoinColumn(name="sample_id", referencedColumnName="id"),
+		      inverseJoinColumns=@JoinColumn(name="experiment_id", referencedColumnName="id"))
+	List <Experiment> experiments = new ArrayList();
 	public Sample(String name, String description) {
 		super();
 		this.description = description;
@@ -30,7 +36,7 @@ public class Sample {
 	@ManyToOne
 	@JoinColumn(name = "project_id")
 	private Project project;
-	@OneToMany//(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToMany //(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	List <SubSample> subSamples;
 	public Sample() {
 		super();
@@ -41,6 +47,12 @@ public class Sample {
 	public List<Experiment> getExperiments() {
 		return experiments;
 	}
+	public void addExperiment (Experiment experiment) {
+		experiments.add(experiment);
+	}
+	public void removeExperiment (int i) {
+		experiments.remove(i);
+	}
 	public Long getId() {
 		return id;
 	}
@@ -50,9 +62,7 @@ public class Sample {
 	public Project getProject() {
 		return project;
 	}
-	public List<SubSample> getSubSamples() {
-		return subSamples;
-	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
@@ -68,9 +78,7 @@ public class Sample {
 	public void setProject(Project project) {
 		this.project = project;
 	}
-	public void setSubSamples(List<SubSample> subSamples) {
-		this.subSamples = subSamples;
-	}
+	
 	
 
 }

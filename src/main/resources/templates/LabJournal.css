@@ -34,7 +34,7 @@ header {
 
 nav {
 	float: left;
-	width: 160px;
+	width: 100px;
 	margin: 0;
 	padding: 1em;
 	height: 250%; 
@@ -53,7 +53,7 @@ nav ul a {
 }
 
 article {
-	margin-left: 170px;
+	margin-left: 100px;
 	border-left: 1px solid gray;
 	padding: 1em;
 	overflow: hidden;
@@ -95,7 +95,7 @@ table.table1 {
     padding: 5px;
 }
 
-table.table1 tr:nth-child(even){background-color: #c9ddff}
+table.table1 tr:nth-child(even){background-color: #e0e8ff}
 table.table1 tr:nth-child(odd){background-color: #e0e8ff}
 
 table.table1 th {
@@ -108,6 +108,7 @@ table.table1 th {
     color: white;
 
 }
+
 hr { 
   border: 0; 
   height: 3px; 
@@ -128,3 +129,24 @@ input[type=text] {
 input[type=text]:focus {
     background-color: #c9ddff;
 }
+.toggle-box {
+display: none;
+}
+
+.toggle-box  + div {
+  display: none;
+  margin-bottom: 10px;
+}
+
+.toggle-box:checked + div {
+  display: block;
+}
+.toright {
+    float: right;
+}
+.toleft {
+    float: left;
+    
+}
+.btn {
+}	

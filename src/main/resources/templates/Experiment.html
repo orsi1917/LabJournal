@@ -4,21 +4,23 @@
 <link rel="stylesheet" type="text/css" href="LabJournal.css">
 <script type="text/javascript" src="LabJournal.js"></script>
 <script type="text/javascript" src="Project.js"></script>
+<script type="text/javascript" src="Experiment.js"></script>
 <script>
 window.onload = function () {
 
 	genericIdPass(getQueryVariable("id"), "ProjectID");
-	GetTheProject();
-	FindSampleByProject2();
-	FindExperimentByProject2();
+	genericIdPass(getQueryVariable("experiment_id"), "ExperimentID");
+	GetTheExperiment();
+	FindOperationsByExperiment();
+	
 	
 };
 function loadpage(){
 
 	genericIdPass(getQueryVariable("id"), "ProjectID");
-	GetTheProject();
-	FindSampleByProject2();
-	FindExperimentByProject2();
+	genericIdPass(getQueryVariable("experiment_id"), "ExperimentID");
+	GetTheExperiment();
+	FindOperationsByExperiment();
 	
 };
 </script>
@@ -48,23 +50,23 @@ function loadpage(){
 
 			<button class="btn" type="button" id="NewProjectCreator" onclick='CoupleSampleAndExperiment()'>Test Button</button>
 			<input type="text" id="ProjectID" name="ProjectID" value="select project" disabled size="15">
+			<input type="text" id="ExperimentID" name="ExperimentID" value="select project" disabled size="15">
 	
-			<h2>Project: <label id="ProjectName"></label></h2>	
-			<h4>Comment: </h4><p id="ProjectComment"></p>
+			<h2>Experiment: <label id="ExperimentName"></label></h2>	
+			<h4>Description: </h4><p id="ExperimentDescription"></p>
 			<hr>
 		<table width="100%">
 			<tr>
 				<td style="vertical-align:top">	
 					<div class ="toleft" >
-						<input type="text" id="SampleID" name="SampleID" value="selectsample" disabled size="6" hidden="true">
+						<input type="text" id="OperationID" name="OperationID" value="selectsample" disabled size="6" hidden="true">
 						<button type="button" id="AddNewSample" onclick="checkCheckBox('AddSampleCheckBox')">Create new sample </button>
 						<button type="button" id="ModifySample" onclick="GetOneSample()">Modify Sample</button>
 						<button type="button" id="SampleDeleter" onclick="Sampledeleter2()">delete sample</button>
-						<table id="SamplesByProjectTable"  border=1 class="table1"></table>	
+						<table id="OperationListTable"  border=1 class="table1"></table>	
 					</div>
 				</td>
 				<td style="vertical-align:top; min-width:150px;">
-				<button type="button" id="CoupleSampleAndExperiment" onclick="CoupleSampleAndExperiment()">Couple Sample and Experiment</button>							
 					<input class="toggle-box" id="UpdateSampleCheckBox" type="checkbox">
 					<div id="UpdateSample" align="center" >
 					<Table>
