@@ -126,3 +126,64 @@ function GetTheExperiment() {
 	function operationDeleterCallback(responseText) {
 		FindOperationsByExperiment();
 	}
+	
+	/* ---------------------------------------- Sample Handling -------------------------------------------------
+	 --------------------------------------------------------------------------------------------------------- */
+	
+	function FindSamplesByExperiment(){
+		var xhttp = new XMLHttpRequest();
+		var id = document.getElementById("ExperimentID").value;
+		postRequest(id, "/experimentfiltersamplelist/" + id, FindSamplesByExperimentCallback);
+	}
+	function FindSamplesByExperimentCallback(responseText) {
+		document.getElementById("SamplesByExperimentTable").innerHTML = "";
+		var samples = JSON.parse(responseText);
+		SamplesByExperimentToTable(samples);
+	}
+	
+	function SamplesByExperimentToTable(samples) {
+		var id = document.getElementById("ProjectID").value;
+		document.getElementById("SamplesByExperimentTable").innerHTML = document
+				.getElementById("SamplesByExperimentTable").innerHTML
+				+ "<Table><tr><th>ID</th><th>Name</th></tr>";
+		if (samples.length != 0){
+			genericIdPass(samples[0].id, 'SampleID');
+			document.getElementById("SamplesByExperimentTable").innerHTML = document
+			.getElementById("SamplesByExperimentTable").innerHTML
+			+ "<tr><td>"
+			+ samples[0].id
+			+ "</td><td>"
+			+ "<a href='Samples.html?id="
+			+ id
+			+"&sample_id="
+			+ samples[0].id
+			+ "'>"
+			+ samples[0].name
+			+"</td><td>"
+			+ "<input id='"
+			+ samples[0].id
+			+ "' type='radio' checked name='SamplesListTableselector' onclick=\"genericIdPass(this.id, 'SampleID');\">"
+			+ "</td></tr>"
+		}
+		for (i = 1; i < samples.length; i++) {
+			document.getElementById("SamplesByExperimentTable").innerHTML = document
+					.getElementById("SamplesByExperimentTable").innerHTML
+					+ "<tr><td>"
+					+ samples[i].id
+					+ "</td><td>"
+					+ "<a href='Samples.html?id="
+					+ id
+					+"&sample_id="
+					+ samples[i].id
+					+ "'>"
+					+ samples[i].name
+					+"</td><td>"
+					+ "<input id='"
+					+ samples[i].id
+					+ "' type='radio' name='SamplesListTableselector' onclick=\"genericIdPass(this.id, 'SampleID');\">"
+					+ "</td></tr>"
+		}
+		document.getElementById("SamplesByExperimentTable").innerHTML = document
+				.getElementById("SamplesByExperimentTable").innerHTML
+				+ "</table>";		
+	}

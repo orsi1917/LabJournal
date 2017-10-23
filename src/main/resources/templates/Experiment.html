@@ -47,7 +47,7 @@ function loadpage(){
 		<article>
 			
 
-			<button class="btn" type="button" id="NewProjectCreator" onclick='CoupleSampleAndExperiment()'>Test Button</button>
+			<button class="btn" type="button" id="NewProjectCreator" onclick='FindSamplesByExperiment()'>Test Button</button>
 			<input type="text" id="ProjectID" name="ProjectID" value="select project" disabled size="15">
 			<input type="text" id="ExperimentID" name="ExperimentID" value="select project" disabled size="15">
 	
@@ -131,11 +131,11 @@ function loadpage(){
 				</td>
 				<td>
 				<td class ="toright" style="vertical-align:top">
-				<input type="text" id="ExperimentID" name="ExperimentID" hidden size="6" >
+				<input type="text" id="SampleID" name="SampleID" hidden size="6" >
 				<button type="button" id="AddNewExperiment" onclick="checkCheckBox('AddExperimentCheckBox')">Create experiment </button>
 				<button type="button" id="ModifyExperiment" onclick="GetOneExperiment()">Modify Experiment</button>
 				<button type="button" id="ExperimentDeleter" onclick="Experimentdeleter2()">Delete experiment</button>
-				<table id="ExperimentsByProjectTable" border=1 class="table1"></table>
+				<table id="SamplesByExperimentTable" border=1 class="table1"></table>
 				</td>
 				
 			</tr>	

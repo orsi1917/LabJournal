@@ -51,6 +51,9 @@ public class SampleService {
 	public List<Sample> projectfilterSample(long id) {
 		return sampleRepository.projectfiltersample(id);
 	}
+	public List<Sample> experimentfilterSample(long id) {
+		return sampleRepository.samplesByExperiment(id);
+	}
 	public SubSample saveSubSample(SubSample subSample) {
 		subSampleRepository.save(subSample);
 		return subSample;
