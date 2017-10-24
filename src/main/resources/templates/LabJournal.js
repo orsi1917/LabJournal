@@ -98,7 +98,7 @@ function RadioEnabler() {
 					+ "</td><td>"
 					+ "<input id='"
 					+ projects[i].id
-					+ "' type='radio' name='selector'  onclick=\"genericIdPass(this.id, 'deletefield'), genericIdPass(this.id, 'ProjectID'), genericIdPass(this.id, 'ProjectID2'), genericIdPass(this.id, 'ProjectID3'), genericIdPass(this.id, 'ProjectID4');\">"
+					+ "' type='radio' name='selector'  onclick=\"genericIdPass(this.id, 'deletefield');\">"
 					+ "</td></tr>";
 		}
 		document.getElementById("list").innerHTML += "</table>";
@@ -234,22 +234,25 @@ function RadioEnabler() {
 		SamplesByNameToTable(samples);
 	}
 	function SamplesByNameToTable(samples) {
-		var id = document.getElementById("ProjectID").value;
+		
 		document.getElementById("filterSamplesListTabletable").innerHTML = document
 				.getElementById("filterSamplesListTabletable").innerHTML
-				+ "<Table><tr><th>ID</th><th>Name</th><th>Description</th><th>Project ID</th></tr>";
+				+ "<Table><tr><th>ID</th><th>Name</th><th>Project</th></tr>";
 		for (i = 0; i < samples.length; i++) {
 			document.getElementById("filterSamplesListTabletable").innerHTML = document
 					.getElementById("filterSamplesListTabletable").innerHTML
 					+ "<tr><td>"
 					+ samples[i].id
 					+ "</td><td>"
+					+ "<a href='Samples.html?id="
+					+ samples[i].project.id
+					+"&sample_id="
+					+ samples[0].id
+					+ "'>"
 					+ samples[i].name
 					+ "</td><td>"
-					+ samples[i].description
-					+ "</td><td>"
-					+ samples[i].project.id
-			+"</td></tr>"
+					+ samples[i].project.name
+					+"</td></tr>"
 		}
 		document.getElementById("filterSamplesListTabletable").innerHTML = document
 				.getElementById("filterSamplesListTabletable").innerHTML
@@ -432,22 +435,28 @@ function RadioEnabler() {
 	}
 
 	function ExperimentByNameToTable(experiments) {
-		var id = document.getElementById("ProjectID").value;
+		
 		document.getElementById("ExperimentByNameTable").innerHTML = document
 				.getElementById("ExperimentByNameTable").innerHTML
-				+ "<Table><tr><th>ID</th><th>Name</th><th>Description</th><th>Project ID</th></tr>";
+				+ "<Table><tr><th>ID</th><th>Name</th><th>Project</th></tr>";
 		for (i = 0; i < experiments.length; i++) {
 			document.getElementById("ExperimentByNameTable").innerHTML = document
 					.getElementById("ExperimentByNameTable").innerHTML
 					+ "<tr><td>"
 					+ experiments[i].id
 					+ "</td><td>"
-					+ experiments[i].name
-					+ "</td><td>"
-					+ experiments[i].description
-					+ "</td><td>"
+					+ "<a href='Experiment.html?id="
 					+ experiments[i].project.id
-					+"</td></tr>"
+					+"&experiment_id="
+					+ experiments[i].id
+					+ "'>"
+					+ experiments[i].name
+					+ "</a></td><td>"
+					+ "<a href='Project2.html?id="
+					+ experiments[i].project.id
+					+ "'>"
+					+ experiments[i].project.name
+					+"</a></td></tr>"
 		}
 		document.getElementById("ExperimentByNameTable").innerHTML = document
 				.getElementById("ExperimentByNameTable").innerHTML
@@ -620,10 +629,7 @@ function RadioEnabler() {
 	--------------------------------------------------------------------------------------------------------- */
 	function dataLoader() {
 	ListProjects();
-	ListSamples();
-	ListExperiment();
-	ListSubSamples();
-	ListOperations()
+	
 	}
 	
 

@@ -57,114 +57,20 @@ window.onload = function loadPage() {
 			<br>
 			<hr >
 			<br>
-			<table width= 100%>	<tr><td>
-			<button type="button" id="NewSampleCreator" onclick="AddNewSampleToProject() ">Add sample to selected Project</button>
-			<table>
-				<tr>
-					<td>Name:</td>
-					<td><input type="text" id="samplename" name="Name"	value="samplename"></td></tr>
-				<tr>
-					<td>Comment:</td>
-					<td><br><textarea rows="4" cols="45"  id="sampledescription" name="Description" value="description" size="15"></textarea></td></tr>
-				<tr>		<td>Project:</td>
-					<td><input type="text" id="ProjectID" name="ProjectID" value="select project" size="15" disabled></td></tr>
-				</table>
-					<hr >
-					<button type="button" id="projectfilterSamplesListTable" onclick="FindSampleByProject()">Find samples in Project</button>
-					<input type="text" id="ProjectID3" name="ProjectID3" value="select project" size="15" disabled>
-					<br><br>
-					<button type="button" id="filterSamplesListTable" onclick="FindSampleByName()">Find samples with name</button>
-					<input type="text" id="samplename2" name="Name"	value="samplename"><br><br>
-				<table>	
-					<tr><td>Select Sample:</td>
-					<td><input type="text" id="deleteSamplefield" name="DeleteById" value="select project" disabled size="15">
-					<button type="button" id="SampleDeleter" onclick="Sampledeleter()">delete sample</button></td></tr>
-			</table>
-			<table id="SamplesListTable" border=1 class="table1"></table>
-			<table id="filterSamplesListTabletable" border=1 class="table1"></table>
-			<table id="SamplesByProjectTable" border=1 class="table1"></table></td>
-	
-	<td>
-				<button type="button" id="NewExperimentCreator" onclick="AddNewExperiment()">Add experiment to selected Project</button>
-			<table>	<tr>
-					<td>Name:</td>
-					<td><input type="text" id="ExperimentName" name="ExperimentName"	value="ExperimentName"></td></tr>
-				<tr>	<td>Description:</td>
-					<td><br><textarea rows="4" cols="45"  id="ExperimentDescription" name="ExperimentDescription" value="description" size="15"></textarea></td></tr>
-								<tr>
-					<td>Project:</td>
-					<td><input type="text" id="ProjectID2" name="ProjectID" value="select project" size="15" disabled></td></tr>
-			</table>	
-			<hr >	
-			<table><tr>
-			<td><button type="button" id="projectfilterexperimentlist" onclick="FindExperimentByProject()">Find experimets in Project</button></td>
-			<td><input type="text" id="ProjectID4" name="ProjectID" value="select project" size="15" disabled></td></tr><br><br>
-			<tr><td><button type="button" id="filterexperimentlist" onclick="FindExperimentByName()">Find experiment by name</button></td>
-				<td><input type="text" id="ExperimentName2" name="ExperimentName"	value="ExperimentName"></td></tr>	</table>
-				<br><br>
-				<table>
-					<tr><td>Select Experiment:</td>
-					<td><input type="text" id="deleteExperimentField" name="DeleteById" value="select experiment" disabled size="15"></td>
-					<td><button type="button" id="ExperimentDeleter" onclick="Experimentdeleter()">delete experiment</button><td></tr>
-			</table>
-			
-		<table id="experimentlist" border=2 class="table1"></table>
-		<table id="ExperimentsByProjectTable" border=2 class="table1"></table>
-		<table id="ExperimentByNameTable" border=2 class="table1"> </table></td></tr>
-		<tr><td><hr>
-		<button type="button" id="newSubSample" onclick="AddNewSubSampleToSample()">Add new Subsample to selcted sample</button>
-		<table>
-				<tr>
-					<td>Name:</td>
-					<td><input type="text" id="SubSampleName" name="SubSampleName" 	value="subsample name"></td></tr>
-				<tr><td>Description:</td>
-					<td><br><textarea rows="4" cols="45"   id="SubSampleDescription" name="SubSampleDescription" value="subsample description" size="15"></textarea></td></tr>
-				<tr><td>Danger:</td>
-					<td><input type="text" id="danger" name="danger" value="none" size="15"></td></tr>
-				<tr><td>Amount:</td>
-					<td><input type="text" id="amount" name="amount" value="1" size="15"></td></tr>
-				<tr><td>Unit:</td>
-					<td><input type="text" id="unit" name="unit" value="mg" size="15"></td></tr>
-				<tr><td>Select Sample:</td>
-					<td><input type="text" id="deleteSamplefield2" name="DeleteById" value="select sample" disabled size="15"></td></tr>
-					
-				</table>
-				<br>
-			<hr >
-			<table><tr>
-			<td><button type="button" id="ListSubsampleBySample" onclick="FindSubSampleBySample()">Find subsample by sample</button></td>
-			<td><input type="text" id="deleteSamplefield3" name="DeleteById" value="select experiment" disabled size="15"></td></td>
-			
-			</tr></table><table>
-			<tr><td>Select SubSample:</td>
-				<td><input type="text" id="deleteSubSamplefield" name="DeleteById" value="select subsample" disabled size="15"></td>
-				<td><button type="button" id="subsampledeletebutton" onclick="subSampledeleter()">delete subsample</button></td></tr></table>
-			<table id="SubSamplesListTable" border=1 class="table1"></table>
-			<table id="SubSamplesBySampleTable" border=1 class="table1"></table>
-		</td><td><hr>
-		<button type="button" id="newOperation" onclick="AddNewOperationToExperiment()">Add new Operation to selected experiment</button>
-		<table>
-				<tr>
-					<td>Comment:</td>
-					<td><br><textarea rows="4" cols="45"   id="OperationComment" name="OperationComment" placeholder="comment"></textarea></td></tr>
-				<tr><td>Instrument:</td>
-					<td><input type="text" id="Instrument" name="Instrument" value="instrument" size="15"></td></tr>
-					<tr><td>Instrument settings:</td>
-					<td><input type="text" id="InstrumentSettings" name="InstrumentSettings" value="settings" size="15"></td></tr>
-				<tr><td>File location:</td>
-					<td><input type="text" id="Location" name="Location" value="n/a" size="15"></td></tr>
-				<tr><td>Executed by:</td>
-					<td><input type="text" id="Person" name="Person" value="n/a" size="15"></td></tr>
-				<td>Select Experiment:</td>
-					<td><input type="text" id="deleteExperimentField2" name="DeleteById" value="select experiment" disabled size="15"></td>
-			</table>
-		<br><hr >
-		<input type="text" id="deleteOperationField" name="DeleteById" value="select operation" disabled size="15">
-			<table id="OperationListTable" border=1 class="table1"></table>
-			<table id="OperationsByExperimentTable" border=1 class="table1"></table>
-			
-		
-	</tr>	</table>
+			<table width= 100%>
+				<tr><td style="vertical-align:top">					
+						<button type="button" id="filterSamplesListTable" onclick="FindSampleByName()">Find samples with name</button>
+						<input type="text" id="samplename2" name="Name"	value="samplename"><br><br>			
+						<table id="filterSamplesListTabletable" border=1 class="table1"></table>
+					</td>
+					<td class ="toright" style="vertical-align:top">				
+						<button type="button" id="filterexperimentlist" onclick="FindExperimentByName()">Find experiment by name</button>
+						<input type="text" id="ExperimentName2" name="ExperimentName"	value="ExperimentName">
+						<br><br>		
+						<table id="ExperimentByNameTable" border=2 class="table1"> </table>
+					</td>
+				</tr>
+		</table> 
 		</article>
 
 		<footer><h3><br>Program by Orsi & Steven</h3></footer>
