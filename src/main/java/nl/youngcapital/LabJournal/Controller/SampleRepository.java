@@ -19,6 +19,8 @@ public interface SampleRepository extends CrudRepository<Sample, Long>{
 //    "LOWER(t.description) LIKE LOWER(CONCAT('%',:searchTerm, '%')) " +
 //    "ORDER BY t.title ASC"
 
+	public List <Sample> findByNameLikeIgnoreCase(String name);
+	
 	@Transactional
   	@Modifying
 	@Query("SELECT s FROM Sample s where s.name like ? ")

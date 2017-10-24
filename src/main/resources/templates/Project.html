@@ -1,8 +1,15 @@
 
 <html>
 <head>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<script src="jquery-3.2.1.min.js"></script>
+
+ <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" type="text/css" href="LabJournal.css">
 <script type="text/javascript" src="LabJournal.js"></script>
 
@@ -17,32 +24,34 @@ $(document).ready(function(){
     $("#navhome").click(function(){
         $(location).attr('href', 'Project.html')
     });
+    console.log("loading");
+    $( "#birds" ).autocomplete({
+        source: "http://localhost:8082/samplelist",
+        minLength: 2,
+        select: function( event, sample ) {
+          console.log( "Selected: ", sample );
+          genericIdPass(sample.item.name, "choose");
+          
+        }
+      }).autocomplete( "instance" )._renderItem = function( ul, item ) {
+          return $( "<li>" )
+          .append( "<div>" + item.name + "</div>" )
+          .appendTo( ul );
+      };
 });
 
 </script>
-<style>
-  .ui-autocomplete-loading {
-    background: white url("images/ui-anim_basic_16x16.gif") right center no-repeat;
-  }
-  </style>
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
+ <script>
   $( function() {
     function log( message ) {
       $( "<div>" ).text( message ).prependTo( "#log" );
       $( "#log" ).scrollTop( 0 );
     }
  
-    $( "#birds" ).autocomplete({
-      source: "http://localhost:8082/samplelist",
-      minLength: 2,
-      select: function( event, ui ) {
-        log( "Selected: " + ui.item.name + " aka " + ui.item.id );
-      }
-    });
+
   } );
   </script>
+  
 </head>
 <body>
 
@@ -59,7 +68,7 @@ $(document).ready(function(){
 		</nav>
 
 		<article>
-			<h2>My First Buttons</h2>
+			
 	<table > <tr><td>
 			<button type="button" id="NewProjectCreator" onclick="AddNewProject()">Create new Project</button>
 			<br><br>
@@ -102,15 +111,15 @@ $(document).ready(function(){
 					</td>
 				</tr>
 		</table> 
-		<div class="ui-widget">
-  	<label for="birds">Search: </label>
-  	<input id="birds">
-	</div> 
-	<div class="ui-widget" style="margin-top:2em; font-family:Arial">
- 	 Result:
-  	<div id="log" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>
-	</div>
+		
 		</article>
+		<div class="ui-widget">
+  <label for="birds">Birds: </label>
+  <input id="birds">
+  <input type="text" id="choose" name="DeleteById" value="select project" disabled size="15">
+</div>
+ 
+
 
 		<footer><h3><br>Program by Orsi & Steven</h3></footer>
 

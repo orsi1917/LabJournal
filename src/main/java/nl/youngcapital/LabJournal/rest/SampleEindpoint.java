@@ -1,16 +1,16 @@
 package nl.youngcapital.LabJournal.rest;
-import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import nl.youngcapital.LabJournal.Experiment;
-import nl.youngcapital.LabJournal.Project;
 import nl.youngcapital.LabJournal.Sample;
 import nl.youngcapital.LabJournal.Controller.ExperimentRepository;
 import nl.youngcapital.LabJournal.Controller.ProjectService;
@@ -36,9 +36,10 @@ public class SampleEindpoint {
 		System.out.println(sample.getName());
 		sampleService.saveSample(sample);
 	}
-	 @RequestMapping(value = "/samplelist", method = RequestMethod.GET)
-	 public List<Sample> findAll() {
-	    return (List<Sample>)sampleRepository.findAll();
+	 @RequestMapping(value = "/samplelist",  method = RequestMethod.GET)
+	 public List<Sample> findAll(@RequestParam String term) {
+		 
+	    return (List<Sample>)sampleRepository.findByNameLikeIgnoreCase("%" + term + "%");
 	  }
 
 	 @RequestMapping(value = "/filtersamplelist", method = RequestMethod.POST)
