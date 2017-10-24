@@ -41,20 +41,6 @@ function RadioEnabler() {
 	function alertme(){
 	alert("x");
 	}
-
-		//show projects in navigation list
-	function NavList(items){
-		var element = document.getElementById("navlist");	
-		for(i = 0; i < items.length; i++){
-			var node = document.createTextNode(items[i].name);
-			var navi = document.createElement("li");
-			navi.appendChild(node);
-			element.appendChild(navi);
-			element.addEventListener("click", alertme);
-	}
-		
-	console.log(navlist);
-	}
 	
 /* ---------------------------------------- Project Handling -------------------------------------------------
 --------------------------------------------------------------------------------------------------------- */
@@ -79,7 +65,6 @@ function RadioEnabler() {
 		var projects = JSON.parse(responseText);
 		ProjectListToTable(projects);
 	
-		NavList(projects);
 	}
 
 	

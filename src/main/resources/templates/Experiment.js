@@ -47,12 +47,14 @@ function GetTheExperiment() {
 	function OperationByExperimentToTable(operations) {
 		document.getElementById("OperationListTable2").innerHTML = document
 				.getElementById("OperationListTable2").innerHTML
-				+ "<Table><tr><th>Instrument</th><th>File location</th><th>Executed by</th><th></th></tr>";
+				+ "<Table><tr><th>Comment</th><th>Instrument</th><th>File location</th><th>Executed by</th><th></th></tr>";
 		if (operations.length > 0){
 			genericIdPass(operations[0].id, 'OperationID');
 			document.getElementById("OperationListTable2").innerHTML = document
 			.getElementById("OperationListTable2").innerHTML
 				+ "<tr><td>"
+				+ operations[0].comment
+				+ "</td><td>"
 				+ operations[0].instrument
 				+ "</td><td>"
 				+ operations[0].location
@@ -212,7 +214,7 @@ function GetTheExperiment() {
 	function SamplesByExperimentToTable2(samples) {
 		document.getElementById("trial").innerHTML = document
 		.getElementById("trial").innerHTML
-		+'<Table class="table1 " border="1"><tr><th>ID</th><th>Name</th><th>Link</th><th></th></tr>'
+		+'<Table class="table1 " border="1"><tr><th>ID</th><th>Name</th><th>Link</th></tr>'
 		for (i = 0; i < samples.length; i++) {
 			document.getElementById("trial").innerHTML = document
 					.getElementById("trial").innerHTML

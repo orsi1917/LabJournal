@@ -74,7 +74,7 @@ function GetTheProject() {
 		var id = document.getElementById("ProjectID").value;
 		document.getElementById("SamplesByProjectTable").innerHTML = document
 				.getElementById("SamplesByProjectTable").innerHTML
-				+ "<Table><tr><th>ID</th><th>Name</th></tr>";
+				+ "<Table><tr><th>ID</th><th>Name</th><th></th></tr>";
 		if (samples.length != 0){
 			genericIdPass(samples[0].id, 'SampleID');
 			document.getElementById("SamplesByProjectTable").innerHTML = document
@@ -212,7 +212,7 @@ function GetTheProject() {
 		var id = document.getElementById("ProjectID").value;
 			document.getElementById("ExperimentsByProjectTable").innerHTML = document
 			.getElementById("ExperimentsByProjectTable").innerHTML
-			+ "<Table><tr><th>ID</th><th>Name</th></tr>";
+			+ "<Table><tr><th>ID</th><th>Name</th><th></th></tr>";
 		if ( experiments.length != 0){ 
 			genericIdPass(experiments[0].id, 'ExperimentID');
 			document.getElementById("ExperimentsByProjectTable").innerHTML = document
