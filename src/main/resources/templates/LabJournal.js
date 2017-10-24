@@ -98,7 +98,7 @@ function RadioEnabler() {
 					+ "</td><td>"
 					+ "<input id='"
 					+ projects[i].id
-					+ "' type='radio' name='selector'  onclick=\"genericIdPass(this.id, 'deletefield'), genericIdPass(this.id, 'ProjectID'), genericIdPass(this.id, 'ProjectID2'), genericIdPass(this.id, 'ProjectID3'), genericIdPass(this.id, 'ProjectID4');\">"
+					+ "' type='radio' name='selector'  onclick=\"genericIdPass(this.id, 'deletefield');\">"
 					+ "</td></tr>";
 		}
 		document.getElementById("list").innerHTML += "</table>";
@@ -234,7 +234,7 @@ function RadioEnabler() {
 		SamplesByNameToTable(samples);
 	}
 	function SamplesByNameToTable(samples) {
-		var id = document.getElementById("ProjectID").value;
+		
 		document.getElementById("filterSamplesListTabletable").innerHTML = document
 				.getElementById("filterSamplesListTabletable").innerHTML
 				+ "<Table><tr><th>ID</th><th>Name</th><th>Description</th><th>Project ID</th></tr>";
@@ -432,7 +432,7 @@ function RadioEnabler() {
 	}
 
 	function ExperimentByNameToTable(experiments) {
-		var id = document.getElementById("ProjectID").value;
+		
 		document.getElementById("ExperimentByNameTable").innerHTML = document
 				.getElementById("ExperimentByNameTable").innerHTML
 				+ "<Table><tr><th>ID</th><th>Name</th><th>Description</th><th>Project ID</th></tr>";

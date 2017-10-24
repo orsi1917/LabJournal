@@ -57,43 +57,20 @@ window.onload = function loadPage() {
 			<br>
 			<hr >
 			<br>
-			<table width= 100%>	<tr><td>
-			
-			<table>
-				<tr>
-					<td>Name:</td>
-					<td><input type="text" id="samplename" name="Name"	value="samplename"></td></tr>
-				<tr>
-					<td>Comment:</td>
-					<td><br><textarea rows="4" cols="45"  id="sampledescription" name="Description" value="description" size="15"></textarea></td></tr>
-				<tr>		<td>Project:</td>
-					<td><input type="text" id="ProjectID" name="ProjectID" value="select project" size="15" disabled></td></tr>
-				</table>
-					<hr >
-					
-					<button type="button" id="filterSamplesListTable" onclick="FindSampleByName()">Find samples with name</button>
-					<input type="text" id="samplename2" name="Name"	value="samplename"><br><br>
-				
-			
-			<table id="filterSamplesListTabletable" border=1 class="table1"></table>
-			
-	
-	<td>
-			
-			
-			<table><tr>
-			
-			<tr><td><button type="button" id="filterexperimentlist" onclick="FindExperimentByName()">Find experiment by name</button></td>
-				<td><input type="text" id="ExperimentName2" name="ExperimentName"	value="ExperimentName"></td></tr>	</table>
-				<br><br>
-				
-			
-		
-		<table id="ExperimentByNameTable" border=2 class="table1"> </table></td></tr>
-		<tr><td><hr>
-		
-			
-			</tr></table> 
+			<table width= 100%>
+				<tr><td>					
+						<button type="button" id="filterSamplesListTable" onclick="FindSampleByName()">Find samples with name</button>
+						<input type="text" id="samplename2" name="Name"	value="samplename"><br><br>			
+						<table id="filterSamplesListTabletable" border=1 class="table1"></table>
+					</td>
+					<td>				
+						<button type="button" id="filterexperimentlist" onclick="FindExperimentByName()">Find experiment by name</button>
+						<input type="text" id="ExperimentName2" name="ExperimentName"	value="ExperimentName">
+						<br><br>		
+						<table id="ExperimentByNameTable" border=2 class="table1"> </table>
+					</td>
+				</tr>
+		</table> 
 		</article>
 
 		<footer><h3><br>Program by Orsi & Steven</h3></footer>
