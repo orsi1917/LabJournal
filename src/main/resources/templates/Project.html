@@ -1,6 +1,8 @@
 
 <html>
 <head>
+
+<script src="jquery-3.2.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="LabJournal.css">
 <script type="text/javascript" src="LabJournal.js"></script>
 
@@ -9,6 +11,14 @@ window.onload = function loadPage() {
 	dataLoader();
 	hideButton();
 };
+
+// jquery example
+$(document).ready(function(){
+    $("p").click(function(){
+        $(this).hide();
+    });
+});
+
 </script>
 </head>
 <body>
@@ -22,6 +32,9 @@ window.onload = function loadPage() {
 		</header>
 
 		<nav>
+		
+			<p>HOME</p>
+			
 			<ul id="navlist">
 			</ul>
 						
