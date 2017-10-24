@@ -41,6 +41,7 @@ function RadioEnabler() {
 	function alertme(){
 	alert("x");
 	}
+
 	
 /* ---------------------------------------- Project Handling -------------------------------------------------
 --------------------------------------------------------------------------------------------------------- */
@@ -64,8 +65,9 @@ function RadioEnabler() {
 		console.log(responseText);
 		var projects = JSON.parse(responseText);
 		ProjectListToTable(projects);
-	
+
 	}
+
 
 	
 	function ProjectListToTable(projects) {
@@ -236,6 +238,9 @@ function RadioEnabler() {
 					+ "'>"
 					+ samples[i].name
 					+ "</td><td>"
+					+ "<a href='Project2.html?id="
+					+ samples[i].project.id
+					+ "'>"
 					+ samples[i].project.name
 					+"</td></tr>"
 		}

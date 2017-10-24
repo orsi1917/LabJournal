@@ -1,8 +1,15 @@
 
 <html>
 <head>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<script src="jquery-3.2.1.min.js"></script>
+
+ <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" type="text/css" href="LabJournal.css">
 <script type="text/javascript" src="LabJournal.js"></script>
 
@@ -17,9 +24,35 @@ $(document).ready(function(){
     $("#navhome").click(function(){
         $(location).attr('href', 'Project.html')
     });
+    console.log("loading");
+    $( "#samplename2" ).autocomplete({
+        source: "http://localhost:8082/samplelist",
+        minLength: 2,
+        select: function( event, sample ) {
+          console.log( "Selected: ", sample );
+          genericIdPass(sample.item.name, "samplename2");
+          FindSampleByName();
+          
+        }
+      }).autocomplete( "instance" )._renderItem = function( ul, item ) {
+          return $( "<li>" )
+          .append( "<div>" + item.name + "</div>" )
+          .appendTo( ul );
+      };
 });
 
 </script>
+ <script>
+  $( function() {
+    function log( message ) {
+      $( "<div>" ).text( message ).prependTo( "#log" );
+      $( "#log" ).scrollTop( 0 );
+    }
+ 
+
+  } );
+  </script>
+  
 </head>
 <body>
 
@@ -36,7 +69,7 @@ $(document).ready(function(){
 		</nav>
 
 		<article>
-			<h2>My First Buttons</h2>
+			
 	<table > <tr><td>
 			<button type="button" id="NewProjectCreator" onclick="AddNewProject()">Create new Project</button>
 			<br><br>
@@ -67,8 +100,8 @@ $(document).ready(function(){
 			<br>
 			<table width= 100%>
 				<tr><td style="vertical-align:top">					
-						<button type="button" id="filterSamplesListTable" onclick="FindSampleByName()">Find samples with name</button>
-						<input type="text" id="samplename2" name="Name"	value="samplename"><br><br>			
+						<button type="button" id="filterSamplesListTable" onclick="">Find samples with name</button>
+						<input type="text" id="samplename2" name="Name"	value=""><br><br>			
 						<table id="filterSamplesListTabletable" border=1 class="table1"></table>
 					</td>
 					<td class ="toright" style="vertical-align:top">				
@@ -79,7 +112,11 @@ $(document).ready(function(){
 					</td>
 				</tr>
 		</table> 
+		
 		</article>
+		
+ 
+
 
 		<footer><h3><br>Program by Orsi & Steven</h3></footer>
 
