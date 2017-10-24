@@ -14,8 +14,8 @@ window.onload = function loadPage() {
 
 // jquery example
 $(document).ready(function(){
-    $("p").click(function(){
-        $(this).hide();
+    $("#navitem").click(function(){
+        $(location).attr('href', 'Project.html')
     });
 });
 
@@ -33,7 +33,7 @@ $(document).ready(function(){
 
 		<nav>
 		
-			<p>HOME</p>
+			<p id="navitem">HOME</p>
 			
 			<ul id="navlist">
 			</ul>

@@ -1,6 +1,7 @@
 
 <html>
 <head>
+<script src="jquery-3.2.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="LabJournal.css">
 <script type="text/javascript" src="LabJournal.js"></script>
 <script type="text/javascript" src="Project.js"></script>
@@ -22,6 +23,12 @@ function loadpage(){
 	GetTheSample();
 	
 };
+
+$(document).ready(function(){
+    $("#navitem").click(function(){
+        $(location).attr('href', 'Project.html')
+    });
+});
 </script>
 
 
@@ -39,6 +46,7 @@ function loadpage(){
 		</header>
 
 		<nav>
+			<p id="navitem">HOME</p>
 			<ul id="navlist">
 			</ul>
 						
