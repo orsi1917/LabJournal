@@ -25,8 +25,11 @@ function loadpage(){
 };
 
 $(document).ready(function(){
-    $("#navitem").click(function(){
+    $("#navhome").click(function(){
         $(location).attr('href', 'Project.html')
+    });
+    $("#navback").click(function(){
+        $(location).attr('href', 'Project2.html?id=' + ProjectID.value)
     });
 });
 </script>
@@ -46,10 +49,8 @@ $(document).ready(function(){
 		</header>
 
 		<nav>
-			<p id="navitem">HOME</p>
-			<ul id="navlist">
-			</ul>
-						
+			<p id="navhome">HOME</p>
+			<p id="navback">PROJECT</p>
 		</nav>
 
 		<article>
