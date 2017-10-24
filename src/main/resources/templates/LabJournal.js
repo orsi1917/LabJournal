@@ -435,19 +435,24 @@ function RadioEnabler() {
 		
 		document.getElementById("ExperimentByNameTable").innerHTML = document
 				.getElementById("ExperimentByNameTable").innerHTML
-				+ "<Table><tr><th>ID</th><th>Name</th><th>Description</th><th>Project ID</th></tr>";
+				+ "<Table><tr><th>ID</th><th>Name</th><th>Project</th></tr>";
 		for (i = 0; i < experiments.length; i++) {
 			document.getElementById("ExperimentByNameTable").innerHTML = document
 					.getElementById("ExperimentByNameTable").innerHTML
 					+ "<tr><td>"
 					+ experiments[i].id
 					+ "</td><td>"
-					+ experiments[i].name
-					+ "</td><td>"
-					+ experiments[i].description
-					+ "</td><td>"
+					+ "<a href='Experiment.html?id="
 					+ experiments[i].project.id
-					+"</td></tr>"
+					+"&experiment_id="
+					+ experiments[i].id
+					+ "'>"
+					+ experiments[i].name
+					+ "</a></td><td>"
+					+ experiments[i].project.id
+					+ " "
+					+ experiments[i].project.name
+					+"</a></td></tr>"
 		}
 		document.getElementById("ExperimentByNameTable").innerHTML = document
 				.getElementById("ExperimentByNameTable").innerHTML
