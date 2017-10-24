@@ -21,7 +21,7 @@ public interface SampleRepository extends CrudRepository<Sample, Long>{
 
 	@Transactional
   	@Modifying
-	@Query("SELECT s FROM Sample s where s.name=? ")
+	@Query("SELECT s FROM Sample s where s.name like ? ")
 	public List<Sample> filtersample(String name);
 	
 	
