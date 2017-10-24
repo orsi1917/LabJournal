@@ -237,19 +237,22 @@ function RadioEnabler() {
 		
 		document.getElementById("filterSamplesListTabletable").innerHTML = document
 				.getElementById("filterSamplesListTabletable").innerHTML
-				+ "<Table><tr><th>ID</th><th>Name</th><th>Description</th><th>Project ID</th></tr>";
+				+ "<Table><tr><th>ID</th><th>Name</th><th>Project</th></tr>";
 		for (i = 0; i < samples.length; i++) {
 			document.getElementById("filterSamplesListTabletable").innerHTML = document
 					.getElementById("filterSamplesListTabletable").innerHTML
 					+ "<tr><td>"
 					+ samples[i].id
 					+ "</td><td>"
+					+ "<a href='Samples.html?id="
+					+ samples[i].project.id
+					+"&sample_id="
+					+ samples[0].id
+					+ "'>"
 					+ samples[i].name
 					+ "</td><td>"
-					+ samples[i].description
-					+ "</td><td>"
-					+ samples[i].project.id
-			+"</td></tr>"
+					+ samples[i].project.name
+					+"</td></tr>"
 		}
 		document.getElementById("filterSamplesListTabletable").innerHTML = document
 				.getElementById("filterSamplesListTabletable").innerHTML
@@ -449,8 +452,9 @@ function RadioEnabler() {
 					+ "'>"
 					+ experiments[i].name
 					+ "</a></td><td>"
+					+ "<a href='Project2.html?id="
 					+ experiments[i].project.id
-					+ " "
+					+ "'>"
 					+ experiments[i].project.name
 					+"</a></td></tr>"
 		}
