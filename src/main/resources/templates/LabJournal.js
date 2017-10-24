@@ -536,8 +536,7 @@ function RadioEnabler() {
 					+ operations[i].instrument
 					+ "</td><td>"
 					+ operations[i].settings
-					+ "</td><td>"
-					+ operations[i].settings
+				
 					+  "</td><td>"
 					+ operations[i].location
 					+ "</td><td>"

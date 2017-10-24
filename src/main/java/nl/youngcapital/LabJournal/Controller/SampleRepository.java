@@ -36,4 +36,13 @@ public interface SampleRepository extends CrudRepository<Sample, Long>{
 	@Query("UPDATE Sample SET name = ?, description=?  where id = ?")
 	public void updateSample(String name,  String description, long id);
 	
+	@Transactional
+	@Modifying
+//@Query("SELECT id, name, description, project FROM Sample s where s.getProject().getId()=?")
+	@Query("SELECT s FROM Sample s join s.experiments e join e.samples e where e.id =?")
+	public List<Sample> samplesByExperiment(long id);
+	
+	
+//	Select distinct d from Distributor d join d.towns t join t.district t where t.name = :name
+	
 }

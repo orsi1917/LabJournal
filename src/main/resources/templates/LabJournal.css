@@ -150,3 +150,26 @@ display: none;
 }
 .btn {
 }	
+.expand-box {
+  display: none;
+}
+
+.expand-box + label {
+  cursor: pointer;
+  display: block;
+  font-weight: bold;
+  line-height: 21px;
+  margin-bottom: 5px;
+}
+
+.expand-box + label + div {
+  display: none;
+  margin-bottom: 10px;
+}
+
+.expand-box:checked + label + div {
+  display: block;
+}
+.expand {
+    background-color: #c9ddff;
+    }

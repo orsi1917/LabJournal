@@ -1,4 +1,3 @@
-
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="LabJournal.css">
@@ -12,6 +11,7 @@ window.onload = function () {
 	genericIdPass(getQueryVariable("experiment_id"), "ExperimentID");
 	GetTheExperiment();
 	FindOperationsByExperiment();
+	FindSamplesByExperiment2();
 	
 	
 };
@@ -21,6 +21,7 @@ function loadpage(){
 	genericIdPass(getQueryVariable("experiment_id"), "ExperimentID");
 	GetTheExperiment();
 	FindOperationsByExperiment();
+	FindSamplesByExperiment2();
 	
 };
 </script>
@@ -48,7 +49,7 @@ function loadpage(){
 		<article>
 			
 
-			<button class="btn" type="button" id="NewProjectCreator" onclick='CoupleSampleAndExperiment()'>Test Button</button>
+			<button class="btn" type="button" id="NewProjectCreator" onclick='FindSamplesByExperiment2()'>Test Button</button>
 			<input type="text" id="ProjectID" name="ProjectID" value="select project" disabled size="15">
 			<input type="text" id="ExperimentID" name="ExperimentID" value="select project" disabled size="15">
 	
@@ -60,40 +61,49 @@ function loadpage(){
 				<td style="vertical-align:top">	
 					<div class ="toleft" >
 						<input type="text" id="OperationID" name="OperationID" value="selectsample" disabled size="6" hidden="true">
-						<button type="button" id="AddNewSample" onclick="checkCheckBox('AddSampleCheckBox')">Create new sample </button>
-						<button type="button" id="ModifySample" onclick="GetOneSample()">Modify Sample</button>
-						<button type="button" id="SampleDeleter" onclick="Sampledeleter2()">delete sample</button>
-						<table id="OperationListTable"  border=1 class="table1"></table>	
+						<button type="button" id="AddNewOperation" onclick="checkCheckBox('AddOperationCheckBox')">Create new operation </button>
+						<button type="button" id="ModifySample" onclick="GetOneOperation()">Modify operation</button>
+						<button type="button" id="SampleDeleter" onclick="operationDeleter()">Delete operation</button>
+						<table id="OperationListTable2"  border=1 class="table1"></table>	
 					</div>
 				</td>
 				<td style="vertical-align:top; min-width:150px;">
-					<input class="toggle-box" id="UpdateSampleCheckBox" type="checkbox">
-					<div id="UpdateSample" align="center" >
+				<button type="button" id="CoupleSampleAndExperiment" onclick="CoupleSubSampleAndOperation()">Couple Subsample and operation</button>
+					<input class="toggle-box" id="UpdateOperationCheckBox" type="checkbox">
+					<div id="UpdateOperation" align="center" >
 					<Table>
-						<tr>
-							<td>Name:</td>
-							<td><input type="text" id="SampleNameChange" name="Name" value="NewSamplename"></td>
-						</tr>
-						<tr>
-							<td>Comment:</td>
-							<td><textarea rows="10" cols="30"  id="SampleDescriptionChange" name="Comment" ></textarea></td>
-						</tr>
-						<button type="button" id="UpdateSampleButton" onclick="UpdateSample()" >Update Sample</button>
-						<button type="button" id="CancelSampleUpdate" onclick="cancelUpdate('UpdateSampleCheckBox')">Cancel</button>
+						<tr>	
+								<td>Comment:</td>
+								<td><br><textarea rows="10" cols="30"   id="NewOperationComment" name="OperationComment" placeholder="comment"></textarea></td></tr>
+							<tr><td>Instrument:</td>
+								<td><input type="text" id="NewInstrument" name="Instrument" value="instrument" size="15"></td></tr>
+							<tr><td>Instrument settings:</td><br>
+								<td><textarea rows="10" cols="30" id="NewInstrumentSettings" name="InstrumentSettings" ></textarea></td></tr>
+							<tr><td>File location:</td>
+								<td><input type="text" id="NewLocation" name="Location" value="n/a" size="15"></td></tr>
+							<tr><td>Executed by:</td>
+								<td><input type="text" id="NewPerson" name="Person" value="n/a" size="15"></td></tr>
+						<button type="button" id="UpdateSampleButton" onclick="UpdateOperation()" >Update Operation</button>
+						<button type="button" id="CancelSampleUpdate" onclick="cancelUpdate('UpdateOperationCheckBox')">Cancel</button>
 					</table>
 					</div>
-					<input class="toggle-box" id="AddSampleCheckBox" type="checkbox">
+					<input class="toggle-box" id="AddOperationCheckBox" type="checkbox">
 					<div id="AddSample" align="center" >
-					<button type="button" id="NewSampleCreator" onclick="AddNewSampleToProject2() ">Add Sample</button>
-					<button type="button" id="CancelNewSample" onclick="cancelUpdate('AddSampleCheckBox')">Cancel</button>
+					<button type="button" id="NewSampleCreator" onclick="AddNewOperationToExperiment2() ">Add Operation</button>
+					<button type="button" id="CancelNewSample" onclick="cancelUpdate('AddOperationCheckBox')">Cancel</button>
 						<table>
 							<tr>
-								<td>Name:</td>
-								<td><input type="text" id="samplename" name="Name"	value="samplename"></td></tr>
-							<tr>
 								<td>Comment:</td>
-								<td><br><textarea rows="10" cols="30"  id="sampledescription" name="Description" ></textarea></td></tr>
-					</table>
+								<td><br><textarea rows="10" cols="30"   id="OperationComment" name="OperationComment" placeholder="comment"></textarea></td></tr>
+							<tr><td>Instrument:</td>
+								<td><input type="text" id="Instrument" name="Instrument" value="instrument" size="15"></td></tr>
+							<tr><td>Instrument settings:</td><br>
+								<td><textarea rows="10" cols="30"  id="InstrumentSettings" name="InstrumentSettings" ></textarea></td></tr>
+							<tr><td>File location:</td>
+								<td><input type="text" id="Location" name="Location" value="n/a" size="15"></td></tr>
+							<tr><td>Executed by:</td>
+								<td><input type="text" id="Person" name="Person" value="n/a" size="15"></td></tr>
+						</table>
 					</div>
 					<input class="toggle-box" id="AddExperimentCheckBox" type="checkbox">
 					<div id="AddExperiment" align="center" >
@@ -124,11 +134,13 @@ function loadpage(){
 				</td>
 				<td>
 				<td class ="toright" style="vertical-align:top">
-				<input type="text" id="ExperimentID" name="ExperimentID" hidden size="6" >
-				<button type="button" id="AddNewExperiment" onclick="checkCheckBox('AddExperimentCheckBox')">Create experiment </button>
-				<button type="button" id="ModifyExperiment" onclick="GetOneExperiment()">Modify Experiment</button>
-				<button type="button" id="ExperimentDeleter" onclick="Experimentdeleter2()">Delete experiment</button>
-				<table id="ExperimentsByProjectTable" border=1 class="table1"></table>
+				<input type="text" id="SubSampleID" name="SubSampleID" hidden size="6" >
+				<input type="text" id="SampleID" name="SampleID" hidden size="6" >
+				<button type="button" id="AddNewExperiment" onclick="">Create experiment </button>
+				<button type="button" id="ModifyExperiment" onclick="">Modify Experiment</button>
+				<button type="button" id="ExperimentDeleter" onclick="">Delete experiment</button>
+				<table id="SamplesByExperimentTable" border=1 class="table1"></table>
+				<div id="trial" class ="expand"></div>
 				</td>
 				
 			</tr>	

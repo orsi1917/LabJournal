@@ -50,6 +50,10 @@ public class SampleEindpoint {
 	 public List<Sample> filterfindAll(@RequestBody long id) {
 		 return sampleService.projectfilterSample(id);
 	  }
+	 @RequestMapping(value = "/experimentfiltersamplelist/{id}", method = RequestMethod.POST)
+	 public List<Sample> experimentfilterfindAll(@PathVariable long id) {
+		 return sampleService.experimentfilterSample(id);
+	  }
 	 
 	 @RequestMapping(value = "/findSample/{id}", method = RequestMethod.GET)
 	 public Sample findOneSample(@PathVariable long id) {		
@@ -84,7 +88,7 @@ public class SampleEindpoint {
 		 sampleService.saveExperiment(experiment);		 
 		 for (int i=0; i<(sample.getExperiments()).size(); i++) {			
 			 if ( ( (sample.getExperiments()).get(i)).getId() ==eid ) {
-				 sample.removeExperiment(i);
+				 sample.removeExperiment(experiment);
 				 break;
 			 }
 		 }	 

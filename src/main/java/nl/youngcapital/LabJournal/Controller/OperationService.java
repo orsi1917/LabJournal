@@ -26,4 +26,8 @@ public class OperationService {
 	public List<Operation> experimentfilterOperation(long id) {
 		return operationRepository.experimentfilteroperation(id);
 	}
+	public void updateOperation(String comment, String instrument, String location, String person, String settings,  long id) {
+		operationRepository.updateOperation(comment, instrument, location, person, settings, id);
+		
+	}
 }

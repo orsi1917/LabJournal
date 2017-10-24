@@ -17,6 +17,11 @@ public interface OperationRepository extends CrudRepository<Operation, Long>{
 	@Query("SELECT o FROM Operation o where o.experiment.id=?")
 	public List<Operation> experimentfilteroperation(long id);
 	
+	@Transactional
+	@Modifying
+	@Query("UPDATE Operation SET comment = ?, instrument=?, location=?, person=?, settings=?  where id = ?")
+	public void updateOperation(String comment, String instrument, String location, String person, String settings, long id);
+	
 }
 
 

@@ -10,8 +10,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import nl.youngcapital.LabJournal.Experiment;
+import nl.youngcapital.LabJournal.Operation;
 import nl.youngcapital.LabJournal.Sample;
 import nl.youngcapital.LabJournal.SubSample;
+import nl.youngcapital.LabJournal.Controller.OperationRepository;
+import nl.youngcapital.LabJournal.Controller.OperationService;
 import nl.youngcapital.LabJournal.Controller.SampleRepository;
 import nl.youngcapital.LabJournal.Controller.SampleService;
 import nl.youngcapital.LabJournal.Controller.SubSampleRepository;
@@ -24,6 +28,10 @@ public class SubSampleEindpoint {
 	SubSampleRepository subSampleRepository;
 	@Autowired
 	SampleRepository sampleRepository;
+	@Autowired
+	OperationService operationService;
+	@Autowired
+	OperationRepository operationRepository;
 
 	
 	@ResponseBody
@@ -70,5 +78,35 @@ public class SubSampleEindpoint {
 	  public void updatesample(@PathVariable  long id) {
 	    subSampleRepository.delete(id);
 	  } 
+	 @RequestMapping(value = "/addOperationToSubSample/{sid}/{oid}", method = RequestMethod.GET)
+	 public void addExperimentToSample(@PathVariable long sid, @PathVariable long oid) {
+		 SubSample subSample = subSampleRepository.findOne(sid);
+		 subSampleRepository.save(subSample);
+		 Operation operation = (Operation)operationRepository.findOne(oid);
+		 operationService.saveOperation(operation);
+		 
+		 for (int i=0; i<(subSample.getOperations()).size(); i++) {			
+			 if ( ( (subSample.getOperations()).get(i)).getId() ==oid ) {
+				 return;
+			 }
+		 }	 
+		 subSample.addOperation(operation);
+		 subSampleRepository.save(subSample);
+	 }
+	 @RequestMapping(value = "/removeExperimentFroomSample/{sid}/{oid}", method = RequestMethod.GET)
+	 public void removeExperimentFroomSample(@PathVariable long sid, @PathVariable long oid) {
+		 SubSample subSample = subSampleRepository.findOne(sid);
+		 subSampleRepository.save(subSample);
+		 Operation operation = (Operation)operationRepository.findOne(oid);
+		 operationService.saveOperation(operation);		 
+		 for (int i=0; i<(subSample.getOperations()).size(); i++) {			
+			 if ( ( (subSample.getOperations()).get(i)).getId() ==oid ) {
+				 subSample.removeOperation(operation);
+				 break;
+			 }
+		 }	 
+		 
+		 subSampleRepository.save(subSample);
+	 }
 
 }
