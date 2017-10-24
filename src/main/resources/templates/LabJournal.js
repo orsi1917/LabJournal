@@ -239,6 +239,9 @@ function RadioEnabler() {
 					+ "'>"
 					+ samples[i].name
 					+ "</td><td>"
+					+ "<a href='Project2.html?id="
+					+ samples[i].project.id
+					+ "'>"
 					+ samples[i].project.name
 					+"</td></tr>"
 		}
