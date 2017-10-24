@@ -47,7 +47,7 @@ function GetTheExperiment() {
 	function OperationByExperimentToTable(operations) {
 		document.getElementById("OperationListTable2").innerHTML = document
 				.getElementById("OperationListTable2").innerHTML
-				+ "<Table><tr><th>Comment</th><th>Instrument</th><th>File location</th><th>Executed by</th><th></th></tr>";
+				+ "<Table><tr><th>Comment</th><th>Instrument</th><th hidden>Settings</th><th hidden>Location</th><th hidden>Executed by</th><th></th></tr>";
 		if (operations.length > 0){
 			genericIdPass(operations[0].id, 'OperationID');
 			document.getElementById("OperationListTable2").innerHTML = document
@@ -56,9 +56,11 @@ function GetTheExperiment() {
 				+ operations[0].comment
 				+ "</td><td>"
 				+ operations[0].instrument
-				+ "</td><td>"
+				+ "</td><td hidden>"
+				+ operations[0].settings
+				+ "</td><td hidden>"
 				+ operations[0].location
-				+ "</td><td>"
+				+ "</td><td hidden>"
 				+ operations[0].person
 				+ "</td><td>"
 				+ "<input id='"
@@ -70,10 +72,14 @@ function GetTheExperiment() {
 			document.getElementById("OperationListTable2").innerHTML = document
 					.getElementById("OperationListTable2").innerHTML
 					+ "<tr><td>"
+					+ operations[i].comment
+					+ "</td><td>"
 					+ operations[i].instrument
-					+ "</td><td>"
+					+ "</td><td hidden>"
+					+ operations[i].settings
+					+ "</td><td hidden>"
 					+ operations[i].location
-					+ "</td><td>"
+					+ "</td><td hidden>"
 					+ operations[i].person
 					+ "</td><td>"
 					+ "<input id='"
