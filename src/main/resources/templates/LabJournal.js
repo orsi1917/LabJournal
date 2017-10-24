@@ -620,10 +620,7 @@ function RadioEnabler() {
 	--------------------------------------------------------------------------------------------------------- */
 	function dataLoader() {
 	ListProjects();
-	ListSamples();
-	ListExperiment();
-	ListSubSamples();
-	ListOperations()
+	
 	}
 	
 
