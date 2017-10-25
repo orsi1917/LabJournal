@@ -72,7 +72,8 @@ public class SampleEindpoint {
 		 sampleService.saveSample(sample);
 		 Experiment experiment = (Experiment)experimentRepository.findOne(eid);
 		 sampleService.saveExperiment(experiment);
-		 
+		 System.out.println("sample: " + sample);
+		 System.out.println("experiment: " + experiment);		 
 		 for (int i=0; i<(sample.getExperiments()).size(); i++) {			
 			 if ( ( (sample.getExperiments()).get(i)).getId() ==eid ) {
 				 return;

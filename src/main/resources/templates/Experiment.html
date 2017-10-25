@@ -1,6 +1,7 @@
 <html>
 <head>
 <script src="jquery-3.2.1.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" type="text/css" href="LabJournal.css">
 <script type="text/javascript" src="LabJournal.js"></script>
 <script type="text/javascript" src="Project.js"></script>
@@ -27,11 +28,10 @@ function loadpage(){
 };
 
 $(document).ready(function(){
-    $("#hiderow").hide()
-    $("#navhome").click(function(){
-        $(location).attr('href', 'Project.html')
+    $(".navhome").click(function(){
+      $(location).attr('href', 'Project.html')
     });
-    $("#navback").click(function(){
+    $(".navback").click(function(){
         $(location).attr('href', 'Project2.html?id=' + ProjectID.value)
     });
 });
@@ -40,7 +40,21 @@ $(document).ready(function(){
 
 </script>
 
-
+<style>
+.navhome {
+    color: black;
+}
+.navback {
+	color: blue;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 120px;
+    background-color: white;
+}
+</style>
 
 <title>Dit is een nieuwe pagina</title>
 </head>
@@ -55,17 +69,20 @@ $(document).ready(function(){
 		</header>
 
 		<nav>
-			<p id="navhome">HOME</p>
-			<p id="navback">PROJECT</p>
-			<ul id="navlist">
+		<div class="w3-container" >
+			<ul class="w3-ul w3-hoverable">
+				<li class='navhome'>HOME<li>
+				<li class='navback'>BACK<li>
+				<li class='navhome'>FAQ<li>
+				<li class='navhome'>ABOUT<li>
+				<li class='navhome'>CONTACT US<li>
 			</ul>
-						
+		</div>
 		</nav>
 
 		<article>
 			
 
-			<button class="btn" type="button" id="NewProjectCreator" onclick='FindSamplesByExperiment2()'>Test Button</button>
 			<input type="text" id="ProjectID" name="ProjectID" value="select project" disabled size="15">
 			<input type="text" id="ExperimentID" name="ExperimentID" value="select project" disabled size="15">
 	
@@ -92,13 +109,13 @@ $(document).ready(function(){
 								<td>Comment:</td>
 								<td><br><textarea rows="10" cols="30"   id="NewOperationComment" name="OperationComment" placeholder="comment"></textarea></td></tr>
 							<tr><td>Instrument:</td>
-								<td><input type="text" id="NewInstrument" name="Instrument" value="instrument" size="15"></td></tr>
+								<td><input type="text" id="NewInstrument" name="Instrument" placeholder="instrument" size="15"></td></tr>
 							<tr><td>Instrument settings:</td><br>
-								<td><textarea rows="10" cols="30" id="NewInstrumentSettings" name="InstrumentSettings" ></textarea></td></tr>
+								<td><textarea rows="10" cols="30" id="NewInstrumentSettings" name="InstrumentSettings" placeholder="settings"></textarea></td></tr>
 							<tr><td>File location:</td>
-								<td><input type="text" id="NewLocation" name="Location" value="n/a" size="15"></td></tr>
+								<td><input type="text" id="NewLocation" name="Location" placeholder="Location" size="15"></td></tr>
 							<tr><td>Executed by:</td>
-								<td><input type="text" id="NewPerson" name="Person" value="n/a" size="15"></td></tr>
+								<td><input type="text" id="NewPerson" name="Person" placeholder="person" size="15"></td></tr>
 						<button type="button" id="UpdateSampleButton" onclick="UpdateOperation()" >Update Operation</button>
 						<button type="button" id="CancelSampleUpdate" onclick="cancelUpdate('UpdateOperationCheckBox')">Cancel</button>
 					</table>
@@ -112,13 +129,13 @@ $(document).ready(function(){
 								<td>Comment:</td>
 								<td><br><textarea rows="10" cols="30"   id="OperationComment" name="OperationComment" placeholder="comment"></textarea></td></tr>
 							<tr><td>Instrument:</td>
-								<td><input type="text" id="Instrument" name="Instrument" value="instrument" size="15"></td></tr>
+								<td><input type="text" id="Instrument" name="Instrument" placeholder="instrument" size="15"></td></tr>
 							<tr><td>Instrument settings:</td><br>
-								<td><textarea rows="10" cols="30"  id="InstrumentSettings" name="InstrumentSettings" ></textarea></td></tr>
+								<td><textarea rows="10" cols="30"  id="InstrumentSettings" name="InstrumentSettings" placeholder="settings" ></textarea></td></tr>
 							<tr><td>File location:</td>
-								<td><input type="text" id="Location" name="Location" value="n/a" size="15"></td></tr>
+								<td><input type="text" id="Location" name="Location" placeholder="location" size="15"></td></tr>
 							<tr><td>Executed by:</td>
-								<td><input type="text" id="Person" name="Person" value="n/a" size="15"></td></tr>
+								<td><input type="text" id="Person" name="Person" placeholder="person" size="15"></td></tr>
 						</table>
 					</div>
 					<input class="toggle-box" id="AddExperimentCheckBox" type="checkbox">
@@ -159,13 +176,6 @@ $(document).ready(function(){
 				<div id="trial" class ="expand"></div>
 				</td>
 			</tr>
-			<tr>
-				<td>
-				<input type="text" id="InstrumentID" name="OperationInstrument" size="10" >
-				<input type="text" id="SettingsID" name="OperationSettings" size="10" >
-				<input type="text" id="LocationID" name="OperationsLocation" size="10" >						
-				</td>
-			</tr>	
 		</table>	
 	
 		</article>
