@@ -163,7 +163,11 @@ function GetTheProject() {
 		var xhttp = new XMLHttpRequest();
 		var sid = document.getElementById("SampleID").value;
 		var eid = document.getElementById("ExperimentID").value;
+		console.log(sid);
+		console.log(eid);
 		getRequest(null, "/addExperimentToSample/" + sid + "/" + eid, CoupleSampleAndExperimentCallback);
+		
+		
 	}
 
 	function CoupleSampleAndExperimentCallback(responseText) {

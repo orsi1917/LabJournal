@@ -2,6 +2,7 @@
 <html>
 <head>
 <script src="jquery-3.2.1.min.js"></script>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" type="text/css" href="LabJournal.css">
 <script type="text/javascript" src="LabJournal.js"></script>
 <script type="text/javascript" src="Project.js"></script>
@@ -24,13 +25,28 @@ function loadpage(){
 };
 
 $(document).ready(function(){
-    $("#navhome").click(function(){
+    $(".navhome").click(function(){
         $(location).attr('href', 'Project.html')
     });
 });
 
 </script>
 
+<style>
+.navhome {
+    color: black;
+}
+.navback {
+	color: blue;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 120px;
+    background-color: white;
+}
+</style>
 
 
 <title>Dit is een nieuwe pagina</title>
@@ -46,14 +62,21 @@ $(document).ready(function(){
 		</header>
 
 		<nav>
-			<p id="navhome">HOME</p>
+		<div class="w3-container" >
+			<ul class="w3-ul w3-hoverable">
+				<li class='navhome'>HOME<li>
+				<li class='navhome'>BACK<li>
+				<li class='navhome'>FAQ<li>
+				<li class='navhome'>ABOUT<li>
+				<li class='navhome'>CONTACT US<li>
+			</ul>
+		</div>
 		</nav>
 
 		<article>
 			
 
-			<button class="btn" type="button" id="NewProjectCreator" onclick='CoupleSampleAndExperiment()'>Test Button</button>
-			<input type="text" id="ProjectID" name="ProjectID" value="select project" disabled size="15">
+			<input hidden type="text" id="ProjectID" name="ProjectID" value="select project" disabled size="15">
 	
 			<h2>Project: <label id="ProjectName"></label></h2>	
 			<h4>Comment: </h4><p id="ProjectComment"></p>
@@ -93,7 +116,7 @@ $(document).ready(function(){
 						<table>
 							<tr>
 								<td>Name:</td>
-								<td><input type="text" id="samplename" name="Name"	value="samplename"></td></tr>
+								<td><input type="text" id="samplename" name="Name"	placeholder="Sample name"></td></tr>
 							<tr>
 								<td>Comment:</td>
 								<td><br><textarea rows="10" cols="30"  id="sampledescription" name="Description" ></textarea></td></tr>
@@ -106,10 +129,10 @@ $(document).ready(function(){
 						<table>
 							<tr>
 								<td>Name:</td>
-								<td><input type="text" id="ExperimentName" name="Name"	value="Experiment name"></td></tr>
+								<td><input type="text" id="ExperimentName" name="Name"	placeholder="experiment name"></td></tr>
 							<tr>
 								<td>Description:</td>
-								<td><br><textarea rows="10" cols="30"  id="ExperimentDescription" name="ExperimentDescription" ></textarea></td></tr>
+								<td><br><textarea rows="10" cols="30"  id="ExperimentDescription" name="ExperimentDescription" placeholder="description"></textarea></td></tr>
 					</table>
 					</div>
 					<input class="toggle-box" id="ModifyExperimentCheckBox" type="checkbox">

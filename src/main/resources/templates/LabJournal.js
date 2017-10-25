@@ -71,7 +71,7 @@ function RadioEnabler() {
 
 	
 	function ProjectListToTable(projects) {
-		document.getElementById("list").innerHTML += "<Table><tr><th>ID</th><th>Name</th><th>Comment</th></tr>";
+		document.getElementById("list").innerHTML += "<Table><tr><th>ID</th><th>Name</th><th>Comment</th><th></th></tr>";
 		for (i = 0; i < projects.length; i++) {
 			document.getElementById("list").innerHTML += "<tr><td>"
 					+ projects[i].id
@@ -615,7 +615,7 @@ function RadioEnabler() {
 		}
 	}
 
-	/* ----------------------------------------Data Loadrer -------------------------------------------------
+	/* ----------------------------------------Data Loader -------------------------------------------------
 	--------------------------------------------------------------------------------------------------------- */
 	function dataLoader() {
 	ListProjects();
