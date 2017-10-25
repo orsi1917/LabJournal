@@ -2,6 +2,7 @@
 <head>
 <script src="jquery-3.2.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="LabJournal.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script type="text/javascript" src="LabJournal.js"></script>
 <script type="text/javascript" src="Project.js"></script>
 <script type="text/javascript" src="Experiment.js"></script>
@@ -28,10 +29,10 @@ function loadpage(){
 
 $(document).ready(function(){
     $("#hiderow").hide()
-    $("#navhome").click(function(){
-        $(location).attr('href', 'Project.html')
+    $(".navhome").click(function(){
+      $(location).attr('href', 'Project.html')
     });
-    $("#navback").click(function(){
+    $(".navback").click(function(){
         $(location).attr('href', 'Project2.html?id=' + ProjectID.value)
     });
 });
@@ -40,7 +41,21 @@ $(document).ready(function(){
 
 </script>
 
-
+<style>
+.navhome {
+    color: black;
+}
+.navback {
+	color: blue;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 120px;
+    background-color: white;
+}
+</style>
 
 <title>Dit is een nieuwe pagina</title>
 </head>
@@ -55,11 +70,15 @@ $(document).ready(function(){
 		</header>
 
 		<nav>
-			<p id="navhome">HOME</p>
-			<p id="navback">PROJECT</p>
-			<ul id="navlist">
+		<div class="w3-container" >
+			<ul class="w3-ul w3-hoverable">
+				<li class='navhome'>HOME<li>
+				<li class='navhome'>BACK<li>
+				<li class='navhome'>FAQ<li>
+				<li class='navhome'>ABOUT<li>
+				<li class='navhome'>CONTACT US<li>
 			</ul>
-						
+		</div>
 		</nav>
 
 		<article>

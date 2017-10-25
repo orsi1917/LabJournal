@@ -4,9 +4,8 @@
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
  <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
+ <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -21,7 +20,7 @@ window.onload = function loadPage() {
 
 // jquery example
 $(document).ready(function(){
-    $("#navhome").click(function(){
+    $(".navhome").click(function(){
         $(location).attr('href', 'Project.html')
     });
     console.log("loading");
@@ -53,6 +52,23 @@ $(document).ready(function(){
   } );
   </script>
   
+<style>
+.navhome {
+    color: black;
+}
+.navback {
+	color: blue;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 120px;
+    background-color: white;
+}
+
+</style>
+  
 </head>
 <body>
 
@@ -65,7 +81,15 @@ $(document).ready(function(){
 		</header>
 
 		<nav>
-			<p id="navhome">HOME</p>
+		<div class="w3-container" >
+			<ul class="w3-ul w3-hoverable">
+				<li class='navhome'>HOME<li>
+				<li class='navhome'>BACK<li>
+				<li class='navhome'>FAQ<li>
+				<li class='navhome'>ABOUT<li>
+				<li class='navhome'>CONTACT US<li>
+			</ul>
+		</div>
 		</nav>
 
 		<article>
@@ -109,6 +133,7 @@ $(document).ready(function(){
 						<input type="text" id="ExperimentName2" name="ExperimentName">
 						<br><br>		
 						<table id="ExperimentByNameTable" border=2 class="table1"> </table>
+						
 					</td>
 				</tr>
 		</table> 
