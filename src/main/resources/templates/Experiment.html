@@ -1,8 +1,8 @@
 <html>
 <head>
 <script src="jquery-3.2.1.min.js"></script>
-<link rel="stylesheet" type="text/css" href="LabJournal.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" type="text/css" href="LabJournal.css">
 <script type="text/javascript" src="LabJournal.js"></script>
 <script type="text/javascript" src="Project.js"></script>
 <script type="text/javascript" src="Experiment.js"></script>
@@ -28,7 +28,6 @@ function loadpage(){
 };
 
 $(document).ready(function(){
-    $("#hiderow").hide()
     $(".navhome").click(function(){
       $(location).attr('href', 'Project.html')
     });
@@ -84,8 +83,8 @@ ul {
 		<article>
 			
 
-			<input hidden type="text" id="ProjectID" name="ProjectID" value="select project" disabled size="15">
-			<input hidden type="text" id="ExperimentID" name="ExperimentID" value="select project" disabled size="15">
+			<input type="text" id="ProjectID" name="ProjectID" value="select project" disabled size="15">
+			<input type="text" id="ExperimentID" name="ExperimentID" value="select project" disabled size="15">
 	
 			<h2>Experiment: <label id="ExperimentName"></label></h2>	
 			<h4>Description: </h4><p id="ExperimentDescription"></p>

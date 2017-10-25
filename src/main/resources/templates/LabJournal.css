@@ -93,6 +93,7 @@ table.table1 {
  table.table1 th, table.table1 td {
     text-align: left;
     padding: 5px;
+    font-family: Georgia;
 }
 
 table.table1 tr:nth-child(even){background-color: #e0e8ff}
@@ -105,8 +106,8 @@ table.table1 th {
   background-image: -ms-linear-gradient(top, #25638a, #66bef2);
   background-image: -o-linear-gradient(top, #25638a, #66bef2);
   background-image: linear-gradient(to bottom, #25638a, #66bef2);
-    color: white;
-
+  color: white;
+  font-family: Georgia;
 }
 
 hr { 
@@ -117,6 +118,16 @@ hr {
   background-image: -ms-linear-gradient(top, #4583fa, #86cef2);
   background-image: -o-linear-gradient(top, #4583fa, #86cef2); 
 }
+
+textarea{
+	border-radius: 14px;
+}
+
+body{
+	font-family: Georgia;
+	
+}
+
 input[type=text] {
     
     padding: 4px 3px;
@@ -124,7 +135,7 @@ input[type=text] {
     box-sizing: border-box;
     border: 2px solid #25638a;
     border-radius: 28px;
-
+    font-family: Georgia;
 }
 input[type=text]:focus {
     background-color: #c9ddff;
