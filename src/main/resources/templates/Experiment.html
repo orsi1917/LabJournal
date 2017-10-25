@@ -27,7 +27,7 @@ function loadpage(){
 };
 
 $(document).ready(function(){
-    $(".hiddenRow").hide()
+    $("#hiderow").hide()
     $("#navhome").click(function(){
         $(location).attr('href', 'Project.html')
     });
@@ -35,6 +35,9 @@ $(document).ready(function(){
         $(location).attr('href', 'Project2.html?id=' + ProjectID.value)
     });
 });
+
+
+
 </script>
 
 
@@ -155,7 +158,13 @@ $(document).ready(function(){
 				<table id="SamplesByExperimentTable" border=1 class="table1"></table>
 				<div id="trial" class ="expand"></div>
 				</td>
-				
+			</tr>
+			<tr>
+				<td>
+				<input type="text" id="InstrumentID" name="OperationInstrument" size="10" >
+				<input type="text" id="SettingsID" name="OperationSettings" size="10" >
+				<input type="text" id="LocationID" name="OperationsLocation" size="10" >						
+				</td>
 			</tr>	
 		</table>	
 	
