@@ -52,8 +52,7 @@ $(document).ready(function(){
 		<article>
 			
 
-			<button class="btn" type="button" id="NewProjectCreator" onclick='CoupleSampleAndExperiment()'>Test Button</button>
-			<input type="text" id="ProjectID" name="ProjectID" value="select project" disabled size="15">
+			<input hidden type="text" id="ProjectID" name="ProjectID" value="select project" disabled size="15">
 	
 			<h2>Project: <label id="ProjectName"></label></h2>	
 			<h4>Comment: </h4><p id="ProjectComment"></p>
@@ -93,7 +92,7 @@ $(document).ready(function(){
 						<table>
 							<tr>
 								<td>Name:</td>
-								<td><input type="text" id="samplename" name="Name"	value="samplename"></td></tr>
+								<td><input type="text" id="samplename" name="Name"	placeholder="Sample name"></td></tr>
 							<tr>
 								<td>Comment:</td>
 								<td><br><textarea rows="10" cols="30"  id="sampledescription" name="Description" ></textarea></td></tr>
@@ -106,10 +105,10 @@ $(document).ready(function(){
 						<table>
 							<tr>
 								<td>Name:</td>
-								<td><input type="text" id="ExperimentName" name="Name"	value="Experiment name"></td></tr>
+								<td><input type="text" id="ExperimentName" name="Name"	placeholder="experiment name"></td></tr>
 							<tr>
 								<td>Description:</td>
-								<td><br><textarea rows="10" cols="30"  id="ExperimentDescription" name="ExperimentDescription" ></textarea></td></tr>
+								<td><br><textarea rows="10" cols="30"  id="ExperimentDescription" name="ExperimentDescription" placeholder="description"></textarea></td></tr>
 					</table>
 					</div>
 					<input class="toggle-box" id="ModifyExperimentCheckBox" type="checkbox">

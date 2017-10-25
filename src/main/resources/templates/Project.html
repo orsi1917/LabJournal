@@ -73,7 +73,7 @@ $(document).ready(function(){
 	<table > <tr><td>
 			<button type="button" id="NewProjectCreator" onclick="AddNewProject()">Create new Project</button>
 			<br><br>
-				Name:	<input type="text" id="projectname" name="Name"	value="projectname">
+				Name:	<input type="text" id="projectname" name="Name"	placeholder="project name">
 				<table><tr>
 					<td>Comment:</td></tr>
 					<tr><td><textarea rows="4" cols="45" id="projectcomment" name="Comment" placeholder="comments" size="15"></textarea></td></tr>
@@ -106,7 +106,7 @@ $(document).ready(function(){
 					</td>
 					<td class ="toright" style="vertical-align:top">				
 						<button type="button" id="filterexperimentlist" onclick="FindExperimentByName()">Find experiment by name</button>
-						<input type="text" id="ExperimentName2" name="ExperimentName"	value="ExperimentName">
+						<input type="text" id="ExperimentName2" name="ExperimentName">
 						<br><br>		
 						<table id="ExperimentByNameTable" border=2 class="table1"> </table>
 					</td>
