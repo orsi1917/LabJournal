@@ -92,7 +92,7 @@ function RadioEnabler() {
 	}
 	function GetOneProject() {
 		var xhttp = new XMLHttpRequest();
-		var id = document.getElementById("ProjectID").value;
+		var id = document.getElementById("deletefield").value;
 		getRequest(null, "/findProject/" + id, GetOneProjectCallback);
 	}
 
