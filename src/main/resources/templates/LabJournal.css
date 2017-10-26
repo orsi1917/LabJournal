@@ -123,9 +123,7 @@ textarea{
 	border-radius: 14px;
 	 border: 2px solid #25638a;
 }
-textarea :focus {
-    background-color: #c9ddff;
-}
+
 
 html{
 	font-family: Georgia;
@@ -190,6 +188,7 @@ display: none;
     }
 w3-container,.w3-panel{padding:0.01em 16px;background: #d5eeff;}.w3-panel{margin-top:16px;margin-bottom:16px; background: #d5eeff;}
 .w3-hoverable tbody tr:hover,.w3-ul.w3-hoverable li:hover{background-color:#25638a}
+.w3-hoverable {background-color:  #d5eeff;}
 .w3-ul{list-style-type:none;padding:0;margin:0}
 
 .w3-ul li{
