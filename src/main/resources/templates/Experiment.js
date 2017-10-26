@@ -123,7 +123,7 @@ function GetTheExperiment() {
 	function UpdateOperationCallback(responseText) {
 		RadioEnabler();
 		//ButtonEnabler();
-		loadpage();
+		loadPage();
 		uncheckCheckBox("UpdateOperationCheckBox");
 	}
 	function operationDeleter() {

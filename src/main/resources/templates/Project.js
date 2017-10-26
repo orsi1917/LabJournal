@@ -148,14 +148,14 @@ function GetTheProject() {
 	function UpdateSampleCallback(responseText) {
 		RadioEnabler();
 		//ButtonEnabler();
-		loadpage();
+		loadPage();
 		uncheckCheckBox("UpdateSampleCheckBox");
 		
 	}
 	function cancelUpdate(id){
 		RadioEnabler();
 	//	ButtonEnabler();
-		loadpage();
+		loadPage();
 		uncheckCheckBox(id); 
 		
 	}
@@ -182,7 +182,7 @@ function GetTheProject() {
 		deleteRequest(null, "/sample/" + id, SampledeleterCallback2);
 	}
 	function SampledeleterCallback2(responseText) {
-		loadpage();
+		loadPage();
 	}
 	/* ---------------------------------------- Experiment Handling -------------------------------------------------
 	 --------------------------------------------------------------------------------------------------------- */
@@ -282,7 +282,7 @@ function GetTheProject() {
 	}
 	function UpdateExperimentCallback(responseText) {
 		RadioEnabler();
-		loadpage();
+		loaPage();
 		uncheckCheckBox("ModifyExperimentCheckBox");
 		
 	}
@@ -294,5 +294,5 @@ function GetTheProject() {
 	}
 
 	function ExperimentdeleterCallback2(responseText) {
-		loadpage();
+		loadPage();
 	}
