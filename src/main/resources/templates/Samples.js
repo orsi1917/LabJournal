@@ -32,7 +32,7 @@ function GetTheSample() {
 			postRequest(subSample ,"/addSubSampleToSample/" + id,AddNewSubSampleToSampleCallback2);
 		}
 	function AddNewSubSampleToSampleCallback2(responseText) {
-			loadpage();
+			loadPage();
 			uncheckCheckBox("AddSubSampleCheckBox");
 		}
 	
@@ -125,7 +125,7 @@ function GetTheSample() {
 	function UpdateSubSampleCallback(responseText) {
 		RadioEnabler();
 		//ButtonEnabler();
-		loadpage();
+		loadPage();
 		uncheckCheckBox("UpdateSubSampleCheckBox");
 	}
 	function SubSampledeleter2() {
@@ -135,7 +135,7 @@ function GetTheSample() {
 		deleteRequest(null, "/subsample/" + id, SubSampledeleterCallback2);
 	}
 	function SubSampledeleterCallback2(responseText) {
-		loadpage();
+		loadPage();
 	}
 	/* ---------------------------------------- Experiment Handling -------------------------------------------------
 	 --------------------------------------------------------------------------------------------------------- */
@@ -148,6 +148,6 @@ function GetTheSample() {
 	}
 
 	function RemoveExperimentCallback(responseText) {
-		loadpage();
+		loadPage();
 	
 	}
