@@ -11,8 +11,7 @@
 	function CancelProjectUpdate(){
 		hideButton();
 		RadioEnabler();
-		ListProjects();
-		ListOperations();
+		loadPage();
 	}
 	 
 	 //disables  buttons
@@ -28,7 +27,7 @@ function RadioEnabler() {
 	for (var i = 0; i < inputs.length; i++) {
 		inputs[i].disabled = 'false';
 	}
-	loadpage();
+	loadPage();
 }	
 /* ----------------------------------------Navigation bar -------------------------------------------------
 --------------------------------------------------------------------------------------------------------- */
@@ -107,7 +106,7 @@ function RadioEnabler() {
 	function UpdateProject() {
 		var ent = document.getElementById("projectnameChange").value;
 		var ent2 = document.getElementById("projectcommentChange").value;
-		var id = document.getElementById("ProjectID").value;
+		var id = document.getElementById("deletefield").value;
 		var project = '{"name":"' + ent + '", "comment" : "' + ent2 + '"}';
 			postRequest(project ,"/updateProject/"+ id, UpdateProjectCallback);
 	}
@@ -115,6 +114,8 @@ function RadioEnabler() {
 		ListProjects();
 		RadioEnabler();
 		hideButton();
+		loadPage();
+		
 	}
 
 	function ProjectDeleter() {

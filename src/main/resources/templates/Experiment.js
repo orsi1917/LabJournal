@@ -138,12 +138,12 @@ function GetTheExperiment() {
 		var xhttp = new XMLHttpRequest();
 		var sid = document.getElementById("SubSampleID").value;
 		var oid = document.getElementById("OperationID").value;
-		getRequest(null, "/addOperationToSubSample/" + sid + "/" + oid,  CoupleSubSampleAndOperation);
+		getRequest(null, "/addOperationToSubSample/" + sid + "/" + oid,  CoupleSubSampleAndOperationCallback);
 	}
 
 	function  CoupleSubSampleAndOperationCallback(responseText) {
 		console.log("done");
-	
+		alert(responseText);
 		
 	}
 	/* ---------------------------------------- Sample Handling -------------------------------------------------

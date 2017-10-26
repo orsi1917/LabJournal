@@ -79,7 +79,7 @@ public class SubSampleEindpoint {
 	    subSampleRepository.delete(id);
 	  } 
 	 @RequestMapping(value = "/addOperationToSubSample/{sid}/{oid}", method = RequestMethod.GET)
-	 public void addExperimentToSample(@PathVariable long sid, @PathVariable long oid) {
+	 public String addExperimentToSample(@PathVariable long sid, @PathVariable long oid) {
 		 SubSample subSample = subSampleRepository.findOne(sid);
 		 subSampleRepository.save(subSample);
 		 Operation operation = (Operation)operationRepository.findOne(oid);
@@ -87,11 +87,12 @@ public class SubSampleEindpoint {
 		 
 		 for (int i=0; i<(subSample.getOperations()).size(); i++) {			
 			 if ( ( (subSample.getOperations()).get(i)).getId() ==oid ) {
-				 return;
+				 return ("Operation and Subsample are already coupled");
 			 }
 		 }	 
 		 subSample.addOperation(operation);
 		 subSampleRepository.save(subSample);
+		 return("Done!");
 	 }
 	 @RequestMapping(value = "/removeExperimentFroomSample/{sid}/{oid}", method = RequestMethod.GET)
 	 public void removeExperimentFroomSample(@PathVariable long sid, @PathVariable long oid) {
