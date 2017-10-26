@@ -220,7 +220,7 @@ function GetTheExperiment() {
 	function SamplesByExperimentToTable2(samples) {
 		document.getElementById("trial").innerHTML = document
 		.getElementById("trial").innerHTML
-		+'<Table class="table1 " border="1"><tr><th>ID</th><th>Name</th><th>Link</th></tr>'
+		+'<Table class="table1 " border="1"><tr><th  width="20">ID</th><th width="200">Name</th><th>Link</th></tr>'
 		for (i = 0; i < samples.length; i++) {
 			document.getElementById("trial").innerHTML = document
 					.getElementById("trial").innerHTML
@@ -229,9 +229,9 @@ function GetTheExperiment() {
 					+'" type="checkbox">'
 					+ '<label for="identifier-'
 					+ samples[i].id
-					+'"><Table class="table1" border="1"><tr><td>'
+					+'"><Table class="table1" border="1"><tr><td width="20">'
 					+ samples[i].id
-					+'</td><td>'
+					+'</td><td width="200">'
 					+ samples[i].name
 					+'</td><td>'
 					+ "<a href='Samples.html?id="
