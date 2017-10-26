@@ -66,7 +66,7 @@ public class SampleEindpoint {
 			 
 	 }
 	 @RequestMapping(value = "/addExperimentToSample/{sid}/{eid}", method = RequestMethod.GET)
-	 public void addExperimentToSample(@PathVariable long sid, @PathVariable long eid) {
+	 public String addExperimentToSample(@PathVariable long sid, @PathVariable long eid) {
 		 System.out.println("we got to eindpoint");
 		 Sample sample = (Sample)sampleRepository.findOne(sid);
 		 sampleService.saveSample(sample);
@@ -76,11 +76,12 @@ public class SampleEindpoint {
 		 System.out.println("experiment: " + experiment);		 
 		 for (int i=0; i<(sample.getExperiments()).size(); i++) {			
 			 if ( ( (sample.getExperiments()).get(i)).getId() ==eid ) {
-				 return;
+				 return("The sample and experiment are already coupled.");
 			 }
 		 }	 
 		 sample.addExperiment(experiment);
 		 sampleService.saveSample(sample);
+		 return ("Sucess!");
 	 }
 	 @RequestMapping(value = "/removeExperimentFroomSample/{sid}/{eid}", method = RequestMethod.GET)
 	 public void removeExperimentFroomSample(@PathVariable long sid, @PathVariable long eid) {

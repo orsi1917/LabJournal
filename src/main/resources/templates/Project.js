@@ -171,7 +171,7 @@ function GetTheProject() {
 	}
 
 	function CoupleSampleAndExperimentCallback(responseText) {
-		console.log("done");
+		alert(responseText);
 	
 		
 	}
