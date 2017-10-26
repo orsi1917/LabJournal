@@ -1,7 +1,7 @@
 <html>
 <head>
 <script src="jquery-3.2.1.min.js"></script>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <link rel="stylesheet" type="text/css" href="LabJournal.css">
 <script type="text/javascript" src="LabJournal.js"></script>
 <script type="text/javascript" src="Project.js"></script>
@@ -40,21 +40,6 @@ $(document).ready(function(){
 
 </script>
 
-<style>
-.navhome {
-    color: black;
-}
-.navback {
-	color: blue;
-}
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    width: 120px;
-    background-color: white;
-}
-</style>
 
 <title>Dit is een nieuwe pagina</title>
 </head>
@@ -71,11 +56,11 @@ ul {
 		<nav>
 		<div class="w3-container" >
 			<ul class="w3-ul w3-hoverable">
-				<li class='navhome'>HOME<li>
-				<li class='navback'>BACK<li>
-				<li class='navhome'>FAQ<li>
-				<li class='navhome'>ABOUT<li>
-				<li class='navhome'>CONTACT US<li>
+				<li class='navhome'>HOME</li>
+				<li class='navback'>BACK</li>
+				<li class='navhome'>FAQ</li>
+				<li class='navhome'>ABOUT</li>
+				<li class='navhome'>CONTACT US</li>
 			</ul>
 		</div>
 		</nav>
@@ -83,8 +68,8 @@ ul {
 		<article>
 			
 
-			<input type="text" id="ProjectID" name="ProjectID" value="select project" disabled size="15">
-			<input type="text" id="ExperimentID" name="ExperimentID" value="select project" disabled size="15">
+			<input type="text" id="ProjectID" name="ProjectID" value="select project" hidden disabled size="15">
+			<input type="text" id="ExperimentID" name="ExperimentID" value="select project" hidden disabled size="15">
 	
 			<h2>Experiment: <label id="ExperimentName"></label></h2>	
 			<h4>Description: </h4><p id="ExperimentDescription"></p>
